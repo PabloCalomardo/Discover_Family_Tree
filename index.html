@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#49606a">
+    <title>Family Archive</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark">FA</span>
+        <div>
+          <strong>Family Archive</strong>
+          <small>Arxiu familiar local</small>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Vistes principals">
+        <button data-view="dashboard" class="active">Dashboard</button>
+        <button data-view="people">Persones</button>
+        <button data-view="places">Llocs</button>
+        <button data-view="events">Esdeveniments</button>
+        <button data-view="tree">Arbre</button>
+        <button data-view="timeline">Cronologia</button>
+        <button data-view="media">Galeria</button>
+        <button data-view="sources">Fonts</button>
+      </nav>
+    </aside>
+
+    <div class="shell">
+      <header class="topbar">
+        <div>
+          <h1 id="view-title">Dashboard</h1>
+          <p id="project-status">Selecciona una carpeta familiar per comencar.</p>
+        </div>
+        <div class="top-actions">
+          <button id="new-archive">Crear des de 0</button>
+          <button id="import-archive">Importar arxiu</button>
+          <button id="open-project" class="primary">Obrir carpeta</button>
+          <button id="save-project">Desar</button>
+          <button id="export-archive">Exportar ZIP</button>
+        </div>
+      </header>
+
+      <main id="app" class="main" tabindex="-1"></main>
+    </div>
+
+    <dialog id="entity-dialog">
+      <form method="dialog" class="dialog-panel">
+        <header>
+          <h2 id="dialog-title"></h2>
+          <button value="cancel" aria-label="Tancar">x</button>
+        </header>
+        <div id="dialog-body"></div>
+        <footer>
+          <button value="cancel">Cancel.lar</button>
+          <button id="dialog-submit" value="default" class="primary">Guardar</button>
+        </footer>
+      </form>
+    </dialog>
+  </body>
+</html>
