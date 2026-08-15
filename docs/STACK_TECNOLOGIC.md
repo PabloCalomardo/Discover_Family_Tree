@@ -13,6 +13,10 @@ Targets inicials:
 - Windows.
 - macOS.
 
+Windows és el target actiu durant el desenvolupament. El target macOS es genera
+des de l'inici per mantenir la base multiplataforma, però la compilació,
+adaptació nativa i validació s'ajornen fins a les proves finals de l'MVP.
+
 Targets posteriors:
 
 - iOS.
@@ -54,9 +58,8 @@ No s'han d'exposar IDs incrementals de base de dades com a identificadors global
 
 ## State management
 
-Preferència inicial: **Riverpod**.
-
-Aquesta decisió no és estructural i pot revisar-se abans d'implementar la UI.
+**Riverpod**, sense generació de codi, és la solució adoptada per a l'estat
+reactiu i la injecció de dependències de la UI.
 
 Flux obligatori:
 
@@ -76,9 +79,8 @@ Els widgets no poden accedir directament a SQLite.
 
 ## Routing
 
-Es recomana utilitzar una solució declarativa compatible amb desktop i mobile.
-
-La selecció final es farà quan comenci la fase UI.
+**go_router** és la solució declarativa adoptada, compatible amb la navegació
+desktop actual i una futura adaptació mobile.
 
 ## Fitxers de projecte
 
@@ -166,7 +168,9 @@ La llibreria concreta de mapes es decidirà en la fase corresponent.
 
 ## Family Tree
 
-La llibreria o motor de layout no queda fixat encara.
+**graphview 1.5.1**, amb l'algoritme jeràrquic Sugiyama, és el motor de layout
+adoptat per al Family Tree MVP. La projecció des del domini al graf visual es
+manté en una capa pròpia per no acoblar les entitats de negoci a la llibreria.
 
 Requisits mínims:
 

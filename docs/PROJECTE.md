@@ -42,6 +42,11 @@ L'aplicació està especialment pensada per preservar coneixement familiar oral 
 - Windows
 - macOS
 
+El desenvolupament i la validació funcional es fan primer a Windows. macOS es
+manté com a plataforma objectiu de l'MVP, però la seva adaptació i validació
+natives es realitzaran durant les proves finals, quan l'aplicació estigui
+acabada o en fase final.
+
 ### Post-MVP
 
 - iOS
@@ -195,6 +200,8 @@ SQLite
 
 ## 9. Estat actual
 
-El projecte es troba en fase de **Disseny tècnic / Foundation Planning**.
-
-Encara no s'ha d'implementar IA ni UI avançada. La prioritat immediata és crear el repositori Flutter, configurar l'arquitectura base, SQLite/Drift i implementar el nucli de domini.
+El projecte es troba en **Fase 4 — Family Tree MVP**, amb desenvolupament i
+validació funcional prioritaris a Windows. El nucli de domini, la persistència
+i la UI CRUD de persones, relacions, llocs, residències i esdeveniments ja
+estan implementats. La prioritat actual és visualitzar i navegar el graf
+familiar; la IA i la resta de UI avançada continuen fora de l'abast de la fase.

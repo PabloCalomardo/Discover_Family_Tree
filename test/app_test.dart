@@ -1,0 +1,456 @@
+import 'dart:ui' show PointerDeviceKind;
+
+import 'package:drift/native.dart';
+import 'package:family_history/app/app.dart';
+import 'package:family_history/app/providers.dart';
+import 'package:family_history/core/ids/domain_id.dart';
+import 'package:family_history/database/database.dart' as db;
+import 'package:family_history/database/repositories/drift_person_name_repository.dart';
+import 'package:family_history/database/repositories/drift_person_repository.dart';
+import 'package:family_history/database/repositories/drift_parent_child_relationship_repository.dart';
+import 'package:family_history/database/repositories/drift_partnership_repository.dart';
+import 'package:family_history/domain/person/person.dart';
+import 'package:family_history/domain/person/person_name.dart';
+import 'package:family_history/domain/relationship/parent_child_relationship.dart';
+import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/services/person/person_editor_service.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
+import 'package:graphview/GraphView.dart' as gv;
+
+void main() {
+  testWidgets('shows the application name', (tester) async {
+    final database = db.AppDatabase(NativeDatabase.memory());
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [databaseProvider.overrideWithValue(database)],
+        child: const FamilyHistoryApp(),
+      ),
+    );
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(find.text('FamilyHistory'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+    await database.close();
+  });
+
+  testWidgets('creates a person from the user interface', (tester) async {
+    final database = db.AppDatabase(NativeDatabase.memory());
+    await tester.binding.setSurfaceSize(const Size(1280, 800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [databaseProvider.overrideWithValue(database)],
+        child: const FamilyHistoryApp(),
+      ),
+    );
+    await tester.pump(const Duration(milliseconds: 500));
+
+    GoRouter.of(tester.element(find.byType(NavigationRail))).go('/people');
+    await tester.pumpAndSettle();
+    GoRouter.of(tester.element(find.byType(NavigationRail))).go('/people/new');
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).first, 'Joana Puig');
+    await tester.scrollUntilVisible(
+      find.text('Desar'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
+    await tester.pump();
+    await tester.tap(find.text('Desar'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Joana Puig'), findsWidgets);
+    expect(await database.select(database.persons).get(), hasLength(1));
+    expect(await database.select(database.personNames).get(), hasLength(1));
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+    await database.close();
+  });
+
+  testWidgets('renders a stored person in the family tree', (tester) async {
+    final database = db.AppDatabase(NativeDatabase.memory());
+    final people = DriftPersonRepository(database);
+    final names = DriftPersonNameRepository(database);
+    final parentChild = DriftParentChildRelationshipRepository(database);
+    final partnerships = DriftPartnershipRepository(database);
+    final editor = PersonEditorService(database, people, names);
+    final now = DateTime.utc(2026, 8, 15);
+    final personId = PersonId.generate();
+    await editor.create(
+      Person(
+        id: personId,
+        sex: PersonSex.unspecified,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+      PersonName(
+        id: PersonNameId.generate(),
+        personId: personId,
+        displayName: 'Joana Puig',
+        type: PersonNameType.birth,
+        isPreferred: true,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    final secondPersonId = PersonId.generate();
+    await editor.create(
+      Person(
+        id: secondPersonId,
+        sex: PersonSex.unspecified,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+      PersonName(
+        id: PersonNameId.generate(),
+        personId: secondPersonId,
+        displayName: 'Marc Puig',
+        type: PersonNameType.birth,
+        isPreferred: true,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    await parentChild.create(
+      ParentChildRelationship(
+        id: ParentChildRelationshipId.generate(),
+        parentId: personId,
+        childId: secondPersonId,
+        nature: ParentChildNature.biological,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    await parentChild.create(
+      ParentChildRelationship(
+        id: ParentChildRelationshipId.generate(),
+        parentId: personId,
+        childId: secondPersonId,
+        nature: ParentChildNature.adoptive,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    final partnerId = PersonId.generate();
+    await editor.create(
+      Person(
+        id: partnerId,
+        sex: PersonSex.unspecified,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+      PersonName(
+        id: PersonNameId.generate(),
+        personId: partnerId,
+        displayName: 'Lluís Puig',
+        type: PersonNameType.birth,
+        isPreferred: true,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    await partnerships.create(
+      Partnership(
+        id: PartnershipId.generate(),
+        personAId: secondPersonId,
+        personBId: partnerId,
+        type: PartnershipType.unknown,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    final coupleChildIds = <PersonId>[];
+    for (final childName in ['Néta A', 'Nét B']) {
+      final childId = PersonId.generate();
+      coupleChildIds.add(childId);
+      await editor.create(
+        Person(
+          id: childId,
+          sex: PersonSex.unspecified,
+          createdAt: now,
+          modifiedAt: now,
+        ),
+        PersonName(
+          id: PersonNameId.generate(),
+          personId: childId,
+          displayName: childName,
+          type: PersonNameType.birth,
+          isPreferred: true,
+          createdAt: now,
+          modifiedAt: now,
+        ),
+      );
+      for (final parentId in [secondPersonId, partnerId]) {
+        await parentChild.create(
+          ParentChildRelationship(
+            id: ParentChildRelationshipId.generate(),
+            parentId: parentId,
+            childId: childId,
+            nature: ParentChildNature.biological,
+            createdAt: now,
+            modifiedAt: now,
+          ),
+        );
+      }
+    }
+    final siblingId = PersonId.generate();
+    await editor.create(
+      Person(
+        id: siblingId,
+        sex: PersonSex.unspecified,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+      PersonName(
+        id: PersonNameId.generate(),
+        personId: siblingId,
+        displayName: 'Persona intermèdia',
+        type: PersonNameType.birth,
+        isPreferred: true,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    await parentChild.create(
+      ParentChildRelationship(
+        id: ParentChildRelationshipId.generate(),
+        parentId: personId,
+        childId: siblingId,
+        nature: ParentChildNature.biological,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    final inLawMotherId = PersonId.generate();
+    await editor.create(
+      Person(
+        id: inLawMotherId,
+        sex: PersonSex.unspecified,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+      PersonName(
+        id: PersonNameId.generate(),
+        personId: inLawMotherId,
+        displayName: 'Mare de la parella',
+        type: PersonNameType.birth,
+        isPreferred: true,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    await parentChild.create(
+      ParentChildRelationship(
+        id: ParentChildRelationshipId.generate(),
+        parentId: inLawMotherId,
+        childId: partnerId,
+        nature: ParentChildNature.biological,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    await tester.binding.setSurfaceSize(const Size(1280, 800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [databaseProvider.overrideWithValue(database)],
+        child: const FamilyHistoryApp(),
+      ),
+    );
+    await tester.pump(const Duration(milliseconds: 500));
+    GoRouter.of(tester.element(find.byType(NavigationRail))).go('/tree');
+    await tester.pumpAndSettle();
+
+    expect(find.text('Arbre familiar'), findsOneWidget);
+    expect(find.text('Joana Puig'), findsWidgets);
+    expect(find.text('Marc Puig'), findsWidgets);
+    expect(find.text('Lluís Puig'), findsWidgets);
+    expect(find.text('Néta A'), findsWidgets);
+    expect(find.text('Nét B'), findsWidgets);
+    expect(find.text('Persona focal'), findsWidgets);
+
+    final graphView = tester.widget<gv.GraphView>(find.byType(gv.GraphView));
+    final initialGraphKey = graphView.key;
+    double compactnessOverflow(gv.Graph graph) {
+      final nodes = graph.nodes
+          .where((node) => '${node.key?.value}'.startsWith('person:'))
+          .toList();
+      final rows = <double, List<gv.Node>>{};
+      for (final node in nodes) {
+        rows.putIfAbsent(node.position.dy, () => []).add(node);
+      }
+      final widestPackedRow = rows.values
+          .map(
+            (row) =>
+                row.fold<double>(0, (width, node) => width + node.width) +
+                48 * (row.length - 1),
+          )
+          .reduce((first, second) => first > second ? first : second);
+      final left = nodes
+          .map((node) => node.position.dx)
+          .reduce((first, second) => first < second ? first : second);
+      final right = nodes
+          .map((node) => node.position.dx + node.width)
+          .reduce((first, second) => first > second ? first : second);
+      return right - left - widestPackedRow;
+    }
+
+    expect(compactnessOverflow(graphView.graph), lessThanOrEqualTo(96));
+    for (final node in graphView.graph.nodes) {
+      expect(node.position.dx, node.position.dx.roundToDouble());
+      expect(node.position.dy, node.position.dy.roundToDouble());
+    }
+    final parentNode = graphView.graph.getNodeUsingId(
+      'person:${personId.value}',
+    );
+    final childNode = graphView.graph.getNodeUsingId(
+      'person:${secondPersonId.value}',
+    );
+    final partnerNode = graphView.graph.getNodeUsingId(
+      'person:${partnerId.value}',
+    );
+    final siblingNode = graphView.graph.getNodeUsingId(
+      'person:${siblingId.value}',
+    );
+    final firstCoupleChildNode = graphView.graph.getNodeUsingId(
+      'person:${coupleChildIds.first.value}',
+    );
+    final secondCoupleChildNode = graphView.graph.getNodeUsingId(
+      'person:${coupleChildIds.last.value}',
+    );
+    expect(
+      graphView.graph.nodes.map((node) => node.key?.value),
+      isNot(contains('person:${inLawMotherId.value}')),
+    );
+    expect(parentNode.position.dy, lessThan(childNode.position.dy));
+    expect(
+      (childNode.position.dy - partnerNode.position.dy).abs(),
+      lessThan(1),
+    );
+    expect(childNode.position.dy, lessThan(firstCoupleChildNode.position.dy));
+    expect(
+      (firstCoupleChildNode.position.dy - secondCoupleChildNode.position.dy)
+          .abs(),
+      lessThan(1),
+    );
+    final leftSpouse = childNode.position.dx < partnerNode.position.dx
+        ? childNode
+        : partnerNode;
+    final rightSpouse = leftSpouse == childNode ? partnerNode : childNode;
+    expect(
+      rightSpouse.position.dx - (leftSpouse.position.dx + leftSpouse.width),
+      closeTo(48, 0.01),
+    );
+    final siblingCenter = siblingNode.position.dx + siblingNode.width / 2;
+    expect(
+      siblingCenter < leftSpouse.position.dx ||
+          siblingCenter > rightSpouse.position.dx + rightSpouse.width,
+      isTrue,
+    );
+    expect(find.byIcon(Icons.favorite), findsNothing);
+    final mouse = await tester.createGesture(kind: PointerDeviceKind.mouse);
+    await mouse.addPointer(
+      location: tester.getCenter(find.byType(gv.GraphView)),
+    );
+    await mouse.moveTo(tester.getCenter(find.byType(gv.GraphView)));
+    await tester.pump();
+    expect(find.text('Joana Puig'), findsWidgets);
+
+    await tester.tap(find.byType(DropdownButtonFormField<PersonId>).first);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Lluís Puig').last);
+    await tester.pumpAndSettle();
+    final refocusedGraphView = tester.widget<gv.GraphView>(
+      find.byType(gv.GraphView),
+    );
+    expect(refocusedGraphView.key, isNot(initialGraphKey));
+    expect(refocusedGraphView.animated, isFalse);
+    expect(
+      compactnessOverflow(refocusedGraphView.graph),
+      lessThanOrEqualTo(96),
+    );
+    final refocusedPersonNode = refocusedGraphView.graph.getNodeUsingId(
+      'person:${partnerId.value}',
+    );
+    final refocusedSpouseNode = refocusedGraphView.graph.getNodeUsingId(
+      'person:${secondPersonId.value}',
+    );
+    final refocusedMotherNode = refocusedGraphView.graph.getNodeUsingId(
+      'person:${inLawMotherId.value}',
+    );
+    final refocusedChildNode = refocusedGraphView.graph.getNodeUsingId(
+      'person:${coupleChildIds.first.value}',
+    );
+    expect(
+      refocusedGraphView.graph.nodes.map((node) => node.key?.value),
+      isNot(contains('person:${personId.value}')),
+    );
+    expect(
+      refocusedPersonNode.position.dy - refocusedMotherNode.position.dy,
+      closeTo(refocusedMotherNode.height + 88, 0.01),
+    );
+    expect(
+      (refocusedPersonNode.position.dy - refocusedSpouseNode.position.dy).abs(),
+      lessThan(0.01),
+    );
+    expect(
+      refocusedChildNode.position.dy - refocusedPersonNode.position.dy,
+      closeTo(
+        (refocusedPersonNode.height > refocusedSpouseNode.height
+                ? refocusedPersonNode.height
+                : refocusedSpouseNode.height) +
+            88,
+        0.01,
+      ),
+    );
+    final focalCanvasPoint = Offset(
+      refocusedPersonNode.position.dx + refocusedPersonNode.width / 2,
+      refocusedPersonNode.position.dy + refocusedPersonNode.height / 2,
+    );
+    final focalViewportPoint = MatrixUtils.transformPoint(
+      refocusedGraphView.controller!.transformationController!.value,
+      focalCanvasPoint,
+    );
+    final graphViewportSize = tester.getSize(find.byType(gv.GraphView));
+    expect(focalViewportPoint.dx, closeTo(graphViewportSize.width / 2, 0.5));
+    expect(focalViewportPoint.dy, closeTo(graphViewportSize.height / 2, 0.5));
+
+    await tester.tap(find.widgetWithText(FilterChip, 'Mostra tot'));
+    await tester.pumpAndSettle();
+    final expandedGraphView = tester.widget<gv.GraphView>(
+      find.byType(gv.GraphView),
+    );
+    final expandedPartnerNode = expandedGraphView.graph.getNodeUsingId(
+      'person:${partnerId.value}',
+    );
+    final inLawMotherNode = expandedGraphView.graph.getNodeUsingId(
+      'person:${inLawMotherId.value}',
+    );
+    expect(find.text('Mare de la parella'), findsWidgets);
+    expect(
+      inLawMotherNode.position.dy,
+      lessThan(expandedPartnerNode.position.dy),
+    );
+
+    GoRouter.of(tester.element(find.byType(NavigationRail)))
+        .go('/people/${personId.value}');
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Afegir relació'));
+    await tester.pumpAndSettle();
+    expect(find.text('La persona'), findsOneWidget);
+    expect(find.text('Tria una persona'), findsOneWidget);
+    expect(find.text('pare/mare de Joana Puig'), findsOneWidget);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+    await database.close();
+  });
+}
