@@ -13,7 +13,7 @@
 
 ## 2. Estat de l'schema SQLite
 
-L'schema intern actual és la **versió 5**.
+L'schema intern actual és la **versió 6**.
 
 Taules implementades:
 
@@ -22,6 +22,7 @@ projects
 persons
 person_names
 parent_child_relationships
+sibling_relationships
 partnerships
 places
 place_relationships
@@ -46,6 +47,7 @@ Schema 2 → domini familiar, llocs, residències i esdeveniments
 Schema 3 → índexs i restriccions idempotents per a bases migrades
 Schema 4 → fonts, media, claims, duplicats, merge i auditoria
 Schema 5 → aplicació idempotent de claims d'operacions de domini
+Schema 6 → germanors explícites simètriques i auditables
 ```
 
 Taules previstes per a les fases 7 i 8:
@@ -686,18 +688,45 @@ Cada connexió SQLite ha d'executar:
 PRAGMA foreign_keys = ON;
 ```
 
-## 26. Parentescos derivats
+## 26. Parentescos explícits i derivats
 
-No hi haurà taula de:
+No hi haurà taules específiques de:
 
 ```text
 grandparents
-siblings
 uncles
 cousins
 ```
 
 Aquests conceptes es calculen des de `parent_child_relationships`.
+
+La germanor és l'excepció deliberada: pot derivar-se de progenitors compartits,
+però també es pot afirmar directament quan la font coneix els germans i no els
+progenitors. No es creen persones progenitores fictícies.
+
+### 26.1. sibling_relationships — schema 6
+
+```text
+id UUID PK
+person_a_id UUID FK -> persons.id
+person_b_id UUID FK -> persons.id
+kind ENUM(UNSPECIFIED, FULL, HALF, ADOPTIVE, STEP)
+notes TEXT NULL
+created_at DATETIME NOT NULL
+modified_at DATETIME NOT NULL
+deleted_at DATETIME NULL
+```
+
+Regles:
+
+- relació simètrica amb parella canonitzada (`person_a_id < person_b_id`);
+- una persona no pot ser germana d'ella mateixa;
+- unicitat activa per parella; les discrepàncies de tipus es conserven com a
+  claims fins que es resolen;
+- `UNSPECIFIED` és el valor segur quan la font només diu «germans»;
+- si també existeix una germanor derivada, el servei conserva les dues vies
+  d'evidència sense eliminar la relació explícita;
+- el merge recanonitza, deduplica i conserva discrepàncies com a claims.
 
 ## 27. Exemple complex d'adopció
 
@@ -733,5 +762,15 @@ Quan dues persones es fusionen:
 - cap camp es descarta silenciosament;
 - l'usuari resol conflictes;
 - relacions no duplicades es conserven;
+- germanors explícites es recanonitzen sense crear progenitors;
 - discrepàncies històriques poden convertir-se en claims;
 - es crea `AuditEntry`.
+
+## 29. Eliminació múltiple de persones
+
+L'eliminació en cascada és lògica i transaccional. Marca `deleted_at` a les
+persones seleccionades i als seus noms, filiacions, germanors, parelles,
+residències i participacions. Els esdeveniments amb altres participants actius
+es conserven; els que queden orfes també reben soft-delete. Claims i auditoria
+es mantenen intactes per no perdre la procedència ni l'historial. Els candidats
+de duplicat afectats es resolen amb estat `DISMISSED`.

@@ -210,13 +210,19 @@ SQLite
 ## 9. Estat actual
 
 Les fases 0–6 estan completades. El projecte disposa de nucli de domini,
-persistència Drift/SQLite schema 5, UI CRUD, arbre familiar navegable i cicle
+persistència Drift/SQLite schema 6, UI CRUD, arbre familiar navegable i cicle
 complet de projectes `.famhistory` transportables amb validació d'integritat.
 
 La fase 6 es va completar el 2026-08-16 amb validació funcional explícita. La
 fase actual és la **Fase 7 — IA: importació de text**, en curs des del
 2026-08-16. Abasta extracció estructurada, resolució d'entitats, revisió humana
 i commit transaccional; la transcripció d'àudio continua reservada a la fase 8.
+
+Després de comparar sis models locals, la implementació activa de la fase 7 és
+determinista i sense LLM. Reconeix només patrons catalans explícits, conserva
+els fragments i offsets que justifiquen cada proposta i obliga a verificar el
+text ressaltat abans de revisar o crear afirmacions. Les coincidències múltiples
+amb entitats existents es bloquegen en lloc de resoldre's automàticament.
 
 La validació funcional i la compilació continuen prioritzant Windows. macOS es
 manté ajornat fins a les proves finals multiplataforma de l'MVP.

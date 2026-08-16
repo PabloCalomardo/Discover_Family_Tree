@@ -1,4 +1,5 @@
 import 'package:family_history/app/app_strings.dart';
+import 'package:family_history/app/navigation.dart';
 import 'package:family_history/app/providers.dart';
 import 'package:family_history/core/ids/domain_id.dart';
 import 'package:family_history/domain/person/person.dart';
@@ -265,7 +266,14 @@ class _PlaceFormState extends ConsumerState<_PlaceForm> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: _saving ? null : () => context.pop(),
+                  onPressed: _saving
+                      ? null
+                      : () => popOrGo(
+                          context,
+                          widget.initialPlace == null
+                              ? '/places'
+                              : '/places/${widget.initialPlace!.id.value}',
+                        ),
                   child: const Text(AppStrings.cancel),
                 ),
                 const SizedBox(width: 12),

@@ -22,6 +22,13 @@ final class ClaimService {
     await _record(AuditType.claimCreated, claim);
   });
 
+  Future<void> createAll(List<Claim> claims) => _transactions.run(() async {
+    for (final claim in claims) {
+      await _claims.create(claim);
+      await _record(AuditType.claimCreated, claim);
+    }
+  });
+
   Future<void> update(Claim claim) => _transactions.run(() async {
     await _claims.update(claim);
     await _record(AuditType.claimUpdated, claim);

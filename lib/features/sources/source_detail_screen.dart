@@ -240,6 +240,13 @@ class _ClaimsSection extends ConsumerWidget {
           Text('Afirmacions', style: Theme.of(context).textTheme.headlineSmall),
           const Spacer(),
           FilledButton.tonalIcon(
+            onPressed: () =>
+                context.go('/sources/${sourceId.value}/extract-text'),
+            icon: const Icon(Icons.text_snippet_outlined),
+            label: const Text('Extreu del text'),
+          ),
+          const SizedBox(width: 8),
+          FilledButton.tonalIcon(
             onPressed: () => showClaimFormDialog(context, ref, sourceId),
             icon: const Icon(Icons.add),
             label: const Text('Afegeix'),
@@ -445,6 +452,7 @@ String claimPropertyLabel(ClaimProperty property) => switch (property) {
   ClaimProperty.placeDescription => 'Descripció del lloc',
   ClaimProperty.placeNotes => 'Notes del lloc',
   ClaimProperty.parentChildRelationship => 'Relació pare/mare-fill/a',
+  ClaimProperty.siblingRelationship => 'Germanor',
   ClaimProperty.partnership => 'Parella',
   ClaimProperty.residence => 'Residència',
   ClaimProperty.event => 'Esdeveniment',
@@ -461,6 +469,7 @@ String claimValueLabel(ClaimValue value) => switch (value) {
   PersonCreationClaimValue() => 'Crear ${value.preferredName}',
   PlaceCreationClaimValue() => 'Crear ${value.preferredName}',
   ParentChildClaimValue() => '${value.parentId.value} → ${value.childId.value}',
+  SiblingClaimValue() => '${value.personAId.value} ↔ ${value.personBId.value}',
   PartnershipClaimValue() =>
     '${value.personAId.value} ↔ ${value.personBId.value}',
   ResidenceClaimValue() => '${value.personId.value} a ${value.placeId.value}',

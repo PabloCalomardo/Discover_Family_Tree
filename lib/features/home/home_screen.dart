@@ -228,36 +228,10 @@ class _ProjectCard extends StatelessWidget {
   }
 
   Future<String?> _askProjectName(BuildContext context) async {
-    final controller = TextEditingController(text: 'La meva família');
-    final result = await showDialog<String>(
+    return showDialog<String>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Nou projecte'),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          decoration: const InputDecoration(labelText: 'Nom del projecte'),
-          onSubmitted: (value) {
-            if (value.trim().isNotEmpty) Navigator.pop(context, value.trim());
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel·lar'),
-          ),
-          FilledButton(
-            onPressed: () {
-              final value = controller.text.trim();
-              if (value.isNotEmpty) Navigator.pop(context, value);
-            },
-            child: const Text('Continuar'),
-          ),
-        ],
-      ),
+      builder: (context) => const ProjectNameDialog(),
     );
-    controller.dispose();
-    return result;
   }
 
   String _safeFileName(String value) {
@@ -267,6 +241,52 @@ class _ProjectCard extends StatelessWidget {
         .replaceAll(RegExp(r'^-+|-+$'), '');
     return sanitized.isEmpty ? 'familia' : sanitized;
   }
+}
+
+class ProjectNameDialog extends StatefulWidget {
+  const ProjectNameDialog({super.key});
+
+  @override
+  State<ProjectNameDialog> createState() => _ProjectNameDialogState();
+}
+
+class _ProjectNameDialogState extends State<ProjectNameDialog> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: 'La meva família');
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _submit() {
+    final value = _controller.text.trim();
+    if (value.isNotEmpty) Navigator.pop(context, value);
+  }
+
+  @override
+  Widget build(BuildContext context) => AlertDialog(
+    title: const Text('Nou projecte'),
+    content: TextField(
+      controller: _controller,
+      autofocus: true,
+      decoration: const InputDecoration(labelText: 'Nom del projecte'),
+      onSubmitted: (_) => _submit(),
+    ),
+    actions: [
+      TextButton(
+        onPressed: () => Navigator.pop(context),
+        child: const Text('Cancel·lar'),
+      ),
+      FilledButton(onPressed: _submit, child: const Text('Continuar')),
+    ],
+  );
 }
 
 class _SummaryCard extends StatelessWidget {

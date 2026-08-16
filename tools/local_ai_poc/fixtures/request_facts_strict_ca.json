@@ -1,0 +1,50 @@
+{
+  "model": "local",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extreu tots els fets explícits usant exclusivament les referències del catàleg. Retorna només JSON compacte, sense Markdown ni salts innecessaris. No inventis dades. Tipus: birth (persona, placeRef i data), parent (progenitor a fill), residence (persona, placeRef i interval), marriage (dues persones, placeRef i data), sibling (dues persones). objectRef només s'usa per parent, marriage i sibling; placeRef només per birth, residence i marriage. Usa null en la resta. Una relació incerta no és un fet segur: descriu-la a ambiguities. Evidència literal breu. Catàleg: p1 Clara Vidal; p2 Rosa Puig; p3 Jordi Vidal; p4 Àlex Serra; p5 Marta; l1 Manresa; l2 Berga; l3 carrer Nou 18 de Manresa; l4 Barcelona."
+    },
+    {
+      "role": "user",
+      "content": "Em dic Clara Vidal. Vaig néixer a Manresa el 12 de març de 1958. La meva mare, Rosa Puig, havia nascut a Berga, però no recordo quin any. El meu pare era en Jordi Vidal. Els meus pares van viure al carrer Nou 18 de Manresa des de 1955 fins aproximadament al 1970. Jo també hi vaig viure de petita. L'any 1981 em vaig casar amb l'Àlex Serra a Barcelona. Em sembla que l'Àlex tenia una germana que es deia Marta, però no n'estic del tot segura."
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 1000,
+  "chat_template_kwargs": { "enable_thinking": false },
+  "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+      "name": "family_history_facts",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["facts", "ambiguities"],
+        "properties": {
+          "facts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["type", "subjectRef", "objectRef", "placeRef", "dateText", "evidence"],
+              "properties": {
+                "type": { "enum": ["birth", "parent", "residence", "marriage", "sibling"] },
+                "subjectRef": { "type": "string" },
+                "objectRef": { "type": ["string", "null"] },
+                "placeRef": { "type": ["string", "null"] },
+                "dateText": { "type": ["string", "null"] },
+                "evidence": { "type": "string" }
+              }
+            }
+          },
+          "ambiguities": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

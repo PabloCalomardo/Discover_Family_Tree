@@ -2,6 +2,7 @@ import 'package:family_history/core/errors/domain_validation_exception.dart';
 import 'package:family_history/core/ids/domain_id.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
 import 'package:family_history/services/kinship/family_graph_validator.dart';
 import 'package:family_history/services/kinship/kinship_path.dart';
 
@@ -16,6 +17,7 @@ final class KinshipService {
     required PersonId target,
     required Iterable<ParentChildRelationship> parentChildRelationships,
     Iterable<Partnership> partnerships = const [],
+    Iterable<SiblingRelationship> siblingRelationships = const [],
     int? maxDepth,
   }) {
     if (source == target) {
@@ -102,6 +104,27 @@ final class KinshipService {
               from: source,
               to: target,
               relationshipId: partnership.id,
+            ),
+          ],
+        ),
+      );
+    }
+
+    for (final sibling in siblingRelationships.where(
+      (relationship) =>
+          !relationship.isDeleted &&
+          relationship.involves(source) &&
+          relationship.involves(target),
+    )) {
+      results.add(
+        KinshipPath(
+          type: KinshipType.sibling,
+          nature: KinshipNature.sibling,
+          steps: [
+            KinshipStep.sibling(
+              from: source,
+              to: target,
+              relationshipId: sibling.id,
             ),
           ],
         ),

@@ -154,12 +154,26 @@ Possibles implementacions futures:
 abstract interface class ExtractionProvider
 ```
 
-Possibles implementacions futures:
+Implementació activa:
 
-- OpenAI;
-- Anthropic;
-- Gemini;
-- model local.
+- `DeterministicExtractionProvider` en Dart, amb regex i regles catalanes
+  explícites;
+- resultat tipat amb offsets d'evidència;
+- resolució exacta i única contra repositoris de domini;
+- cap dependència nova, xarxa, model ni runtime extern.
+
+Possible implementació futura, no activa:
+
+- model local mitjançant `llama.cpp`.
+
+Per requisit de privacitat, el text amb dades personals no es pot transmetre a
+APIs externes ni usar-se per entrenar o memoritzar informació. No hi haurà cap
+fallback al núvol. Runtime i model concret continuen sent experimentals fins a
+validar qualitat, consum de recursos i distribució multiplataforma.
+
+La prova amb `llama.cpp` b10453 ha descartat Qwen3 0.6B/1.7B/4B, Qwen2.5 3B,
+Ministral 3 3B i Gemma 4 E2B per errors semàntics. Cap runtime ni model forma
+part de les dependències distribuïdes de l'aplicació.
 
 L'aplicació no ha de dependre del proveïdor concret a nivell de domini.
 
@@ -223,7 +237,7 @@ Prioritat alta:
 
 Cobertura afegida durant la fase 6:
 
-- migracions 1, 2, 3 i 4 cap a schema 5;
+- migracions 1, 2, 3, 4 i 5 cap a schema 6;
 - models i repositories de fonts, media, claims, duplicats i auditoria;
 - detecció de contradiccions;
 - detector determinista de duplicats;
@@ -244,7 +258,7 @@ Estat verificat durant la fase 6 el 2026-08-16:
 - `flutter analyze` sense incidències;
 - 73 proves superades;
 - compilació Windows release correcta;
-- schema intern 5 i format `.famhistory` v1;
+- schema intern 6 i format `.famhistory` v1;
 - la fase continua en curs pendent de validació funcional de l'usuari.
 
 ## Dependències d'infraestructura local

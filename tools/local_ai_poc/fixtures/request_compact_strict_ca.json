@@ -1,0 +1,64 @@
+{
+  "model": "local",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Ets un extractor de dades d'història familiar. Retorna només JSON amb entities, facts i ambiguities. Extreu tota la informació explícita, sense deduccions. Inclou com a entitat cada persona i lloc mencionats. Cada referència usada en un fet ha d'existir a entities. Reutilitza referències, conserva dates i incertesa, i usa evidències literals breus. Una dada incerta va a ambiguities i no es converteix en un fet segur. birth: subjectRef persona i placeRef lloc; parent: subjectRef progenitor i objectRef fill; residence: subjectRef persona i placeRef lloc; marriage: dues persones i placeRef lloc; sibling: dues persones."
+    },
+    {
+      "role": "user",
+      "content": "Em dic Clara Vidal. Vaig néixer a Manresa el 12 de març de 1958. La meva mare, Rosa Puig, havia nascut a Berga, però no recordo quin any. El meu pare era en Jordi Vidal. Els meus pares van viure al carrer Nou 18 de Manresa des de 1955 fins aproximadament al 1970. Jo també hi vaig viure de petita. L'any 1981 em vaig casar amb l'Àlex Serra a Barcelona. Em sembla que l'Àlex tenia una germana que es deia Marta, però no n'estic del tot segura."
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 1000,
+  "chat_template_kwargs": { "enable_thinking": false },
+  "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+      "name": "family_history_compact_extraction",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["entities", "facts", "ambiguities"],
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["ref", "type", "name", "evidence"],
+              "properties": {
+                "ref": { "type": "string" },
+                "type": { "enum": ["person", "place"] },
+                "name": { "type": "string" },
+                "evidence": { "type": "string" }
+              }
+            }
+          },
+          "facts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["type", "subjectRef", "objectRef", "placeRef", "dateText", "evidence"],
+              "properties": {
+                "type": { "enum": ["birth", "parent", "residence", "marriage", "sibling"] },
+                "subjectRef": { "type": "string" },
+                "objectRef": { "type": ["string", "null"] },
+                "placeRef": { "type": ["string", "null"] },
+                "dateText": { "type": ["string", "null"] },
+                "evidence": { "type": "string" }
+              }
+            }
+          },
+          "ambiguities": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

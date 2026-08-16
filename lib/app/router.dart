@@ -1,6 +1,7 @@
 import 'package:family_history/app/app_shell.dart';
 import 'package:family_history/core/ids/domain_id.dart';
 import 'package:family_history/features/home/home_screen.dart';
+import 'package:family_history/features/extraction/text_extraction_screen.dart';
 import 'package:family_history/features/family_tree/family_tree_screen.dart';
 import 'package:family_history/features/people/person_detail_screen.dart';
 import 'package:family_history/features/people/person_form_screen.dart';
@@ -85,6 +86,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/sources/:id/edit',
             builder: (context, state) => SourceFormScreen(
+              sourceId: SourceId(state.pathParameters['id']!),
+            ),
+          ),
+          GoRoute(
+            path: '/sources/:id/extract-text',
+            builder: (context, state) => TextExtractionScreen(
               sourceId: SourceId(state.pathParameters['id']!),
             ),
           ),

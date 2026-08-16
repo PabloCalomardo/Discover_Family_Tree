@@ -354,9 +354,9 @@ SQLite només desa metadata i ruta relativa.
 
 S'han de calcular checksums per detectar duplicats i corrupció.
 
-## 15. IA i Candidate Changes
+## 15. Extracció i Candidate Changes
 
-La sortida IA mai es converteix directament en entitats definitives.
+Cap sortida d'extracció es converteix directament en entitats definitives.
 
 Tipus previstos:
 
@@ -366,24 +366,81 @@ CandidatePlace
 CandidateRelationship
 CandidateResidence
 CandidateEvent
-CandidateClaim
 ```
 
-Flux:
+Flux actiu de la fase 7:
 
 ```text
-LLM JSON
+Text o transcripció enganxada
   ↓
-Schema validation
+Patrons catalans explícits
   ↓
-Domain validation
+Candidats tipats amb evidència i offsets
   ↓
-Entity resolution
+Resolució exacta i única d'entitats
   ↓
-Human review
+Verificació visual del text ressaltat
   ↓
-Transactional commit
+Revisió humana
+  ↓
+Creació transaccional de claims pendents
 ```
+
+`DeterministicExtractionProvider` no usa xarxa, models, memòria ni
+persistència. Els patrons només reconeixen construccions explícites; una dada
+no reconeguda s'omet en lloc d'inferir-la. `EvidenceSpan` conserva offsets
+`[start, end)` sobre el text original i una categoria de color.
+
+`ExtractionRequest.narratorName` permet identificar explícitament la persona
+quan el text usa «jo», «els meus» o construccions equivalents sense dir-ne el
+nom. Si falta, es crea un candidat contextual `requiresName` que permet mostrar
+l'estructura detectada però bloqueja el mapatge de claims dependents.
+
+El catàleg inicial cobreix noms de narrador, mare/pare individuals, parelles de
+pares, llistes de germans, avis per branca, besavis, matrimonis, naixements,
+residències i mencions de fills o nets sense nom. Aquestes últimes només generen
+ambigüitats. Cada persona obté un color HSL estable i diferent dins del resultat.
+
+Les germanors explícites no requereixen progenitors coneguts. Es materialitzen
+com `SiblingRelationship`, una relació simètrica canonitzada, i conviuen amb la
+germanor derivada de progenitors compartits. L'extractor genera
+`ClaimProperty.siblingRelationship`; queda prohibit crear progenitors ficticis
+per satisfer una limitació del graf.
+
+L'eliminació múltiple de persones és una única operació transaccional i
+auditada. Fa soft-delete dels noms i de totes les dependències relacionals
+actives: filiacions, germanors, parelles, residències i participacions en
+esdeveniments. Un esdeveniment compartit es conserva; només es marca eliminat
+si queda sense cap participant actiu. Les claims, aplicacions de claims i
+entrades d'auditoria no s'esborren, perquè formen part de la traçabilitat. Els
+candidats de duplicat que apunten a persones eliminades passen a `dismissed`.
+
+Els controllers de text de diàlegs amb animació de ruta pertanyen a l'estat del
+mateix diàleg. No es destrueixen immediatament després que `showDialog` retorni,
+ja que la ruta encara es pot reconstruir mentre finalitza la seva animació.
+
+El subjecte principal també es pot identificar en tercera persona a partir
+d'una presentació explícita (`La Maria Soler Puig és...`). Els possessius
+posteriors (`els seus pares`), les repeticions del nom, `la parella` i les
+llistes de fills es resolen contra aquest subjecte. Els articles catalans només
+es retiren quan són tokens independents o elidits; per tant, noms com `Laura`
+no es trunquen i formes com `l’Anna` es reconeixen correctament.
+
+Una edat explícita (`78 anys`) genera un `CandidateEvent` de naixement incert.
+La data de referència forma part d'`ExtractionRequest`; si no s'indica, és la
+data UTC de l'anàlisi. El rang compatible va des de l'endemà de restar
+`edat + 1` anys fins al dia de restar `edat` anys. Així, el 16/08/2026, 78 anys
+produeix 17/08/1947–16/08/1948 i es presenta com `1947–1948 (inferit de 78
+anys)`. El fragment numèric queda marcat com a evidència temporal.
+
+`EntityResolutionService` només resol una coincidència textual exacta quan és
+única. Zero coincidències implica una proposta de creació; més d'una
+coincidència bloqueja el candidat i les seves dependències.
+
+La navegació de formularis usa `popOrGo`: torna amb `pop` si existeix una pila
+de navegació i, si la ruta s'ha obert amb `go`, navega a un fallback explícit.
+Els diàlegs continuen tancant-se amb `Navigator.pop` perquè disposen de ruta
+modal pròpia.
 
 ## 16. Contractes de providers
 
@@ -405,22 +462,25 @@ abstract interface class ExtractionProvider {
 }
 ```
 
-## 17. Sortida LLM
+## 17. Sortida d'extracció
 
-Format conceptual:
+Contracte tipat actual:
 
-```json
-{
-  "entities": [],
-  "relationships": [],
-  "events": [],
-  "residences": [],
-  "claims": [],
-  "ambiguities": []
-}
+```text
+ExtractionResult
+  text
+  people[]
+  places[]
+  relationships[]
+  residences[]
+  events[]
+  evidenceSpans[]
+  ambiguities[]
 ```
 
-L'LLM no pot retornar instruccions SQL.
+La UI consumeix aquest contracte mitjançant `TextExtractionController`; cap
+widget accedeix a Drift. `ExtractionClaimMapper` ordena primer les dependències
+de persona i lloc i després les relacions, residències i esdeveniments.
 
 ## 18. Fitxer `.famhistory`
 
@@ -435,7 +495,7 @@ L'LLM no pot retornar instruccions SQL.
   "createdAt": "ISO-8601",
   "modifiedAt": "ISO-8601",
   "appVersion": "1.0.0+1",
-  "databaseSchemaVersion": 5,
+  "databaseSchemaVersion": 6,
   "media": [
     {
       "path": "media/images/retrat.jpg",

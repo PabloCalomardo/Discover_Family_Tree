@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FamilyHistoryExtraction",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["people", "places", "relationships", "residences", "events", "ambiguities"],
+  "properties": {
+    "people": { "type": "array", "items": { "$ref": "#/$defs/person" } },
+    "places": { "type": "array", "items": { "$ref": "#/$defs/place" } },
+    "relationships": { "type": "array", "items": { "$ref": "#/$defs/relationship" } },
+    "residences": { "type": "array", "items": { "$ref": "#/$defs/residence" } },
+    "events": { "type": "array", "items": { "$ref": "#/$defs/event" } },
+    "ambiguities": { "type": "array", "items": { "$ref": "#/$defs/ambiguity" } }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object", "additionalProperties": false, "required": ["excerpt"],
+      "properties": { "excerpt": { "type": "string", "minLength": 1 } }
+    },
+    "person": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ref", "givenNames", "surnames", "sex", "evidence"],
+      "properties": {
+        "ref": { "type": "string", "pattern": "^person_[0-9]+$" },
+        "givenNames": { "type": ["string", "null"] },
+        "surnames": { "type": ["string", "null"] },
+        "sex": { "enum": ["female", "male", "other", "unknown", null] },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "place": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ref", "name", "placeType", "evidence"],
+      "properties": {
+        "ref": { "type": "string", "pattern": "^place_[0-9]+$" },
+        "name": { "type": "string", "minLength": 1 },
+        "placeType": { "enum": ["address", "neighborhood", "city", "region", "country", "other", null] },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "relationship": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fromPersonRef", "toPersonRef", "type", "evidence"],
+      "properties": {
+        "fromPersonRef": { "type": "string" },
+        "toPersonRef": { "type": "string" },
+        "type": { "enum": ["parent", "child", "spouse", "partner", "sibling", "other"] },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "residence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["personRef", "placeRef", "dateText", "evidence"],
+      "properties": {
+        "personRef": { "type": "string" },
+        "placeRef": { "type": "string" },
+        "dateText": { "type": ["string", "null"] },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "event": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "personRefs", "placeRef", "dateText", "description", "evidence"],
+      "properties": {
+        "type": { "enum": ["birth", "death", "marriage", "migration", "occupation", "education", "other"] },
+        "personRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "placeRef": { "type": ["string", "null"] },
+        "dateText": { "type": ["string", "null"] },
+        "description": { "type": ["string", "null"] },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "ambiguity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["description", "evidence"],
+      "properties": {
+        "description": { "type": "string", "minLength": 1 },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    }
+  }
+}

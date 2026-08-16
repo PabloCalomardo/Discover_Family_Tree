@@ -13,6 +13,7 @@ part 'database.g.dart';
     Persons,
     PersonNames,
     ParentChildRelationships,
+    SiblingRelationships,
     Partnerships,
     Places,
     PlaceRelationships,
@@ -127,6 +128,22 @@ final class AppDatabase extends _$AppDatabase {
             .createStatementsByDialect[SqlDialect.sqlite]!
             .replaceFirst('CREATE INDEX', 'CREATE INDEX IF NOT EXISTS');
         await customStatement(statement);
+      },
+      createSchemaVersion6: () async {
+        await migrator.createTable(siblingRelationships);
+        for (final index in [
+          siblingsPersonAId,
+          siblingsPersonBId,
+          siblingsUniqueActive,
+        ]) {
+          final statement = index.createStatementsByDialect[SqlDialect.sqlite]!
+              .replaceFirst('CREATE INDEX', 'CREATE INDEX IF NOT EXISTS')
+              .replaceFirst(
+                'CREATE UNIQUE INDEX',
+                'CREATE UNIQUE INDEX IF NOT EXISTS',
+              );
+          await customStatement(statement);
+        }
       },
     ),
     beforeOpen: (details) async {

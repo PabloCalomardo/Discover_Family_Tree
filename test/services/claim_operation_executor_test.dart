@@ -11,12 +11,14 @@ import 'package:family_history/database/repositories/drift_partnership_repositor
 import 'package:family_history/database/repositories/drift_person_repository.dart';
 import 'package:family_history/database/repositories/drift_place_repository.dart';
 import 'package:family_history/database/repositories/drift_residence_repository.dart';
+import 'package:family_history/database/repositories/drift_sibling_relationship_repository.dart';
 import 'package:family_history/domain/audit/audit_entry.dart';
 import 'package:family_history/domain/claim/claim.dart';
 import 'package:family_history/domain/person/person.dart';
 import 'package:family_history/domain/place/place.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
 import 'package:family_history/domain/event/event.dart';
 import 'package:family_history/domain/event/event_participant.dart';
 import 'package:family_history/services/audit/audit_service.dart';
@@ -28,6 +30,7 @@ void main() {
   late DriftClaimRepository claims;
   late DriftPersonRepository people;
   late DriftParentChildRelationshipRepository relationships;
+  late DriftSiblingRelationshipRepository siblings;
   late ClaimService service;
   final now = DateTime.utc(2026, 8, 16);
 
@@ -38,6 +41,7 @@ void main() {
     relationships = DriftParentChildRelationshipRepository(database);
     final places = DriftPlaceRepository(database);
     final partnerships = DriftPartnershipRepository(database);
+    siblings = DriftSiblingRelationshipRepository(database);
     final residences = DriftResidenceRepository(database);
     final events = DriftEventRepository(database);
     final audit = DriftAuditRepository(database);
@@ -50,6 +54,7 @@ void main() {
         people,
         places,
         relationships,
+        siblings,
         partnerships,
         residences,
         events,
@@ -129,6 +134,43 @@ void main() {
     expect(stored.id, relationshipId);
     expect(stored.parentId, parent);
     expect(stored.childId, child);
+  });
+
+  test('accepting a sibling claim creates no artificial parent', () async {
+    final first = PersonId.generate();
+    final second = PersonId.generate();
+    for (final id in [first, second]) {
+      await people.create(
+        Person(id: id, sex: PersonSex.unknown, createdAt: now, modifiedAt: now),
+      );
+    }
+    final relationshipId = SiblingRelationshipId.generate();
+    final claim = Claim(
+      id: ClaimId.generate(),
+      subjectType: ClaimSubjectType.relationship,
+      subjectId: relationshipId.value,
+      property: ClaimProperty.siblingRelationship,
+      value: SiblingClaimValue(
+        relationshipId: relationshipId,
+        personAId: second,
+        personBId: first,
+        kind: SiblingKind.unspecified,
+      ),
+      status: ClaimStatus.unreviewed,
+      createdAt: now,
+      modifiedAt: now,
+    );
+    await service.create(claim);
+
+    await service.acceptAndApply(claim);
+
+    final stored = (await siblings.watchAll().first).single;
+    expect(stored.id, relationshipId);
+    expect(
+      stored.personAId.value.compareTo(stored.personBId.value),
+      lessThan(0),
+    );
+    expect(await relationships.watchAll().first, isEmpty);
   });
 
   test('materializes place, partnership, residence and event claims', () async {

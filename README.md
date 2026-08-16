@@ -64,7 +64,17 @@ manual camp per camp i auditoria append-only. La UI disposa de les seccions
 ## Estat verificat
 
 - `flutter analyze`: cap incidència.
-- 73 proves superades.
-- Build Windows release generat correctament amb schema 5.
+- 99 proves superades.
+- Build Windows release generat correctament amb schema 6.
 - Fase 6 completada amb validació funcional explícita el 2026-08-16.
-- Fase 7 iniciada; decisions d'arquitectura i proveïdor pendents d'aprovació.
+- Fase 7 iniciada. Prova reversible d'LLM local en curs: privacitat i rendiment
+  local viables. Qwen3 0.6B, 1.7B i 4B no s'integren perquè cometen errors
+  semàntics en filiacions, llocs i dates; el 4B només dona bon resultat en
+  detecció d'entitats. Qwen2.5 3B també queda descartat per qualitat i llicència
+  no comercial. Ministral 3 3B i Gemma 4 E2B també queden descartats: tots dos
+  inverteixen filiacions, ometen llocs o residències i converteixen incertesa en
+  fets. Cap model s'ha integrat. La implementació activa és un extractor
+  determinista local amb patrons catalans explícits, evidència amb offsets,
+  resolució exacta única i verificació visual del text abans de revisar les
+  propostes. Checkpoint de l'experiment LLM:
+  `phase-7-local-llm-experiment-start`.

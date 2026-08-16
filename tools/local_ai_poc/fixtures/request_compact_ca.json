@@ -1,0 +1,18 @@
+{
+  "model": "local",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Ets un extractor de dades d'història familiar. Retorna només JSON, sense Markdown ni explicacions, amb tres llistes: entities, facts i ambiguities. Entitat: {ref: p1 o l1, type: person o place, name: nom literal, evidence: fragment literal}. Fet: {type: birth|parent|residence|marriage|sibling, subjectRef: ref, objectRef: ref o null, dateText: text o null, evidence: fragment literal}. birth: persona i lloc; parent: progenitor i fill; residence: persona i lloc; marriage i sibling: dues persones. Extreu només informació explícita. Reutilitza referències. Tota referència ha d'existir a entities. Conserva dates i incertesa. Registra dubtes a ambiguities. Evidències literals i breus."
+    },
+    {
+      "role": "user",
+      "content": "Em dic Clara Vidal. Vaig néixer a Manresa el 12 de març de 1958. La meva mare, Rosa Puig, havia nascut a Berga, però no recordo quin any. El meu pare era en Jordi Vidal. Els meus pares van viure al carrer Nou 18 de Manresa des de 1955 fins aproximadament al 1970. Jo també hi vaig viure de petita. L'any 1981 em vaig casar amb l'Àlex Serra a Barcelona. Em sembla que l'Àlex tenia una germana que es deia Marta, però no n'estic del tot segura."
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 700,
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  }
+}

@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 
 const initialSchemaVersion = 1;
-const currentSchemaVersion = 5;
+const currentSchemaVersion = 6;
 
 Future<void> runMigrations(
   Migrator migrator, {
@@ -11,6 +11,7 @@ Future<void> runMigrations(
   required Future<void> Function() ensureSchemaVersion3Indexes,
   required Future<void> Function() createSchemaVersion4,
   required Future<void> Function() createSchemaVersion5,
+  required Future<void> Function() createSchemaVersion6,
 }) async {
   for (var version = from + 1; version <= to; version++) {
     switch (version) {
@@ -24,6 +25,8 @@ Future<void> runMigrations(
         await createSchemaVersion4();
       case 5:
         await createSchemaVersion5();
+      case 6:
+        await createSchemaVersion6();
       default:
         throw StateError(
           'No migration registered for schema version $version.',

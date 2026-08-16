@@ -16,11 +16,11 @@ enum KinshipType {
   relative,
 }
 
-enum KinshipNature { biological, adoptive, partnership }
+enum KinshipNature { biological, adoptive, sibling, partnership }
 
 enum KinshipDirection { towardParent, towardChild }
 
-enum KinshipStepType { parentChild, partnership }
+enum KinshipStepType { parentChild, sibling, partnership }
 
 final class KinshipStep {
   const KinshipStep._({
@@ -56,6 +56,19 @@ final class KinshipStep {
          to: to,
          relationshipId: relationshipId,
          type: KinshipStepType.partnership,
+         direction: null,
+         parentChildNature: null,
+       );
+
+  const KinshipStep.sibling({
+    required PersonId from,
+    required PersonId to,
+    required SiblingRelationshipId relationshipId,
+  }) : this._(
+         from: from,
+         to: to,
+         relationshipId: relationshipId,
+         type: KinshipStepType.sibling,
          direction: null,
          parentChildNature: null,
        );

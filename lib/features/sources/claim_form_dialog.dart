@@ -9,6 +9,7 @@ import 'package:family_history/domain/person/person_name.dart';
 import 'package:family_history/domain/place/place.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
 import 'package:family_history/features/places/places_screen.dart'
     show placeTypeLabel;
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ enum _ClaimOperation {
   createPlace,
   updatePlace,
   parentChild,
+  sibling,
   partnership,
   residence,
   event,
@@ -71,6 +73,7 @@ class _ClaimFormDialogState extends ConsumerState<_ClaimFormDialog> {
   PersonSex sex = PersonSex.unknown;
   PlaceType placeType = PlaceType.other;
   ParentChildNature nature = ParentChildNature.biological;
+  SiblingKind siblingKind = SiblingKind.unspecified;
   PartnershipType partnershipType = PartnershipType.unknown;
   EventType eventType = EventType.custom;
   Person? firstPerson;
@@ -245,6 +248,27 @@ class _ClaimFormDialogState extends ConsumerState<_ClaimFormDialog> {
         ParentChildNature.values,
         (item) => nature = item,
         label: _parentChildNatureLabel,
+      ),
+    ],
+    _ClaimOperation.sibling => [
+      _personField(
+        'Primera persona',
+        firstPerson,
+        (item) => firstPerson = item,
+      ),
+      const SizedBox(height: 12),
+      _personField(
+        'Segona persona',
+        secondPerson,
+        (item) => secondPerson = item,
+      ),
+      const SizedBox(height: 12),
+      _enumField<SiblingKind>(
+        'Tipus de germanor',
+        siblingKind,
+        SiblingKind.values,
+        (item) => siblingKind = item,
+        label: _siblingKindLabel,
       ),
     ],
     _ClaimOperation.partnership => [
@@ -440,6 +464,16 @@ class _ClaimFormDialogState extends ConsumerState<_ClaimFormDialog> {
           nature: nature,
         ),
       ),
+      _ClaimOperation.sibling => _claimParts(
+        ClaimSubjectType.relationship,
+        ClaimProperty.siblingRelationship,
+        SiblingClaimValue(
+          relationshipId: SiblingRelationshipId.generate(),
+          personAId: _requiredPerson().id,
+          personBId: _requiredSecondPerson().id,
+          kind: siblingKind,
+        ),
+      ),
       _ClaimOperation.partnership => _claimParts(
         ClaimSubjectType.relationship,
         ClaimProperty.partnership,
@@ -479,6 +513,7 @@ class _ClaimFormDialogState extends ConsumerState<_ClaimFormDialog> {
           PersonCreationClaimValue(:final personId) => personId.value,
           PlaceCreationClaimValue(:final placeId) => placeId.value,
           ParentChildClaimValue(:final relationshipId) => relationshipId.value,
+          SiblingClaimValue(:final relationshipId) => relationshipId.value,
           PartnershipClaimValue(:final partnershipId) => partnershipId.value,
           ResidenceClaimValue(:final residenceId) => residenceId.value,
           EventClaimValue(:final eventId) => eventId.value,
@@ -557,6 +592,7 @@ String _operationLabel(_ClaimOperation operation) => switch (operation) {
   _ClaimOperation.createPlace => 'Crear lloc',
   _ClaimOperation.updatePlace => 'Modificar lloc',
   _ClaimOperation.parentChild => 'Crear parentesc',
+  _ClaimOperation.sibling => 'Crear germanor',
   _ClaimOperation.partnership => 'Crear parella',
   _ClaimOperation.residence => 'Crear residència',
   _ClaimOperation.event => 'Crear esdeveniment',
@@ -577,6 +613,7 @@ String claimPropertyLabel(ClaimProperty property) => switch (property) {
   ClaimProperty.placeDescription => 'Descripció del lloc',
   ClaimProperty.placeNotes => 'Notes del lloc',
   ClaimProperty.parentChildRelationship => 'Relació pare/mare-fill/a',
+  ClaimProperty.siblingRelationship => 'Germanor',
   ClaimProperty.partnership => 'Parella',
   ClaimProperty.residence => 'Residència',
   ClaimProperty.event => 'Esdeveniment',
@@ -596,6 +633,7 @@ String claimValueLabel(ClaimValue value) => switch (value) {
   PersonCreationClaimValue() => 'Crear ${value.preferredName}',
   PlaceCreationClaimValue() => 'Crear ${value.preferredName}',
   ParentChildClaimValue() => '${value.parentId.value} → ${value.childId.value}',
+  SiblingClaimValue() => '${value.personAId.value} ↔ ${value.personBId.value}',
   PartnershipClaimValue() =>
     '${value.personAId.value} ↔ ${value.personBId.value}',
   ResidenceClaimValue() => '${value.personId.value} a ${value.placeId.value}',
@@ -614,6 +652,14 @@ String _personSexLabel(PersonSex sex) => switch (sex) {
 String _parentChildNatureLabel(ParentChildNature nature) => switch (nature) {
   ParentChildNature.biological => 'Biològic',
   ParentChildNature.adoptive => 'Adoptiu',
+};
+
+String _siblingKindLabel(SiblingKind kind) => switch (kind) {
+  SiblingKind.unspecified => 'No especificada',
+  SiblingKind.full => 'Mateix pare i mare',
+  SiblingKind.half => 'Un progenitor comú',
+  SiblingKind.adoptive => 'Adoptiva',
+  SiblingKind.step => 'Política',
 };
 
 String _partnershipTypeLabel(PartnershipType type) => switch (type) {

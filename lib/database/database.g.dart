@@ -2883,6 +2883,526 @@ class ParentChildRelationshipsCompanion
   }
 }
 
+class $SiblingRelationshipsTable extends SiblingRelationships
+    with TableInfo<$SiblingRelationshipsTable, SiblingRelationship> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SiblingRelationshipsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _personAIdMeta = const VerificationMeta(
+    'personAId',
+  );
+  @override
+  late final GeneratedColumn<String> personAId = GeneratedColumn<String>(
+    'person_a_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES persons (id)',
+    ),
+  );
+  static const VerificationMeta _personBIdMeta = const VerificationMeta(
+    'personBId',
+  );
+  @override
+  late final GeneratedColumn<String> personBId = GeneratedColumn<String>(
+    'person_b_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES persons (id)',
+    ),
+  );
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  @override
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modifiedAtMeta = const VerificationMeta(
+    'modifiedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> modifiedAt = GeneratedColumn<DateTime>(
+    'modified_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    personAId,
+    personBId,
+    kind,
+    notes,
+    createdAt,
+    modifiedAt,
+    deletedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'sibling_relationships';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SiblingRelationship> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('person_a_id')) {
+      context.handle(
+        _personAIdMeta,
+        personAId.isAcceptableOrUnknown(data['person_a_id']!, _personAIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_personAIdMeta);
+    }
+    if (data.containsKey('person_b_id')) {
+      context.handle(
+        _personBIdMeta,
+        personBId.isAcceptableOrUnknown(data['person_b_id']!, _personBIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_personBIdMeta);
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_kindMeta);
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('modified_at')) {
+      context.handle(
+        _modifiedAtMeta,
+        modifiedAt.isAcceptableOrUnknown(data['modified_at']!, _modifiedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_modifiedAtMeta);
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SiblingRelationship map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SiblingRelationship(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      personAId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}person_a_id'],
+      )!,
+      personBId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}person_b_id'],
+      )!,
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      modifiedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}modified_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+    );
+  }
+
+  @override
+  $SiblingRelationshipsTable createAlias(String alias) {
+    return $SiblingRelationshipsTable(attachedDatabase, alias);
+  }
+}
+
+class SiblingRelationship extends DataClass
+    implements Insertable<SiblingRelationship> {
+  final String id;
+  final String personAId;
+  final String personBId;
+  final String kind;
+  final String? notes;
+  final DateTime createdAt;
+  final DateTime modifiedAt;
+  final DateTime? deletedAt;
+  const SiblingRelationship({
+    required this.id,
+    required this.personAId,
+    required this.personBId,
+    required this.kind,
+    this.notes,
+    required this.createdAt,
+    required this.modifiedAt,
+    this.deletedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['person_a_id'] = Variable<String>(personAId);
+    map['person_b_id'] = Variable<String>(personBId);
+    map['kind'] = Variable<String>(kind);
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['modified_at'] = Variable<DateTime>(modifiedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    return map;
+  }
+
+  SiblingRelationshipsCompanion toCompanion(bool nullToAbsent) {
+    return SiblingRelationshipsCompanion(
+      id: Value(id),
+      personAId: Value(personAId),
+      personBId: Value(personBId),
+      kind: Value(kind),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+      createdAt: Value(createdAt),
+      modifiedAt: Value(modifiedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+    );
+  }
+
+  factory SiblingRelationship.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SiblingRelationship(
+      id: serializer.fromJson<String>(json['id']),
+      personAId: serializer.fromJson<String>(json['personAId']),
+      personBId: serializer.fromJson<String>(json['personBId']),
+      kind: serializer.fromJson<String>(json['kind']),
+      notes: serializer.fromJson<String?>(json['notes']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      modifiedAt: serializer.fromJson<DateTime>(json['modifiedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'personAId': serializer.toJson<String>(personAId),
+      'personBId': serializer.toJson<String>(personBId),
+      'kind': serializer.toJson<String>(kind),
+      'notes': serializer.toJson<String?>(notes),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'modifiedAt': serializer.toJson<DateTime>(modifiedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+    };
+  }
+
+  SiblingRelationship copyWith({
+    String? id,
+    String? personAId,
+    String? personBId,
+    String? kind,
+    Value<String?> notes = const Value.absent(),
+    DateTime? createdAt,
+    DateTime? modifiedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+  }) => SiblingRelationship(
+    id: id ?? this.id,
+    personAId: personAId ?? this.personAId,
+    personBId: personBId ?? this.personBId,
+    kind: kind ?? this.kind,
+    notes: notes.present ? notes.value : this.notes,
+    createdAt: createdAt ?? this.createdAt,
+    modifiedAt: modifiedAt ?? this.modifiedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+  );
+  SiblingRelationship copyWithCompanion(SiblingRelationshipsCompanion data) {
+    return SiblingRelationship(
+      id: data.id.present ? data.id.value : this.id,
+      personAId: data.personAId.present ? data.personAId.value : this.personAId,
+      personBId: data.personBId.present ? data.personBId.value : this.personBId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      notes: data.notes.present ? data.notes.value : this.notes,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      modifiedAt: data.modifiedAt.present
+          ? data.modifiedAt.value
+          : this.modifiedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SiblingRelationship(')
+          ..write('id: $id, ')
+          ..write('personAId: $personAId, ')
+          ..write('personBId: $personBId, ')
+          ..write('kind: $kind, ')
+          ..write('notes: $notes, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('deletedAt: $deletedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    personAId,
+    personBId,
+    kind,
+    notes,
+    createdAt,
+    modifiedAt,
+    deletedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SiblingRelationship &&
+          other.id == this.id &&
+          other.personAId == this.personAId &&
+          other.personBId == this.personBId &&
+          other.kind == this.kind &&
+          other.notes == this.notes &&
+          other.createdAt == this.createdAt &&
+          other.modifiedAt == this.modifiedAt &&
+          other.deletedAt == this.deletedAt);
+}
+
+class SiblingRelationshipsCompanion
+    extends UpdateCompanion<SiblingRelationship> {
+  final Value<String> id;
+  final Value<String> personAId;
+  final Value<String> personBId;
+  final Value<String> kind;
+  final Value<String?> notes;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> modifiedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<int> rowid;
+  const SiblingRelationshipsCompanion({
+    this.id = const Value.absent(),
+    this.personAId = const Value.absent(),
+    this.personBId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.modifiedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SiblingRelationshipsCompanion.insert({
+    required String id,
+    required String personAId,
+    required String personBId,
+    required String kind,
+    this.notes = const Value.absent(),
+    required DateTime createdAt,
+    required DateTime modifiedAt,
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       personAId = Value(personAId),
+       personBId = Value(personBId),
+       kind = Value(kind),
+       createdAt = Value(createdAt),
+       modifiedAt = Value(modifiedAt);
+  static Insertable<SiblingRelationship> custom({
+    Expression<String>? id,
+    Expression<String>? personAId,
+    Expression<String>? personBId,
+    Expression<String>? kind,
+    Expression<String>? notes,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? modifiedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (personAId != null) 'person_a_id': personAId,
+      if (personBId != null) 'person_b_id': personBId,
+      if (kind != null) 'kind': kind,
+      if (notes != null) 'notes': notes,
+      if (createdAt != null) 'created_at': createdAt,
+      if (modifiedAt != null) 'modified_at': modifiedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SiblingRelationshipsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? personAId,
+    Value<String>? personBId,
+    Value<String>? kind,
+    Value<String?>? notes,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? modifiedAt,
+    Value<DateTime?>? deletedAt,
+    Value<int>? rowid,
+  }) {
+    return SiblingRelationshipsCompanion(
+      id: id ?? this.id,
+      personAId: personAId ?? this.personAId,
+      personBId: personBId ?? this.personBId,
+      kind: kind ?? this.kind,
+      notes: notes ?? this.notes,
+      createdAt: createdAt ?? this.createdAt,
+      modifiedAt: modifiedAt ?? this.modifiedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (personAId.present) {
+      map['person_a_id'] = Variable<String>(personAId.value);
+    }
+    if (personBId.present) {
+      map['person_b_id'] = Variable<String>(personBId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (modifiedAt.present) {
+      map['modified_at'] = Variable<DateTime>(modifiedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SiblingRelationshipsCompanion(')
+          ..write('id: $id, ')
+          ..write('personAId: $personAId, ')
+          ..write('personBId: $personBId, ')
+          ..write('kind: $kind, ')
+          ..write('notes: $notes, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $PlacesTable extends Places with TableInfo<$PlacesTable, Place> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -12237,6 +12757,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $PersonNamesTable personNames = $PersonNamesTable(this);
   late final $ParentChildRelationshipsTable parentChildRelationships =
       $ParentChildRelationshipsTable(this);
+  late final $SiblingRelationshipsTable siblingRelationships =
+      $SiblingRelationshipsTable(this);
   late final $PlacesTable places = $PlacesTable(this);
   late final $PartnershipsTable partnerships = $PartnershipsTable(this);
   late final $PlaceRelationshipsTable placeRelationships =
@@ -12276,6 +12798,18 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final Index parentChildUniqueActive = Index(
     'parent_child_unique_active',
     'CREATE UNIQUE INDEX parent_child_unique_active ON parent_child_relationships (parent_person_id, child_person_id, nature) WHERE deleted_at IS NULL',
+  );
+  late final Index siblingsPersonAId = Index(
+    'siblings_person_a_id',
+    'CREATE INDEX siblings_person_a_id ON sibling_relationships (person_a_id)',
+  );
+  late final Index siblingsPersonBId = Index(
+    'siblings_person_b_id',
+    'CREATE INDEX siblings_person_b_id ON sibling_relationships (person_b_id)',
+  );
+  late final Index siblingsUniqueActive = Index(
+    'siblings_unique_active',
+    'CREATE UNIQUE INDEX siblings_unique_active ON sibling_relationships (person_a_id, person_b_id) WHERE deleted_at IS NULL',
   );
   late final Index partnershipsPersonAId = Index(
     'partnerships_person_a_id',
@@ -12378,6 +12912,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     persons,
     personNames,
     parentChildRelationships,
+    siblingRelationships,
     places,
     partnerships,
     placeRelationships,
@@ -12397,6 +12932,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     parentChildParentId,
     parentChildChildId,
     parentChildUniqueActive,
+    siblingsPersonAId,
+    siblingsPersonBId,
+    siblingsUniqueActive,
     partnershipsPersonAId,
     partnershipsPersonBId,
     placeRelationshipsSourceId,
@@ -12724,6 +13262,48 @@ final class $$PersonsTableReferences
     );
   }
 
+  static MultiTypedResultKey<
+    $SiblingRelationshipsTable,
+    List<SiblingRelationship>
+  >
+  _siblingsAsPersonATable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.siblingRelationships,
+    aliasName: 'persons__id__sibling_relationships__person_a_id',
+  );
+
+  $$SiblingRelationshipsTableProcessedTableManager get siblingsAsPersonA {
+    final manager = $$SiblingRelationshipsTableTableManager(
+      $_db,
+      $_db.siblingRelationships,
+    ).filter((f) => f.personAId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_siblingsAsPersonATable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<
+    $SiblingRelationshipsTable,
+    List<SiblingRelationship>
+  >
+  _siblingsAsPersonBTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.siblingRelationships,
+    aliasName: 'persons__id__sibling_relationships__person_b_id',
+  );
+
+  $$SiblingRelationshipsTableProcessedTableManager get siblingsAsPersonB {
+    final manager = $$SiblingRelationshipsTableTableManager(
+      $_db,
+      $_db.siblingRelationships,
+    ).filter((f) => f.personBId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_siblingsAsPersonBTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
   static MultiTypedResultKey<$PartnershipsTable, List<Partnership>>
   _partnershipsAsPersonATable(_$AppDatabase db) =>
       MultiTypedResultKey.fromTable(
@@ -13041,6 +13621,56 @@ class $$PersonsTableFilterComposer
                     $removeJoinBuilderFromRootComposer,
               ),
         );
+    return f(composer);
+  }
+
+  Expression<bool> siblingsAsPersonA(
+    Expression<bool> Function($$SiblingRelationshipsTableFilterComposer f) f,
+  ) {
+    final $$SiblingRelationshipsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.siblingRelationships,
+      getReferencedColumn: (t) => t.personAId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SiblingRelationshipsTableFilterComposer(
+            $db: $db,
+            $table: $db.siblingRelationships,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> siblingsAsPersonB(
+    Expression<bool> Function($$SiblingRelationshipsTableFilterComposer f) f,
+  ) {
+    final $$SiblingRelationshipsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.siblingRelationships,
+      getReferencedColumn: (t) => t.personBId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SiblingRelationshipsTableFilterComposer(
+            $db: $db,
+            $table: $db.siblingRelationships,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return f(composer);
   }
 
@@ -13456,6 +14086,58 @@ class $$PersonsTableAnnotationComposer
     return f(composer);
   }
 
+  Expression<T> siblingsAsPersonA<T extends Object>(
+    Expression<T> Function($$SiblingRelationshipsTableAnnotationComposer a) f,
+  ) {
+    final $$SiblingRelationshipsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.siblingRelationships,
+          getReferencedColumn: (t) => t.personAId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$SiblingRelationshipsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.siblingRelationships,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
+  Expression<T> siblingsAsPersonB<T extends Object>(
+    Expression<T> Function($$SiblingRelationshipsTableAnnotationComposer a) f,
+  ) {
+    final $$SiblingRelationshipsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.siblingRelationships,
+          getReferencedColumn: (t) => t.personBId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$SiblingRelationshipsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.siblingRelationships,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
   Expression<T> partnershipsAsPersonA<T extends Object>(
     Expression<T> Function($$PartnershipsTableAnnotationComposer a) f,
   ) {
@@ -13653,6 +14335,8 @@ class $$PersonsTableTableManager
             bool personNamesRefs,
             bool childrenRelationships,
             bool parentRelationships,
+            bool siblingsAsPersonA,
+            bool siblingsAsPersonB,
             bool partnershipsAsPersonA,
             bool partnershipsAsPersonB,
             bool residencesRefs,
@@ -13758,6 +14442,8 @@ class $$PersonsTableTableManager
                 personNamesRefs = false,
                 childrenRelationships = false,
                 parentRelationships = false,
+                siblingsAsPersonA = false,
+                siblingsAsPersonB = false,
                 partnershipsAsPersonA = false,
                 partnershipsAsPersonB = false,
                 residencesRefs = false,
@@ -13772,6 +14458,8 @@ class $$PersonsTableTableManager
                     if (personNamesRefs) db.personNames,
                     if (childrenRelationships) db.parentChildRelationships,
                     if (parentRelationships) db.parentChildRelationships,
+                    if (siblingsAsPersonA) db.siblingRelationships,
+                    if (siblingsAsPersonB) db.siblingRelationships,
                     if (partnershipsAsPersonA) db.partnerships,
                     if (partnershipsAsPersonB) db.partnerships,
                     if (residencesRefs) db.residences,
@@ -13843,6 +14531,48 @@ class $$PersonsTableTableManager
                           referencedItemsForCurrentItem:
                               (item, referencedItems) => referencedItems.where(
                                 (e) => e.childPersonId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (siblingsAsPersonA)
+                        await $_getPrefetchedData<
+                          Person,
+                          $PersonsTable,
+                          SiblingRelationship
+                        >(
+                          currentTable: table,
+                          referencedTable: $$PersonsTableReferences
+                              ._siblingsAsPersonATable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$PersonsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).siblingsAsPersonA,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.personAId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (siblingsAsPersonB)
+                        await $_getPrefetchedData<
+                          Person,
+                          $PersonsTable,
+                          SiblingRelationship
+                        >(
+                          currentTable: table,
+                          referencedTable: $$PersonsTableReferences
+                              ._siblingsAsPersonBTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$PersonsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).siblingsAsPersonB,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.personBId == item.id,
                               ),
                           typedResults: items,
                         ),
@@ -14017,6 +14747,8 @@ typedef $$PersonsTableProcessedTableManager =
         bool personNamesRefs,
         bool childrenRelationships,
         bool parentRelationships,
+        bool siblingsAsPersonA,
+        bool siblingsAsPersonB,
         bool partnershipsAsPersonA,
         bool partnershipsAsPersonB,
         bool residencesRefs,
@@ -15096,6 +15828,481 @@ typedef $$ParentChildRelationshipsTableProcessedTableManager =
       (ParentChildRelationship, $$ParentChildRelationshipsTableReferences),
       ParentChildRelationship,
       PrefetchHooks Function({bool parentPersonId, bool childPersonId})
+    >;
+typedef $$SiblingRelationshipsTableCreateCompanionBuilder =
+    SiblingRelationshipsCompanion Function({
+      required String id,
+      required String personAId,
+      required String personBId,
+      required String kind,
+      Value<String?> notes,
+      required DateTime createdAt,
+      required DateTime modifiedAt,
+      Value<DateTime?> deletedAt,
+      Value<int> rowid,
+    });
+typedef $$SiblingRelationshipsTableUpdateCompanionBuilder =
+    SiblingRelationshipsCompanion Function({
+      Value<String> id,
+      Value<String> personAId,
+      Value<String> personBId,
+      Value<String> kind,
+      Value<String?> notes,
+      Value<DateTime> createdAt,
+      Value<DateTime> modifiedAt,
+      Value<DateTime?> deletedAt,
+      Value<int> rowid,
+    });
+
+final class $$SiblingRelationshipsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $SiblingRelationshipsTable,
+          SiblingRelationship
+        > {
+  $$SiblingRelationshipsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $PersonsTable _personAIdTable(_$AppDatabase db) =>
+      db.persons.createAlias('sibling_relationships__person_a_id__persons__id');
+
+  $$PersonsTableProcessedTableManager get personAId {
+    final $_column = $_itemColumn<String>('person_a_id')!;
+
+    final manager = $$PersonsTableTableManager(
+      $_db,
+      $_db.persons,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_personAIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $PersonsTable _personBIdTable(_$AppDatabase db) =>
+      db.persons.createAlias('sibling_relationships__person_b_id__persons__id');
+
+  $$PersonsTableProcessedTableManager get personBId {
+    final $_column = $_itemColumn<String>('person_b_id')!;
+
+    final manager = $$PersonsTableTableManager(
+      $_db,
+      $_db.persons,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_personBIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$SiblingRelationshipsTableFilterComposer
+    extends Composer<_$AppDatabase, $SiblingRelationshipsTable> {
+  $$SiblingRelationshipsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$PersonsTableFilterComposer get personAId {
+    final $$PersonsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personAId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableFilterComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PersonsTableFilterComposer get personBId {
+    final $$PersonsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personBId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableFilterComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$SiblingRelationshipsTableOrderingComposer
+    extends Composer<_$AppDatabase, $SiblingRelationshipsTable> {
+  $$SiblingRelationshipsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$PersonsTableOrderingComposer get personAId {
+    final $$PersonsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personAId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableOrderingComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PersonsTableOrderingComposer get personBId {
+    final $$PersonsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personBId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableOrderingComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$SiblingRelationshipsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SiblingRelationshipsTable> {
+  $$SiblingRelationshipsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  $$PersonsTableAnnotationComposer get personAId {
+    final $$PersonsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personAId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PersonsTableAnnotationComposer get personBId {
+    final $$PersonsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personBId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$SiblingRelationshipsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SiblingRelationshipsTable,
+          SiblingRelationship,
+          $$SiblingRelationshipsTableFilterComposer,
+          $$SiblingRelationshipsTableOrderingComposer,
+          $$SiblingRelationshipsTableAnnotationComposer,
+          $$SiblingRelationshipsTableCreateCompanionBuilder,
+          $$SiblingRelationshipsTableUpdateCompanionBuilder,
+          (SiblingRelationship, $$SiblingRelationshipsTableReferences),
+          SiblingRelationship,
+          PrefetchHooks Function({bool personAId, bool personBId})
+        > {
+  $$SiblingRelationshipsTableTableManager(
+    _$AppDatabase db,
+    $SiblingRelationshipsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SiblingRelationshipsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SiblingRelationshipsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$SiblingRelationshipsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> personAId = const Value.absent(),
+                Value<String> personBId = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> modifiedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SiblingRelationshipsCompanion(
+                id: id,
+                personAId: personAId,
+                personBId: personBId,
+                kind: kind,
+                notes: notes,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String personAId,
+                required String personBId,
+                required String kind,
+                Value<String?> notes = const Value.absent(),
+                required DateTime createdAt,
+                required DateTime modifiedAt,
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SiblingRelationshipsCompanion.insert(
+                id: id,
+                personAId: personAId,
+                personBId: personBId,
+                kind: kind,
+                notes: notes,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$SiblingRelationshipsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({personAId = false, personBId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (personAId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.personAId,
+                        referencedTable: $$SiblingRelationshipsTableReferences
+                            ._personAIdTable(db),
+                        referencedColumn: $$SiblingRelationshipsTableReferences
+                            ._personAIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+                    if (personBId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.personBId,
+                        referencedTable: $$SiblingRelationshipsTableReferences
+                            ._personBIdTable(db),
+                        referencedColumn: $$SiblingRelationshipsTableReferences
+                            ._personBIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$SiblingRelationshipsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SiblingRelationshipsTable,
+      SiblingRelationship,
+      $$SiblingRelationshipsTableFilterComposer,
+      $$SiblingRelationshipsTableOrderingComposer,
+      $$SiblingRelationshipsTableAnnotationComposer,
+      $$SiblingRelationshipsTableCreateCompanionBuilder,
+      $$SiblingRelationshipsTableUpdateCompanionBuilder,
+      (SiblingRelationship, $$SiblingRelationshipsTableReferences),
+      SiblingRelationship,
+      PrefetchHooks Function({bool personAId, bool personBId})
     >;
 typedef $$PlacesTableCreateCompanionBuilder = PlacesCompanion Function({
   required String id,
@@ -22511,6 +23718,8 @@ class $AppDatabaseManager {
         _db,
         _db.parentChildRelationships,
       );
+  $$SiblingRelationshipsTableTableManager get siblingRelationships =>
+      $$SiblingRelationshipsTableTableManager(_db, _db.siblingRelationships);
   $$PlacesTableTableManager get places =>
       $$PlacesTableTableManager(_db, _db.places);
   $$PartnershipsTableTableManager get partnerships =>

@@ -9,10 +9,11 @@ import 'package:family_history/domain/place/place.dart';
 import 'package:family_history/domain/place/residence.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum _RelationshipMode { parentOfPerson, childOfPerson, partner }
+enum _RelationshipMode { parentOfPerson, childOfPerson, sibling, partner }
 
 class AddRelationshipDialog extends ConsumerStatefulWidget {
   const AddRelationshipDialog({required this.personId, super.key});
@@ -28,6 +29,7 @@ class _AddRelationshipDialogState extends ConsumerState<AddRelationshipDialog> {
   _RelationshipMode _mode = _RelationshipMode.parentOfPerson;
   ParentChildNature _nature = ParentChildNature.biological;
   PartnershipType _partnershipType = PartnershipType.marriage;
+  SiblingKind _siblingKind = SiblingKind.unspecified;
   PersonId? _otherPerson;
   bool _saving = false;
 
@@ -68,6 +70,17 @@ class _AddRelationshipDialogState extends ConsumerState<AddRelationshipDialog> {
               personAId: widget.personId,
               personBId: other,
               type: _partnershipType,
+              createdAt: now,
+              modifiedAt: now,
+            ),
+          );
+        case _RelationshipMode.sibling:
+          await controller.addSibling(
+            SiblingRelationship(
+              id: SiblingRelationshipId.generate(),
+              personAId: widget.personId,
+              personBId: other,
+              kind: _siblingKind,
               createdAt: now,
               modifiedAt: now,
             ),
@@ -160,6 +173,13 @@ class _AddRelationshipDialogState extends ConsumerState<AddRelationshipDialog> {
                           ),
                         ),
                         DropdownMenuItem(
+                          value: _RelationshipMode.sibling,
+                          child: Text(
+                            'germà/germana de $currentName',
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        DropdownMenuItem(
                           value: _RelationshipMode.partner,
                           child: Text(
                             'cònjuge o parella de $currentName',
@@ -189,6 +209,22 @@ class _AddRelationshipDialogState extends ConsumerState<AddRelationshipDialog> {
                     )
                     .toList(),
                 onChanged: (value) => setState(() => _partnershipType = value!),
+              )
+            else if (_mode == _RelationshipMode.sibling)
+              DropdownButtonFormField<SiblingKind>(
+                initialValue: _siblingKind,
+                decoration: const InputDecoration(
+                  labelText: 'Tipus de germanor',
+                ),
+                items: SiblingKind.values
+                    .map(
+                      (kind) => DropdownMenuItem(
+                        value: kind,
+                        child: Text(_siblingKindLabel(kind)),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) => setState(() => _siblingKind = value!),
               )
             else
               DropdownButtonFormField<ParentChildNature>(
@@ -222,6 +258,14 @@ class _AddRelationshipDialogState extends ConsumerState<AddRelationshipDialog> {
     );
   }
 }
+
+String _siblingKindLabel(SiblingKind kind) => switch (kind) {
+  SiblingKind.unspecified => 'No especificada',
+  SiblingKind.full => 'Germans de pare i mare',
+  SiblingKind.half => 'Germanastres amb un progenitor comú',
+  SiblingKind.adoptive => 'Adoptiva',
+  SiblingKind.step => 'Germanor política',
+};
 
 class AddResidenceDialog extends ConsumerStatefulWidget {
   const AddResidenceDialog({required this.personId, super.key});

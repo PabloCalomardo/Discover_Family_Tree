@@ -16,9 +16,11 @@ import 'package:family_history/database/repositories/drift_place_repository.dart
 import 'package:family_history/database/repositories/drift_media_repository.dart';
 import 'package:family_history/database/repositories/drift_person_merge_repository.dart';
 import 'package:family_history/database/repositories/drift_source_repository.dart';
+import 'package:family_history/database/repositories/drift_sibling_relationship_repository.dart';
 import 'package:family_history/database/repositories/drift_residence_repository.dart';
 import 'package:family_history/domain/event/event.dart';
 import 'package:family_history/domain/event/event_repository.dart';
+import 'package:family_history/domain/extraction/extraction.dart';
 import 'package:family_history/domain/audit/audit_repository.dart';
 import 'package:family_history/domain/claim/claim.dart';
 import 'package:family_history/domain/claim/claim_repository.dart';
@@ -36,10 +38,13 @@ import 'package:family_history/domain/relationship/parent_child_relationship.dar
 import 'package:family_history/domain/relationship/parent_child_relationship_repository.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
 import 'package:family_history/domain/relationship/partnership_repository.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
+import 'package:family_history/domain/relationship/sibling_relationship_repository.dart';
 import 'package:family_history/domain/source/media_asset.dart';
 import 'package:family_history/domain/source/source.dart';
 import 'package:family_history/domain/source/source_repository.dart';
 import 'package:family_history/features/people/people_controller.dart';
+import 'package:family_history/features/extraction/text_extraction_controller.dart';
 import 'package:family_history/features/places/places_controller.dart';
 import 'package:family_history/features/review/review_controller.dart';
 import 'package:family_history/features/sources/sources_controller.dart';
@@ -48,6 +53,9 @@ import 'package:family_history/services/claim/claim_conflict_service.dart';
 import 'package:family_history/services/claim/claim_service.dart';
 import 'package:family_history/services/duplicate/duplicate_detection_service.dart';
 import 'package:family_history/services/event/event_editor_service.dart';
+import 'package:family_history/services/extraction/deterministic_extraction_provider.dart';
+import 'package:family_history/services/extraction/entity_resolution_service.dart';
+import 'package:family_history/services/extraction/extraction_claim_mapper.dart';
 import 'package:family_history/services/kinship/kinship_service.dart';
 import 'package:family_history/services/person/person_editor_service.dart';
 import 'package:family_history/services/merge/person_merge.dart';
@@ -85,6 +93,9 @@ final parentChildRepositoryProvider =
     );
 final partnershipRepositoryProvider = Provider<PartnershipRepository>(
   (ref) => DriftPartnershipRepository(ref.watch(databaseProvider)),
+);
+final siblingRepositoryProvider = Provider<SiblingRelationshipRepository>(
+  (ref) => DriftSiblingRelationshipRepository(ref.watch(databaseProvider)),
 );
 final placeRepositoryProvider = Provider<PlaceRepository>(
   (ref) => DriftPlaceRepository(ref.watch(databaseProvider)),
@@ -128,6 +139,7 @@ final claimServiceProvider = Provider<ClaimService>(
       ref.watch(personRepositoryProvider),
       ref.watch(placeRepositoryProvider),
       ref.watch(parentChildRepositoryProvider),
+      ref.watch(siblingRepositoryProvider),
       ref.watch(partnershipRepositoryProvider),
       ref.watch(residenceRepositoryProvider),
       ref.watch(eventRepositoryProvider),
@@ -155,6 +167,25 @@ final sourceServiceProvider = Provider<SourceService>(
     ref.watch(mediaRepositoryProvider),
     ref.watch(auditServiceProvider),
     ref.watch(transactionRunnerProvider),
+  ),
+);
+final extractionProvider = Provider<ExtractionProvider>(
+  (ref) => const DeterministicExtractionProvider(),
+);
+final entityResolutionServiceProvider = Provider<EntityResolutionService>(
+  (ref) => const EntityResolutionService(),
+);
+final extractionClaimMapperProvider = Provider<ExtractionClaimMapper>(
+  (ref) => const ExtractionClaimMapper(),
+);
+final textExtractionControllerProvider = Provider<TextExtractionController>(
+  (ref) => TextExtractionController(
+    ref.watch(extractionProvider),
+    ref.watch(entityResolutionServiceProvider),
+    ref.watch(personNameRepositoryProvider),
+    ref.watch(placeRepositoryProvider),
+    ref.watch(extractionClaimMapperProvider),
+    ref.watch(claimServiceProvider),
   ),
 );
 final sourcesControllerProvider = Provider<SourcesController>(
@@ -192,6 +223,7 @@ final peopleControllerProvider = Provider<PeopleController>(
   (ref) => PeopleController(
     ref.watch(personEditorServiceProvider),
     ref.watch(parentChildRepositoryProvider),
+    ref.watch(siblingRepositoryProvider),
     ref.watch(partnershipRepositoryProvider),
     ref.watch(residenceRepositoryProvider),
     ref.watch(eventRepositoryProvider),
@@ -227,6 +259,9 @@ final parentChildRelationshipsProvider =
     );
 final partnershipsProvider = StreamProvider<List<Partnership>>(
   (ref) => ref.watch(partnershipRepositoryProvider).watchAll(),
+);
+final siblingRelationshipsProvider = StreamProvider<List<SiblingRelationship>>(
+  (ref) => ref.watch(siblingRepositoryProvider).watchAll(),
 );
 final placesProvider = StreamProvider<List<Place>>(
   (ref) => ref.watch(placeRepositoryProvider).watchAll(),

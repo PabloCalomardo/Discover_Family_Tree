@@ -1,4 +1,5 @@
 import 'package:family_history/app/providers.dart';
+import 'package:family_history/app/navigation.dart';
 import 'package:family_history/components/historical_date_field.dart';
 import 'package:family_history/core/ids/domain_id.dart';
 import 'package:family_history/domain/source/source.dart';
@@ -178,7 +179,14 @@ class _SourceFormState extends ConsumerState<_SourceForm> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton(
-                onPressed: _saving ? null : () => context.pop(),
+                onPressed: _saving
+                    ? null
+                    : () => popOrGo(
+                        context,
+                        widget.initial == null
+                            ? '/sources'
+                            : '/sources/${widget.initial!.id.value}',
+                      ),
                 child: const Text('Cancel·la'),
               ),
               const SizedBox(width: 12),

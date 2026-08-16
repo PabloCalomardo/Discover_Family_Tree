@@ -45,6 +45,13 @@ final class ParentChildRelationshipId extends DomainId {
       ParentChildRelationshipId(const Uuid().v4());
 }
 
+final class SiblingRelationshipId extends DomainId {
+  SiblingRelationshipId(super.value);
+
+  factory SiblingRelationshipId.generate() =>
+      SiblingRelationshipId(const Uuid().v4());
+}
+
 final class PartnershipId extends DomainId {
   PartnershipId(super.value);
 

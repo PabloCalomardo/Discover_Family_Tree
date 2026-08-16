@@ -10,6 +10,7 @@ import 'package:family_history/domain/person/person.dart';
 import 'package:family_history/domain/place/place.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
 
 enum ClaimSubjectType { person, place, event, residence, relationship }
 
@@ -28,6 +29,7 @@ enum ClaimProperty {
   placeDescription,
   placeNotes,
   parentChildRelationship,
+  siblingRelationship,
   partnership,
   residence,
   event,
@@ -63,6 +65,7 @@ sealed class ClaimValue {
       'PERSON_CREATION' => PersonCreationClaimValue.fromJson(json),
       'PLACE_CREATION' => PlaceCreationClaimValue.fromJson(json),
       'PARENT_CHILD' => ParentChildClaimValue.fromJson(json),
+      'SIBLING' => SiblingClaimValue.fromJson(json),
       'PARTNERSHIP' => PartnershipClaimValue.fromJson(json),
       'RESIDENCE' => ResidenceClaimValue.fromJson(json),
       'EVENT' => EventClaimValue.fromJson(json),
@@ -330,6 +333,54 @@ final class ParentChildClaimValue extends ClaimValue {
       );
 }
 
+final class SiblingClaimValue extends ClaimValue {
+  SiblingClaimValue({
+    required this.relationshipId,
+    required PersonId personAId,
+    required PersonId personBId,
+    required this.kind,
+    this.notes,
+  }) : personAId = personAId.value.compareTo(personBId.value) <= 0
+           ? personAId
+           : personBId,
+       personBId = personAId.value.compareTo(personBId.value) <= 0
+           ? personBId
+           : personAId {
+    if (personAId == personBId) {
+      throw const DomainValidationException(
+        DomainValidationCode.invalidEntity,
+        'A sibling claim cannot relate a person to themselves.',
+      );
+    }
+  }
+
+  final SiblingRelationshipId relationshipId;
+  final PersonId personAId;
+  final PersonId personBId;
+  final SiblingKind kind;
+  final String? notes;
+  @override
+  String get type => 'SIBLING';
+  @override
+  Map<String, Object?> toJson() => {
+    'relationshipId': relationshipId.value,
+    'personAId': personAId.value,
+    'personBId': personBId.value,
+    'kind': kind.name,
+    'notes': notes,
+  };
+  factory SiblingClaimValue.fromJson(Map<String, Object?> json) =>
+      SiblingClaimValue(
+        relationshipId: SiblingRelationshipId(
+          json['relationshipId']! as String,
+        ),
+        personAId: PersonId(json['personAId']! as String),
+        personBId: PersonId(json['personBId']! as String),
+        kind: SiblingKind.values.byName(json['kind']! as String),
+        notes: json['notes'] as String?,
+      );
+}
+
 final class PartnershipClaimValue extends ClaimValue {
   const PartnershipClaimValue({
     required this.partnershipId,
@@ -539,6 +590,8 @@ final class Claim {
       ClaimProperty.placeCoordinates => value is CoordinatesClaimValue,
       ClaimProperty.parentChildRelationship =>
         value is ParentChildClaimValue || value is RelationshipClaimValue,
+      ClaimProperty.siblingRelationship =>
+        value is SiblingClaimValue || value is RelationshipClaimValue,
       ClaimProperty.partnership =>
         value is PartnershipClaimValue || value is RelationshipClaimValue,
       ClaimProperty.residence =>

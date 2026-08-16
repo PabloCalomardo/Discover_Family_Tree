@@ -33,6 +33,9 @@ final class DriftPersonMergeRepository implements PersonMergeRepository {
     final partnershipRows = await (_database.select(
       _database.partnerships,
     )..where((row) => row.deletedAt.isNull())).get();
+    final siblingRows = await (_database.select(
+      _database.siblingRelationships,
+    )..where((row) => row.deletedAt.isNull())).get();
     final blockers = <MergeBlockingRelation>[];
 
     for (final row in parentRows.where(
@@ -84,6 +87,23 @@ final class DriftPersonMergeRepository implements PersonMergeRepository {
             id: row.id,
             kind: 'PARTNERSHIP',
             reason: 'La fusió convertiria la parella en una autorelació.',
+          ),
+        );
+      }
+    }
+    for (final row in siblingRows.where(
+      (row) =>
+          row.personAId == absorbedId.value ||
+          row.personBId == absorbedId.value,
+    )) {
+      final a = _replace(row.personAId, absorbedId, survivorId);
+      final b = _replace(row.personBId, absorbedId, survivorId);
+      if (a == b) {
+        blockers.add(
+          MergeBlockingRelation(
+            id: row.id,
+            kind: 'SIBLING_RELATIONSHIP',
+            reason: 'La fusió convertiria la germanor en una autorelació.',
           ),
         );
       }
@@ -190,6 +210,7 @@ final class DriftPersonMergeRepository implements PersonMergeRepository {
 
       final converted = <String>[];
       await _rewireParentChild(command, now, converted);
+      await _rewireSiblings(command, now, converted);
       await _rewirePartnerships(command, now, converted);
       await _rewireSimpleReferences(command, now);
       await _rewireClaims(command);
@@ -419,6 +440,73 @@ final class DriftPersonMergeRepository implements PersonMergeRepository {
           db.ParentChildRelationshipsCompanion(
             parentPersonId: Value(keeper.$2),
             childPersonId: Value(keeper.$3),
+            modifiedAt: Value(now),
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _rewireSiblings(
+    PersonMergeCommand command,
+    DateTime now,
+    List<String> converted,
+  ) async {
+    final rows = await (_database.select(
+      _database.siblingRelationships,
+    )..where((row) => row.deletedAt.isNull())).get();
+    final seen = <String, String>{};
+    for (final row in rows) {
+      var a = _replace(
+        row.personAId,
+        command.absorbedId,
+        command.mergedPerson.id,
+      );
+      var b = _replace(
+        row.personBId,
+        command.absorbedId,
+        command.mergedPerson.id,
+      );
+      if (a.compareTo(b) > 0) (a, b) = (b, a);
+      final key = '$a|$b';
+      final excluded = command.relationsToConvertToClaims.contains(row.id);
+      if (excluded || seen.containsKey(key)) {
+        await (_database.update(
+          _database.siblingRelationships,
+        )..where((item) => item.id.equals(row.id))).write(
+          db.SiblingRelationshipsCompanion(
+            modifiedAt: Value(now),
+            deletedAt: Value(now),
+          ),
+        );
+        converted.add(row.id);
+        await _claims.create(
+          _claim(
+            command.mergedPerson.id,
+            ClaimProperty.siblingRelationship,
+            RelationshipClaimValue(
+              personId: PersonId(
+                a == b
+                    ? command.absorbedId.value
+                    : a == command.mergedPerson.id.value
+                    ? b
+                    : a,
+              ),
+              relationshipType: row.kind,
+            ),
+            now,
+          ),
+        );
+        continue;
+      }
+      seen[key] = row.id;
+      if (row.personAId != a || row.personBId != b) {
+        await (_database.update(
+          _database.siblingRelationships,
+        )..where((item) => item.id.equals(row.id))).write(
+          db.SiblingRelationshipsCompanion(
+            personAId: Value(a),
+            personBId: Value(b),
             modifiedAt: Value(now),
           ),
         );

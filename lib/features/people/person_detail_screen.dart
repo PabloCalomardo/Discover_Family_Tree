@@ -8,6 +8,7 @@ import 'package:family_history/domain/person/person.dart';
 import 'package:family_history/domain/place/residence.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
 import 'package:family_history/features/people/person_action_dialogs.dart';
 import 'package:family_history/features/sources/source_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -257,6 +258,9 @@ class _RelationshipsSection extends ConsumerWidget {
         const <ParentChildRelationship>[];
     final partnerships =
         ref.watch(partnershipsProvider).value ?? const <Partnership>[];
+    final siblings =
+        ref.watch(siblingRelationshipsProvider).value ??
+        const <SiblingRelationship>[];
     final relatedParentChild = parentChild
         .where((item) => item.parentId == personId || item.childId == personId)
         .toList();
@@ -264,6 +268,9 @@ class _RelationshipsSection extends ConsumerWidget {
         .where(
           (item) => item.personAId == personId || item.personBId == personId,
         )
+        .toList();
+    final relatedSiblings = siblings
+        .where((item) => item.involves(personId))
         .toList();
     return _Section(
       title: 'Relacions familiars',
@@ -273,7 +280,9 @@ class _RelationshipsSection extends ConsumerWidget {
         builder: (context) => AddRelationshipDialog(personId: personId),
       ),
       children: [
-        if (relatedParentChild.isEmpty && relatedPartnerships.isEmpty)
+        if (relatedParentChild.isEmpty &&
+            relatedSiblings.isEmpty &&
+            relatedPartnerships.isEmpty)
           const Text('No hi ha relacions registrades.'),
         ...relatedParentChild.map((relationship) {
           final currentIsParent = relationship.parentId == personId;
@@ -293,6 +302,20 @@ class _RelationshipsSection extends ConsumerWidget {
               onPressed: () => ref
                   .read(peopleControllerProvider)
                   .removeParentChild(relationship.id),
+              icon: const Icon(Icons.delete_outline),
+            ),
+          );
+        }),
+        ...relatedSiblings.map((relationship) {
+          return ListTile(
+            leading: const Icon(Icons.people_outline),
+            title: _PersonNameText(personId: relationship.other(personId)),
+            subtitle: Text(_siblingRelationshipLabel(relationship.kind)),
+            trailing: IconButton(
+              tooltip: 'Eliminar germanor',
+              onPressed: () => ref
+                  .read(peopleControllerProvider)
+                  .removeSibling(relationship.id),
               icon: const Icon(Icons.delete_outline),
             ),
           );
@@ -318,6 +341,14 @@ class _RelationshipsSection extends ConsumerWidget {
     );
   }
 }
+
+String _siblingRelationshipLabel(SiblingKind kind) => switch (kind) {
+  SiblingKind.unspecified => 'Germà/germana · tipus no especificat',
+  SiblingKind.full => 'Germà/germana de pare i mare',
+  SiblingKind.half => 'Germanastre/germanastra · un progenitor comú',
+  SiblingKind.adoptive => 'Germà/germana adoptiu/va',
+  SiblingKind.step => 'Germanor política',
+};
 
 class _ResidencesSection extends ConsumerWidget {
   const _ResidencesSection({required this.personId});

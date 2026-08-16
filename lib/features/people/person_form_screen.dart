@@ -1,4 +1,5 @@
 import 'package:family_history/app/app_strings.dart';
+import 'package:family_history/app/navigation.dart';
 import 'package:family_history/app/providers.dart';
 import 'package:family_history/components/historical_date_field.dart';
 import 'package:family_history/core/ids/domain_id.dart';
@@ -226,7 +227,14 @@ class _PersonFormState extends ConsumerState<_PersonForm> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: _saving ? null : () => context.pop(),
+                  onPressed: _saving
+                      ? null
+                      : () => popOrGo(
+                          context,
+                          widget.initialPerson == null
+                              ? '/people'
+                              : '/people/${widget.initialPerson!.id.value}',
+                        ),
                   child: const Text(AppStrings.cancel),
                 ),
                 const SizedBox(width: 12),

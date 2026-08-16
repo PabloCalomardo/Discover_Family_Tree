@@ -11,12 +11,16 @@ import 'package:family_history/database/repositories/drift_person_repository.dar
 import 'package:family_history/database/repositories/drift_parent_child_relationship_repository.dart';
 import 'package:family_history/database/repositories/drift_partnership_repository.dart';
 import 'package:family_history/database/repositories/drift_place_repository.dart';
+import 'package:family_history/database/repositories/drift_source_repository.dart';
 import 'package:family_history/domain/person/person.dart';
 import 'package:family_history/domain/person/person_name.dart';
 import 'package:family_history/domain/place/place.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/domain/source/source.dart';
 import 'package:family_history/features/sources/claim_form_dialog.dart';
+import 'package:family_history/features/people/people_screen.dart';
+import 'package:family_history/features/home/home_screen.dart';
 import 'package:family_history/services/person/person_editor_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,6 +44,32 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pumpAndSettle();
     await database.close();
+  });
+
+  testWidgets('new-project dialog owns its text controller until removed', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Builder(
+          builder: (context) => FilledButton(
+            onPressed: () => showDialog<String>(
+              context: context,
+              builder: (_) => const ProjectNameDialog(),
+            ),
+            child: const Text('Obre diàleg'),
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Obre diàleg'));
+    await tester.pumpAndSettle();
+    expect(find.text('Nom del projecte'), findsOneWidget);
+    await tester.tap(find.text('Cancel·lar'));
+    await tester.pumpAndSettle();
+
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('creates a person from the user interface', (tester) async {
@@ -113,6 +143,118 @@ void main() {
     await database.close();
   });
 
+  testWidgets('cancel returns safely from forms opened with go', (
+    tester,
+  ) async {
+    final database = db.AppDatabase(NativeDatabase.memory());
+    final now = DateTime.utc(2026, 8, 16);
+    final personId = PersonId.generate();
+    await DriftPersonRepository(database).create(
+      Person(
+        id: personId,
+        sex: PersonSex.unspecified,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    await DriftPersonNameRepository(database).create(
+      PersonName(
+        id: PersonNameId.generate(),
+        personId: personId,
+        displayName: 'Persona de prova',
+        type: PersonNameType.birth,
+        isPreferred: true,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    final placeId = PlaceId.generate();
+    await DriftPlaceRepository(database).create(
+      Place(
+        id: placeId,
+        preferredName: 'Lloc de prova',
+        type: PlaceType.other,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    final sourceId = SourceId.generate();
+    await DriftSourceRepository(database).create(
+      Source(
+        id: sourceId,
+        type: SourceType.document,
+        title: 'Font de prova',
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    await tester.binding.setSurfaceSize(const Size(1280, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [databaseProvider.overrideWithValue(database)],
+        child: const FamilyHistoryApp(),
+      ),
+    );
+    await tester.pump(const Duration(milliseconds: 500));
+    final router = GoRouter.of(tester.element(find.byType(NavigationRail)));
+
+    Future<void> verifyCancel({
+      required String formPath,
+      required String cancelLabel,
+      required String expectedPath,
+    }) async {
+      router.go(formPath);
+      await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(
+        find.text(cancelLabel),
+        300,
+        scrollable: find.byType(Scrollable).last,
+      );
+      await tester.drag(find.byType(Scrollable).last, const Offset(0, -120));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(TextButton, cancelLabel));
+      await tester.pumpAndSettle();
+      expect(router.routerDelegate.currentConfiguration.uri.path, expectedPath);
+      expect(tester.takeException(), isNull);
+    }
+
+    await verifyCancel(
+      formPath: '/sources/new',
+      cancelLabel: 'Cancel·la',
+      expectedPath: '/sources',
+    );
+    await verifyCancel(
+      formPath: '/people/new',
+      cancelLabel: AppStrings.cancel,
+      expectedPath: '/people',
+    );
+    await verifyCancel(
+      formPath: '/places/new',
+      cancelLabel: AppStrings.cancel,
+      expectedPath: '/places',
+    );
+    await verifyCancel(
+      formPath: '/sources/${sourceId.value}/edit',
+      cancelLabel: 'Cancel·la',
+      expectedPath: '/sources/${sourceId.value}',
+    );
+    await verifyCancel(
+      formPath: '/people/${personId.value}/edit',
+      cancelLabel: AppStrings.cancel,
+      expectedPath: '/people/${personId.value}',
+    );
+    await verifyCancel(
+      formPath: '/places/${placeId.value}/edit',
+      cancelLabel: AppStrings.cancel,
+      expectedPath: '/places/${placeId.value}',
+    );
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+    await database.close();
+  });
+
   testWidgets('opens claim operations without visiting the people tab', (
     tester,
   ) async {
@@ -142,6 +284,7 @@ void main() {
     await tester.tap(find.text('Crear persona'));
     await tester.pumpAndSettle();
     expect(find.text('Crear parentesc'), findsOneWidget);
+    expect(find.text('Crear germanor'), findsOneWidget);
     await tester.tap(find.text('Crear lloc'));
     await tester.pumpAndSettle();
     expect(find.text('Altres'), findsOneWidget);
@@ -213,6 +356,60 @@ void main() {
     expect(residences, hasLength(1));
     expect(residences.single.personId, personId.value);
     expect(residences.single.placeId, placeId.value);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+    await database.close();
+  });
+
+  testWidgets('bulk-selects and cascade-deletes people from the list', (
+    tester,
+  ) async {
+    final database = db.AppDatabase(NativeDatabase.memory());
+    final people = DriftPersonRepository(database);
+    final names = DriftPersonNameRepository(database);
+    final now = DateTime.utc(2026, 8, 16);
+    for (final label in ['Maria', 'Joan', 'Teresa']) {
+      final id = PersonId.generate();
+      await people.create(
+        Person(id: id, sex: PersonSex.unknown, createdAt: now, modifiedAt: now),
+      );
+      await names.create(
+        PersonName(
+          id: PersonNameId.generate(),
+          personId: id,
+          displayName: label,
+          type: PersonNameType.birth,
+          isPreferred: true,
+          createdAt: now,
+          modifiedAt: now,
+        ),
+      );
+    }
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [databaseProvider.overrideWithValue(database)],
+        child: const MaterialApp(home: PeopleScreen()),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.longPress(find.text('Maria'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Joan'));
+    await tester.pumpAndSettle();
+    expect(find.text('2 seleccionades'), findsOneWidget);
+    await tester.tap(find.byTooltip('Eliminar persones seleccionades'));
+    await tester.pumpAndSettle();
+    expect(find.text('Eliminar 2 persones?'), findsOneWidget);
+    await tester.tap(find.text('Elimina en cascada'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Maria'), findsNothing);
+    expect(find.text('Joan'), findsNothing);
+    expect(find.text('Teresa'), findsOneWidget);
+    expect(await database.select(database.auditEntries).get(), hasLength(1));
+    expect(await database.select(database.auditTargets).get(), hasLength(2));
 
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pumpAndSettle();

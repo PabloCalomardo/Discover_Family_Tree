@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FamilyHistoryCompactExtraction",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["entities", "facts", "ambiguities"],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ref", "type", "name", "evidence"],
+        "properties": {
+          "ref": { "type": "string" },
+          "type": { "enum": ["person", "place"] },
+          "name": { "type": "string" },
+          "evidence": { "type": "string" }
+        }
+      }
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "subjectRef", "objectRef", "placeRef", "dateText", "evidence"],
+        "properties": {
+          "type": { "enum": ["birth", "parent", "residence", "marriage", "sibling"] },
+          "subjectRef": { "type": "string" },
+          "objectRef": { "type": ["string", "null"] },
+          "placeRef": { "type": ["string", "null"] },
+          "dateText": { "type": ["string", "null"] },
+          "evidence": { "type": "string" }
+        }
+      }
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

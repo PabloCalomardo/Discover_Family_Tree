@@ -11,6 +11,8 @@ import 'package:family_history/domain/relationship/parent_child_relationship.dar
 import 'package:family_history/domain/relationship/parent_child_relationship_repository.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
 import 'package:family_history/domain/relationship/partnership_repository.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
+import 'package:family_history/domain/relationship/sibling_relationship_repository.dart';
 import 'package:family_history/services/event/event_editor_service.dart';
 import 'package:family_history/services/audit/audit_service.dart';
 import 'package:family_history/services/person/person_editor_service.dart';
@@ -20,6 +22,7 @@ final class PeopleController {
   const PeopleController(
     this._personEditor,
     this._parentChildRelationships,
+    this._siblings,
     this._partnerships,
     this._residences,
     this._events,
@@ -30,6 +33,7 @@ final class PeopleController {
 
   final PersonEditorService _personEditor;
   final ParentChildRelationshipRepository _parentChildRelationships;
+  final SiblingRelationshipRepository _siblings;
   final PartnershipRepository _partnerships;
   final ResidenceRepository _residences;
   final EventRepository _events;
@@ -59,6 +63,32 @@ final class PeopleController {
       ],
     );
   });
+  Future<PersonCascadeDeletionResult> deletePeopleCascade(Set<PersonId> ids) =>
+      _transactions.run(() async {
+        final result = await _personEditor.deleteCascade(ids);
+        await _audit.record(
+          type: AuditType.personDeleted,
+          payload: {
+            'cascade': true,
+            'people': result.people,
+            'names': result.names,
+            'familyRelationships': result.familyRelationships,
+            'residences': result.residences,
+            'eventParticipations': result.eventParticipations,
+            'orphanedEvents': result.orphanedEvents,
+            'dismissedDuplicateCandidates': result.dismissedDuplicateCandidates,
+          },
+          targets: [
+            for (final id in ids)
+              AuditTarget(
+                entityType: 'PERSON',
+                entityId: id.value,
+                role: 'CASCADE_DELETED',
+              ),
+          ],
+        );
+        return result;
+      });
 
   Future<void> addParentChild(ParentChildRelationship relationship) =>
       _transactions.run(() async {
@@ -69,6 +99,20 @@ final class PeopleController {
       _transactions.run(() async {
         await _parentChildRelationships.delete(id);
         await _recordRelationship('PARENT_CHILD', id.value, false);
+      });
+  Future<void> addSibling(SiblingRelationship relationship) =>
+      _transactions.run(() async {
+        await _siblings.create(relationship);
+        await _recordRelationship(
+          'SIBLING_RELATIONSHIP',
+          relationship.id.value,
+          true,
+        );
+      });
+  Future<void> removeSibling(SiblingRelationshipId id) =>
+      _transactions.run(() async {
+        await _siblings.delete(id);
+        await _recordRelationship('SIBLING_RELATIONSHIP', id.value, false);
       });
   Future<void> addPartnership(Partnership partnership) =>
       _transactions.run(() async {

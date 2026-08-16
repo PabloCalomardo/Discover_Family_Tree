@@ -1,0 +1,48 @@
+{
+  "model": "local",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extreu totes les persones i tots els llocs mencionats. Retorna només JSON compacte, sense Markdown ni salts innecessaris. No inventis dades. Usa refs p1, p2... per persones i l1, l2... per llocs. L'evidència és un fragment literal que contingui el nom. Una menció incerta continua sent una entitat i també s'explica a ambiguities."
+    },
+    {
+      "role": "user",
+      "content": "Em dic Clara Vidal. Vaig néixer a Manresa el 12 de març de 1958. La meva mare, Rosa Puig, havia nascut a Berga, però no recordo quin any. El meu pare era en Jordi Vidal. Els meus pares van viure al carrer Nou 18 de Manresa des de 1955 fins aproximadament al 1970. Jo també hi vaig viure de petita. L'any 1981 em vaig casar amb l'Àlex Serra a Barcelona. Em sembla que l'Àlex tenia una germana que es deia Marta, però no n'estic del tot segura."
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 600,
+  "chat_template_kwargs": { "enable_thinking": false },
+  "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+      "name": "family_history_entities",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["entities", "ambiguities"],
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["ref", "type", "name", "evidence"],
+              "properties": {
+                "ref": { "type": "string" },
+                "type": { "enum": ["person", "place"] },
+                "name": { "type": "string" },
+                "evidence": { "type": "string" }
+              }
+            }
+          },
+          "ambiguities": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

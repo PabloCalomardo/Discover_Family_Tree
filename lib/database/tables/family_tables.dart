@@ -80,6 +80,32 @@ class ParentChildRelationships extends Table {
   ];
 }
 
+@TableIndex(name: 'siblings_person_a_id', columns: {#personAId})
+@TableIndex(name: 'siblings_person_b_id', columns: {#personBId})
+@TableIndex.sql(
+  'CREATE UNIQUE INDEX siblings_unique_active '
+  'ON sibling_relationships (person_a_id, person_b_id) '
+  'WHERE deleted_at IS NULL',
+)
+class SiblingRelationships extends Table {
+  TextColumn get id => text()();
+  @ReferenceName('siblingsAsPersonA')
+  TextColumn get personAId => text().references(Persons, #id)();
+  @ReferenceName('siblingsAsPersonB')
+  TextColumn get personBId => text().references(Persons, #id)();
+  TextColumn get kind => text()();
+  TextColumn get notes => text().nullable()();
+  DateTimeColumn get createdAt => dateTime()();
+  DateTimeColumn get modifiedAt => dateTime()();
+  DateTimeColumn get deletedAt => dateTime().nullable()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+
+  @override
+  List<String> get customConstraints => ['CHECK (person_a_id < person_b_id)'];
+}
+
 @TableIndex(name: 'partnerships_person_a_id', columns: {#personAId})
 @TableIndex(name: 'partnerships_person_b_id', columns: {#personBId})
 class Partnerships extends Table {

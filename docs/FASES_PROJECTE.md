@@ -389,17 +389,19 @@ Transformar text lliure en propostes de dades estructurades.
 
 ### Tasques
 
-- [ ] Definir `ExtractionProvider`.
-- [ ] Definir JSON Schema de sortida.
-- [ ] Definir `CandidatePerson`.
-- [ ] Definir `CandidatePlace`.
-- [ ] Definir `CandidateRelationship`.
-- [ ] Definir `CandidateResidence`.
-- [ ] Definir `CandidateEvent`.
-- [ ] Implementar validació de schema.
-- [ ] Implementar `EntityResolutionService`.
-- [ ] Implementar review UI.
-- [ ] Commit transaccional de canvis acceptats.
+- [x] Definir `ExtractionProvider`.
+- [x] Definir un contracte de sortida tipat per a l'extractor determinista.
+- [x] Definir `CandidatePerson`.
+- [x] Definir `CandidatePlace`.
+- [x] Definir `CandidateRelationship`.
+- [x] Definir `CandidateResidence`.
+- [x] Definir `CandidateEvent`.
+- [x] Validar offsets i evidències contra el text original.
+- [x] Implementar `EntityResolutionService` per coincidència exacta única.
+- [x] Implementar la UI inicial de transcripció ressaltada i review.
+- [x] Crear transaccionalment les claims seleccionades i l'auditoria.
+- [ ] Ampliar el catàleg de patrons amb més fixtures reals anonimitzats.
+- [ ] Validació funcional de l'usuari del flux determinista.
 
 ### Seguiment
 
@@ -407,10 +409,92 @@ Transformar text lliure en propostes de dades estructurades.
 - 2026-08-16: auditoria inicial de decisions d'arquitectura, proveïdor,
   privacitat, persistència, resolució d'entitats i UX pendent d'aprovació abans
   d'implementar.
+- 2026-08-16: iniciada una prova de concepte reversible amb `llama.cpp` i un
+  model local petit. És experimental, encara no forma part de l'aplicació i pot
+  ser retirada. Punt de retorn: tag `phase-7-local-llm-experiment-start`, commit
+  `5904e8098d05846c0641f3c7b2938e79d8c674fa`.
+- 2026-08-16: requisit de privacitat fixat: les dades personals no poden sortir
+  del dispositiu, usar-se per entrenar ni conservar-se com a memòria o logs. No
+  hi haurà cap fallback automàtic a serveis externs.
+- 2026-08-16: el primer harness amb Qwen3 4B va revelar problemes del client
+  CLI/HTTP; els timeouts inicials no es consideren una mesura vàlida del model.
+  Es corregeix amb `curl`, ChatML i raonament desactivat.
+- 2026-08-16: comparats Qwen3 0.6B i 1.7B Q8 amb dades sintètiques. El 0.6B és
+  ràpid però inventa i inverteix relacions. El 1.7B millora la forma i, dividit
+  en etapes, respon en uns 12 segons per etapa, però encara inverteix
+  filiacions, barreja referències, inventa precisió temporal i omet fets. Cap
+  dels dos s'integra. Resultats a `tools/local_ai_poc/RESULTATS.md`.
+- 2026-08-16: repetit Qwen3 4B Q4_K_M amb el harness corregit. Detecta totes les
+  entitats i evidències de la mostra en 19,8 segons, però l'extracció de fets
+  encara inverteix filiacions, inventa dates i relacions i omet residències.
+  No s'integra. La família Qwen3 no té cap mida entre 1.7B i 4B; queda com a
+  possible prova futura Qwen2.5 3B Instruct.
+- 2026-08-16: Qwen2.5 3B Instruct respon en 10–15 segons per etapa, però
+  reutilitza referències, inverteix filiacions, confon llocs i inventa
+  relacions. També usa una llicència limitada a finalitats no comercials. Es
+  descarta. Revisades alternatives: prioritat següent Ministral 3 3B Instruct
+  2512 (Apache 2.0 i JSON natiu), seguida de Gemma 4 E2B.
+- 2026-08-16: provat Ministral 3 3B Instruct 2512. El Q4 oficial no carrega amb
+  `llama.cpp` b10453 per una metadada de tokenizer invàlida; la conversió Q8 de
+  `ggml-org` funciona, però tarda 38–100 segons, omet llocs, inverteix
+  filiacions i converteix una relació incerta en fet. No s'integra.
+- 2026-08-16: provat Gemma 4 E2B Q4_0 QAT oficial. És ràpid per etapes (8,03 s
+  per entitats i 12,40 s per fets), però omet tots els llocs, inverteix
+  filiacions, barreja el naixement de Rosa amb la relació i tracta la germandat
+  incerta com a segura. No s'integra. Pendent decidir amb l'usuari si es prova
+  un model local més generalista o si s'atura aquesta via experimental.
+- 2026-08-16: descartada la integració d'un LLM i aprovada l'extracció
+  determinista. Implementat un proveïdor local basat en patrons catalans
+  explícits per a persones, llocs, filiacions, matrimonis, residències i
+  naixements. No fa inferències sobre text no ancorat.
+- 2026-08-16: cada candidat conserva evidència i offsets exactes. Abans de la
+  revisió es mostra el text complet amb un color estable per persona, un color
+  per relacions i accions, un per llocs i un d'addicional per dates. Les
+  incerteses queden desmarcades.
+- 2026-08-16: la resolució només reutilitza persones o llocs quan hi ha una
+  coincidència textual exacta i única. Les coincidències múltiples queden
+  bloquejades. Les claims seleccionades i les seves auditories es creen en una
+  transacció; no s'apliquen a les entitats sense la revisió existent.
+- 2026-08-16: corregit el retorn dels formularis de font, persona i lloc, tant
+  en creació com en edició. `popOrGo` només fa `pop` quan hi ha una ruta apilada
+  i usa la llista o el detall corresponent com a fallback quan la pantalla s'ha
+  obert amb `go_router.go`.
+- 2026-08-16: ampliat l'extractor per a narracions familiars extenses: pares
+  anomenats en parella, llistes de germans, avis materns i paterns, besavis,
+  cònjuge i mencions de descendents sense nom. El cas de regressió aportat per
+  l'usuari detecta onze persones i cinc relacions candidates.
+- 2026-08-16: afegida identificació opcional de la persona narradora. Si el text
+  usa primera persona però no en diu el nom, es mostren persones i relacions,
+  però les operacions que depenen de la narradora queden bloquejades. Fills o
+  nets sense nom i cadenes d'ascendència incompletes es mostren com a
+  ambigüitats, sense inventar persones ni filiacions.
+- 2026-08-16: ampliada l'extracció a narracions en tercera persona amb subjecte
+  identificat. El cas de regressió de Maria Soler Puig detecta catorze persones
+  i onze relacions candidates: pares, germans, matrimoni i filiacions dels tres
+  fills respecte dels dos membres de la parella. Avis, besàvia i nets sense nom
+  es mantenen com a informació ambigua quan falta la cadena exacta.
+- 2026-08-16: afegida inferència conservadora de naixement a partir d'una edat
+  explícita. L'edat es calcula contra la data de l'anàlisi i genera l'interval
+  complet de dates compatibles, marcat com a inferit i pendent de confirmació;
+  no es converteix silenciosament en un any exacte.
+- 2026-08-16: aprovada i implementada la germanor explícita. L'schema 6 afegeix
+  `sibling_relationships`, simètrica i canonitzada, amb tipus no especificat,
+  complet, mig, adoptiu o polític. No es creen progenitors ficticis. La relació
+  es pot crear des de persones o fonts, l'extractor la converteix en claim,
+  participa en el càlcul de parentesc, bloqueja eliminacions i es conserva als
+  merges amb auditoria i deduplicació.
+- 2026-08-16: afegida selecció múltiple a `Persones` i eliminació en cascada
+  transaccional. S'aplica soft-delete a persones, noms, filiacions, germanors,
+  parelles, residències i participacions; només s'eliminen els esdeveniments
+  que queden sense participants. Els candidats de duplicat afectats es marquen
+  descartats; claims i auditoria es conserven. Corregit
+  també el diàleg de projecte nou perquè el `TextEditingController` sigui
+  propietat del widget i no es destrueixi durant l'animació de tancament.
 
 ### Criteri de finalització
 
-Un text pot ser analitzat per IA, revisat per l'usuari i incorporat de manera segura al projecte.
+Un text pot ser analitzat localment, verificat sobre l'evidència original,
+revisat per l'usuari i incorporat de manera segura al projecte.
 
 ---
 
@@ -491,7 +575,7 @@ No formen part del compromís inicial:
 - Sincronització cloud.
 - Multiusuari.
 - Web app.
-- IA completament local.
+- Distribució i actualització automàtica de models d'IA locals.
 - Comparació o merge entre projectes `.famhistory`.
 - Control de versions complet.
 - Col·laboració en temps real.

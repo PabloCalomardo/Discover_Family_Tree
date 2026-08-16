@@ -4,6 +4,7 @@ import 'package:family_history/domain/person/person.dart';
 import 'package:family_history/domain/person/person_name.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../support/domain_factories.dart';
@@ -32,7 +33,7 @@ void main() {
     expect(name.isPreferred, isTrue);
   });
 
-  test('rejects self-parentage and self-partnership', () {
+  test('rejects self-parentage, self-partnership and self-siblinghood', () {
     final person = personId(1);
     final matcher = isA<DomainValidationException>().having(
       (error) => error.code,
@@ -62,5 +63,33 @@ void main() {
       ),
       throwsA(matcher),
     );
+    expect(
+      () => SiblingRelationship(
+        id: SiblingRelationshipId('00000000-0000-4000-8000-000000000022'),
+        personAId: person,
+        personBId: person,
+        kind: SiblingKind.unspecified,
+        createdAt: testTimestamp,
+        modifiedAt: testTimestamp,
+      ),
+      throwsA(matcher),
+    );
+  });
+
+  test('canonicalizes a sibling pair regardless of input order', () {
+    final first = personId(1);
+    final second = personId(2);
+    final sibling = SiblingRelationship(
+      id: SiblingRelationshipId('00000000-0000-4000-8000-000000000023'),
+      personAId: second,
+      personBId: first,
+      kind: SiblingKind.half,
+      createdAt: testTimestamp,
+      modifiedAt: testTimestamp,
+    );
+
+    expect(sibling.personAId, first);
+    expect(sibling.personBId, second);
+    expect(sibling.other(first), second);
   });
 }

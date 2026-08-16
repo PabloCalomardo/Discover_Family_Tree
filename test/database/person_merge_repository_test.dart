@@ -10,6 +10,7 @@ import 'package:family_history/database/repositories/drift_person_name_repositor
 import 'package:family_history/database/repositories/drift_person_repository.dart';
 import 'package:family_history/database/repositories/drift_place_repository.dart';
 import 'package:family_history/database/repositories/drift_residence_repository.dart';
+import 'package:family_history/database/repositories/drift_sibling_relationship_repository.dart';
 import 'package:family_history/domain/claim/claim.dart';
 import 'package:family_history/domain/event/event.dart';
 import 'package:family_history/domain/event/event_participant.dart';
@@ -18,6 +19,7 @@ import 'package:family_history/domain/person/person_name.dart';
 import 'package:family_history/domain/place/place.dart';
 import 'package:family_history/domain/place/residence.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
 import 'package:family_history/services/merge/person_merge.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -26,6 +28,7 @@ void main() {
   late DriftPersonRepository people;
   late DriftPersonNameRepository names;
   late DriftParentChildRelationshipRepository relationships;
+  late DriftSiblingRelationshipRepository siblings;
   late DriftClaimRepository claims;
   late DriftAuditRepository audit;
   late DriftPersonMergeRepository merges;
@@ -36,6 +39,7 @@ void main() {
     people = DriftPersonRepository(database);
     names = DriftPersonNameRepository(database);
     relationships = DriftParentChildRelationshipRepository(database);
+    siblings = DriftSiblingRelationshipRepository(database);
     claims = DriftClaimRepository(database);
     audit = DriftAuditRepository(database);
     merges = DriftPersonMergeRepository(database, claims, audit);
@@ -287,5 +291,72 @@ void main() {
 
     expect(await residences.watchForPerson(survivor.id).first, hasLength(1));
     expect(await events.watchForPerson(survivor.id).first, hasLength(1));
+  });
+
+  test('rewires explicit siblinghood without creating a parent', () async {
+    final seeded = await seed();
+    final survivor = seeded.$1;
+    final absorbed = seeded.$2;
+    final sibling = Person(
+      id: PersonId.generate(),
+      sex: PersonSex.unknown,
+      createdAt: now,
+      modifiedAt: now,
+    );
+    await people.create(sibling);
+    await siblings.create(
+      SiblingRelationship(
+        id: SiblingRelationshipId.generate(),
+        personAId: absorbed.id,
+        personBId: sibling.id,
+        kind: SiblingKind.unspecified,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+
+    await merges.execute(
+      PersonMergeCommand(
+        mergedPerson: Person(
+          id: survivor.id,
+          sex: survivor.sex,
+          biography: survivor.biography,
+          createdAt: survivor.createdAt,
+          modifiedAt: now.add(const Duration(minutes: 1)),
+        ),
+        absorbedId: absorbed.id,
+        expectedSurvivorModifiedAt: survivor.modifiedAt,
+        expectedAbsorbedModifiedAt: absorbed.modifiedAt,
+        preferredNameId: seeded.$3.id,
+        relationsToConvertToClaims: const {},
+      ),
+    );
+
+    final stored = (await siblings.watchAll().first).single;
+    expect(stored.involves(survivor.id), isTrue);
+    expect(stored.involves(sibling.id), isTrue);
+    expect(await relationships.watchAll().first, isEmpty);
+  });
+
+  test('preview blocks a sibling relation between merged people', () async {
+    final seeded = await seed();
+    final relation = SiblingRelationship(
+      id: SiblingRelationshipId.generate(),
+      personAId: seeded.$1.id,
+      personBId: seeded.$2.id,
+      kind: SiblingKind.unspecified,
+      createdAt: now,
+      modifiedAt: now,
+    );
+    await siblings.create(relation);
+
+    final preview = await merges.preview(seeded.$1.id, seeded.$2.id);
+
+    expect(
+      preview.blockingRelations.single,
+      isA<MergeBlockingRelation>()
+          .having((item) => item.id, 'id', relation.id.value)
+          .having((item) => item.kind, 'kind', 'SIBLING_RELATIONSHIP'),
+    );
   });
 }

@@ -19,6 +19,8 @@ import 'package:family_history/domain/relationship/parent_child_relationship.dar
 import 'package:family_history/domain/relationship/parent_child_relationship_repository.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
 import 'package:family_history/domain/relationship/partnership_repository.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
+import 'package:family_history/domain/relationship/sibling_relationship_repository.dart';
 import 'package:family_history/services/claim/claim_operation_executor.dart';
 
 final class DriftClaimOperationExecutor implements ClaimOperationExecutor {
@@ -27,6 +29,7 @@ final class DriftClaimOperationExecutor implements ClaimOperationExecutor {
     this._people,
     this._places,
     this._parentChild,
+    this._siblings,
     this._partnerships,
     this._residences,
     this._events,
@@ -36,6 +39,7 @@ final class DriftClaimOperationExecutor implements ClaimOperationExecutor {
   final PersonRepository _people;
   final PlaceRepository _places;
   final ParentChildRelationshipRepository _parentChild;
+  final SiblingRelationshipRepository _siblings;
   final PartnershipRepository _partnerships;
   final ResidenceRepository _residences;
   final EventRepository _events;
@@ -249,6 +253,23 @@ final class DriftClaimOperationExecutor implements ClaimOperationExecutor {
         );
         return ClaimApplicationResult(
           entityType: 'PARENT_CHILD_RELATIONSHIP',
+          entityId: relation.relationshipId.value,
+        );
+      case ClaimProperty.siblingRelationship:
+        final relation = value as SiblingClaimValue;
+        await _siblings.create(
+          SiblingRelationship(
+            id: relation.relationshipId,
+            personAId: relation.personAId,
+            personBId: relation.personBId,
+            kind: relation.kind,
+            notes: relation.notes,
+            createdAt: now,
+            modifiedAt: now,
+          ),
+        );
+        return ClaimApplicationResult(
+          entityType: 'SIBLING_RELATIONSHIP',
           entityId: relation.relationshipId.value,
         );
       case ClaimProperty.partnership:

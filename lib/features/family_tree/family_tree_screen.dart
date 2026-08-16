@@ -6,6 +6,7 @@ import 'package:family_history/domain/person/person.dart';
 import 'package:family_history/domain/person/person_name.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
 import 'package:family_history/features/family_tree/family_tree_projection.dart';
 import 'package:family_history/services/kinship/kinship_path.dart';
 import 'package:flutter/material.dart';
@@ -79,11 +80,13 @@ class _FamilyTreeScreenState extends ConsumerState<FamilyTreeScreen> {
     final namesAsync = ref.watch(allPersonNamesProvider);
     final parentChildAsync = ref.watch(parentChildRelationshipsProvider);
     final partnershipsAsync = ref.watch(partnershipsProvider);
+    final siblingsAsync = ref.watch(siblingRelationshipsProvider);
 
     final error =
         peopleAsync.error ??
         namesAsync.error ??
         parentChildAsync.error ??
+        siblingsAsync.error ??
         partnershipsAsync.error;
     if (error != null) {
       return Scaffold(
@@ -95,9 +98,11 @@ class _FamilyTreeScreenState extends ConsumerState<FamilyTreeScreen> {
     final names = namesAsync.value;
     final parentChild = parentChildAsync.value;
     final partnerships = partnershipsAsync.value;
+    final siblings = siblingsAsync.value;
     if (people == null ||
         names == null ||
         parentChild == null ||
+        siblings == null ||
         partnerships == null) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
@@ -248,6 +253,7 @@ class _FamilyTreeScreenState extends ConsumerState<FamilyTreeScreen> {
                               'Persona sense nom',
                           focus: effectiveFocus,
                           parentChildRelationships: parentChild,
+                          siblingRelationships: siblings,
                           partnerships: partnerships,
                           onMakeFocus: () => _rebuildAround(() {
                             _focus = selectedPerson.id;
@@ -1201,6 +1207,7 @@ class _PersonInspector extends ConsumerWidget {
     required this.displayName,
     required this.focus,
     required this.parentChildRelationships,
+    required this.siblingRelationships,
     required this.partnerships,
     required this.onMakeFocus,
   });
@@ -1209,6 +1216,7 @@ class _PersonInspector extends ConsumerWidget {
   final String displayName;
   final PersonId focus;
   final List<ParentChildRelationship> parentChildRelationships;
+  final List<SiblingRelationship> siblingRelationships;
   final List<Partnership> partnerships;
   final VoidCallback onMakeFocus;
 
@@ -1222,6 +1230,7 @@ class _PersonInspector extends ConsumerWidget {
                 source: person.id,
                 target: focus,
                 parentChildRelationships: parentChildRelationships,
+                siblingRelationships: siblingRelationships,
                 partnerships: partnerships,
               );
     return ListView(
@@ -1302,5 +1311,6 @@ String _kinshipLabel(KinshipType type) => switch (type) {
 String _kinshipNatureLabel(KinshipNature nature) => switch (nature) {
   KinshipNature.biological => 'Parentiu biològic',
   KinshipNature.adoptive => 'Parentiu adoptiu',
+  KinshipNature.sibling => 'Germanor explícita',
   KinshipNature.partnership => 'Relació de parella',
 };

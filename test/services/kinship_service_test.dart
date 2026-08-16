@@ -1,4 +1,6 @@
+import 'package:family_history/core/ids/domain_id.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
+import 'package:family_history/domain/relationship/sibling_relationship.dart';
 import 'package:family_history/services/kinship/kinship_path.dart';
 import 'package:family_history/services/kinship/kinship_service.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -140,5 +142,31 @@ void main() {
 
     expect(path.type, KinshipType.firstCousin);
     expect(path.length, 4);
+  });
+
+  test('returns explicit siblinghood without a shared known parent', () {
+    final first = personId(1);
+    final second = personId(2);
+    final explicit = SiblingRelationship(
+      id: SiblingRelationshipId('00000000-0000-4000-8000-000000000030'),
+      personAId: first,
+      personBId: second,
+      kind: SiblingKind.unspecified,
+      createdAt: testTimestamp,
+      modifiedAt: testTimestamp,
+    );
+
+    final path = service
+        .getKinship(
+          source: first,
+          target: second,
+          parentChildRelationships: const [],
+          siblingRelationships: [explicit],
+        )
+        .single;
+
+    expect(path.type, KinshipType.sibling);
+    expect(path.nature, KinshipNature.sibling);
+    expect(path.length, 1);
   });
 }

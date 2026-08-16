@@ -11,13 +11,13 @@ void main() {
 
   tearDown(() => database.close());
 
-  test('opens schema version 5 with foreign keys enabled', () async {
+  test('opens schema version 6 with foreign keys enabled', () async {
     final result = await database
         .customSelect('PRAGMA foreign_keys')
         .getSingle();
 
     expect(result.read<int>('foreign_keys'), 1);
-    expect(database.schemaVersion, 5);
+    expect(database.schemaVersion, 6);
   });
 
   test('stores a project with a UUID domain identifier', () async {
@@ -53,6 +53,7 @@ void main() {
         'persons',
         'person_names',
         'parent_child_relationships',
+        'sibling_relationships',
         'partnerships',
         'places',
         'place_relationships',
@@ -88,5 +89,6 @@ void main() {
     expect(indexNames, contains('claims_subject_property'));
     expect(indexNames, contains('duplicate_candidates_pair'));
     expect(indexNames, contains('media_checksum_size_active'));
+    expect(indexNames, contains('siblings_unique_active'));
   });
 }

@@ -46,3 +46,7 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Prova local de la fase 7: mai versionar models, runtimes ni resultats generats.
+.local-ai/
+tools/local_ai_poc/output/
