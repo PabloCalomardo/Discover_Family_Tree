@@ -12,6 +12,8 @@ class AppShell extends StatelessWidget {
     if (currentPath.startsWith('/tree')) return 1;
     if (currentPath.startsWith('/people')) return 2;
     if (currentPath.startsWith('/places')) return 3;
+    if (currentPath.startsWith('/sources')) return 4;
+    if (currentPath.startsWith('/review')) return 5;
     return 0;
   }
 
@@ -33,6 +35,10 @@ class AppShell extends StatelessWidget {
                   context.go('/people');
                 case 3:
                   context.go('/places');
+                case 4:
+                  context.go('/sources');
+                case 5:
+                  context.go('/review');
               }
             },
             leading: const Padding(
@@ -59,6 +65,16 @@ class AppShell extends StatelessWidget {
                 icon: Icon(Icons.place_outlined),
                 selectedIcon: Icon(Icons.place),
                 label: Text(AppStrings.places),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.source_outlined),
+                selectedIcon: Icon(Icons.source),
+                label: Text('Fonts'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.fact_check_outlined),
+                selectedIcon: Icon(Icons.fact_check),
+                label: Text('Revisió'),
               ),
             ],
           ),

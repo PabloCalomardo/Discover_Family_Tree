@@ -11,13 +11,13 @@ void main() {
 
   tearDown(() => database.close());
 
-  test('opens schema version 3 with foreign keys enabled', () async {
+  test('opens schema version 5 with foreign keys enabled', () async {
     final result = await database
         .customSelect('PRAGMA foreign_keys')
         .getSingle();
 
     expect(result.read<int>('foreign_keys'), 1);
-    expect(database.schemaVersion, 3);
+    expect(database.schemaVersion, 5);
   });
 
   test('stores a project with a UUID domain identifier', () async {
@@ -61,5 +61,32 @@ void main() {
         'event_participants',
       }),
     );
+  });
+
+  test('creates all phase 6 tables and indexes', () async {
+    final rows = await database
+        .customSelect("SELECT name FROM sqlite_master WHERE type = 'table'")
+        .get();
+    final names = rows.map((row) => row.read<String>('name')).toSet();
+    expect(
+      names,
+      containsAll({
+        'sources',
+        'media',
+        'source_media',
+        'claims',
+        'claim_applications',
+        'duplicate_candidates',
+        'audit_entries',
+        'audit_targets',
+      }),
+    );
+    final indexes = await database
+        .customSelect("SELECT name FROM sqlite_master WHERE type = 'index'")
+        .get();
+    final indexNames = indexes.map((row) => row.read<String>('name')).toSet();
+    expect(indexNames, contains('claims_subject_property'));
+    expect(indexNames, contains('duplicate_candidates_pair'));
+    expect(indexNames, contains('media_checksum_size_active'));
   });
 }

@@ -82,3 +82,40 @@ final class EventParticipantId extends DomainId {
   factory EventParticipantId.generate() =>
       EventParticipantId(const Uuid().v4());
 }
+
+final class SourceId extends DomainId {
+  SourceId(super.value);
+
+  factory SourceId.generate() => SourceId(const Uuid().v4());
+}
+
+final class MediaId extends DomainId {
+  MediaId(super.value);
+
+  factory MediaId.generate() => MediaId(const Uuid().v4());
+}
+
+final class SourceMediaId extends DomainId {
+  SourceMediaId(super.value);
+
+  factory SourceMediaId.generate() => SourceMediaId(const Uuid().v4());
+}
+
+final class ClaimId extends DomainId {
+  ClaimId(super.value);
+
+  factory ClaimId.generate() => ClaimId(const Uuid().v4());
+}
+
+final class DuplicateCandidateId extends DomainId {
+  DuplicateCandidateId(super.value);
+
+  factory DuplicateCandidateId.generate() =>
+      DuplicateCandidateId(const Uuid().v4());
+}
+
+final class AuditEntryId extends DomainId {
+  AuditEntryId(super.value);
+
+  factory AuditEntryId.generate() => AuditEntryId(const Uuid().v4());
+}

@@ -10,9 +10,16 @@ familiar.
 - Target actiu de desenvolupament: Windows
 - Target de validació final de l'MVP: macOS
 - Persistència: SQLite mitjançant Drift
-- Schema SQLite intern actual: 3
+- Schema SQLite intern actual: 5
+- Format de projecte: `.famhistory` v1 compatible amb ZIP
+- Fases 0–6: completades
+- Fase 7 — IA: importació de text: en curs
 
 L'identificador provisional de l'organització és `com.familyhistory`.
+
+> **Idioma de la UI durant l'MVP:** català. Cap formulari ha de mostrar noms
+> interns d'enums ni etiquetes en anglès; la internacionalització queda per a
+> una fase posterior.
 
 ## Comprovacions
 
@@ -28,16 +35,36 @@ Per compilar plugins a Windows cal tenir activat el Mode de desenvolupador del
 sistema. L'adaptació i execució a macOS es validaran durant les proves finals,
 quan l'aplicació estigui acabada o en fase final.
 
-## Getting Started
+## Executar a Windows
 
-This project is a starting point for a Flutter application.
+```text
+flutter run -d windows
+```
 
-A few resources to get you started if this is your first Flutter project:
+La pantalla d'inici permet crear, obrir, desar i fer backups de projectes
+`.famhistory`. En la primera execució, la base local anterior es copia al nou
+espai de treball i es conserva intacta com a mesura de seguretat.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Projectes transportables
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Cada `.famhistory` és un ZIP autocontingut amb `manifest.json`, una instantània
+`database.sqlite`, media i miniatures. No necessita backend ni connexió a
+Internet per copiar-se i obrir-se en una altra instal·lació compatible.
+
+El manifest conserva separadament les versions del format, de l'aplicació i de
+l'schema SQLite. Els fitxers multimèdia i les miniatures es verifiquen amb
+SHA-256 abans d'activar un projecte obert.
+
+La fase 6 incorpora fonts bibliogràfiques, media catalogada fora d'SQLite,
+claims d'operacions tipades i contradictòries, aplicació idempotent de canvis,
+detecció determinista de duplicats, merge
+manual camp per camp i auditoria append-only. La UI disposa de les seccions
+`Fonts` i `Revisió`.
+
+## Estat verificat
+
+- `flutter analyze`: cap incidència.
+- 73 proves superades.
+- Build Windows release generat correctament amb schema 5.
+- Fase 6 completada amb validació funcional explícita el 2026-08-16.
+- Fase 7 iniciada; decisions d'arquitectura i proveïdor pendents d'aprovació.

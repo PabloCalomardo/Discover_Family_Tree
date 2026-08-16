@@ -2,15 +2,28 @@ import 'dart:async';
 
 import 'package:family_history/core/ids/domain_id.dart';
 import 'package:family_history/database/database.dart' as db;
+import 'package:family_history/database/drift_transaction_runner.dart';
+import 'package:family_history/database/repositories/drift_audit_repository.dart';
+import 'package:family_history/database/repositories/drift_claim_repository.dart';
+import 'package:family_history/database/repositories/drift_claim_operation_executor.dart';
+import 'package:family_history/database/repositories/drift_duplicate_candidate_repository.dart';
 import 'package:family_history/database/repositories/drift_event_repository.dart';
 import 'package:family_history/database/repositories/drift_parent_child_relationship_repository.dart';
 import 'package:family_history/database/repositories/drift_partnership_repository.dart';
 import 'package:family_history/database/repositories/drift_person_name_repository.dart';
 import 'package:family_history/database/repositories/drift_person_repository.dart';
 import 'package:family_history/database/repositories/drift_place_repository.dart';
+import 'package:family_history/database/repositories/drift_media_repository.dart';
+import 'package:family_history/database/repositories/drift_person_merge_repository.dart';
+import 'package:family_history/database/repositories/drift_source_repository.dart';
 import 'package:family_history/database/repositories/drift_residence_repository.dart';
 import 'package:family_history/domain/event/event.dart';
 import 'package:family_history/domain/event/event_repository.dart';
+import 'package:family_history/domain/audit/audit_repository.dart';
+import 'package:family_history/domain/claim/claim.dart';
+import 'package:family_history/domain/claim/claim_repository.dart';
+import 'package:family_history/domain/duplicate/duplicate_candidate.dart';
+import 'package:family_history/domain/duplicate/duplicate_candidate_repository.dart';
 import 'package:family_history/domain/person/person.dart';
 import 'package:family_history/domain/person/person_name.dart';
 import 'package:family_history/domain/person/person_name_repository.dart';
@@ -23,14 +36,37 @@ import 'package:family_history/domain/relationship/parent_child_relationship.dar
 import 'package:family_history/domain/relationship/parent_child_relationship_repository.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
 import 'package:family_history/domain/relationship/partnership_repository.dart';
+import 'package:family_history/domain/source/media_asset.dart';
+import 'package:family_history/domain/source/source.dart';
+import 'package:family_history/domain/source/source_repository.dart';
 import 'package:family_history/features/people/people_controller.dart';
 import 'package:family_history/features/places/places_controller.dart';
+import 'package:family_history/features/review/review_controller.dart';
+import 'package:family_history/features/sources/sources_controller.dart';
+import 'package:family_history/services/audit/audit_service.dart';
+import 'package:family_history/services/claim/claim_conflict_service.dart';
+import 'package:family_history/services/claim/claim_service.dart';
+import 'package:family_history/services/duplicate/duplicate_detection_service.dart';
 import 'package:family_history/services/event/event_editor_service.dart';
 import 'package:family_history/services/kinship/kinship_service.dart';
 import 'package:family_history/services/person/person_editor_service.dart';
+import 'package:family_history/services/merge/person_merge.dart';
+import 'package:family_history/services/project/project_workspace_controller.dart';
+import 'package:family_history/services/source/source_service.dart';
+import 'package:family_history/services/transaction_runner.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
+
+final projectWorkspaceControllerProvider =
+    ChangeNotifierProvider<ProjectWorkspaceController>(
+      (ref) => ProjectWorkspaceController.disabled(),
+    );
 
 final databaseProvider = Provider<db.AppDatabase>((ref) {
+  final projectDatabase = ref
+      .watch(projectWorkspaceControllerProvider)
+      .database;
+  if (projectDatabase != null) return projectDatabase;
   final database = db.AppDatabase.defaults();
   ref.onDispose(() => unawaited(database.close()));
   return database;
@@ -59,6 +95,84 @@ final residenceRepositoryProvider = Provider<ResidenceRepository>(
 final eventRepositoryProvider = Provider<EventRepository>(
   (ref) => DriftEventRepository(ref.watch(databaseProvider)),
 );
+final sourceRepositoryProvider = Provider<SourceRepository>(
+  (ref) => DriftSourceRepository(ref.watch(databaseProvider)),
+);
+final mediaRepositoryProvider = Provider<MediaRepository>(
+  (ref) => DriftMediaRepository(ref.watch(databaseProvider)),
+);
+final claimRepositoryProvider = Provider<ClaimRepository>(
+  (ref) => DriftClaimRepository(ref.watch(databaseProvider)),
+);
+final duplicateCandidateRepositoryProvider =
+    Provider<DuplicateCandidateRepository>(
+      (ref) => DriftDuplicateCandidateRepository(ref.watch(databaseProvider)),
+    );
+final auditRepositoryProvider = Provider<AuditRepository>(
+  (ref) => DriftAuditRepository(ref.watch(databaseProvider)),
+);
+final transactionRunnerProvider = Provider<TransactionRunner>(
+  (ref) => DriftTransactionRunner(ref.watch(databaseProvider)),
+);
+
+final auditServiceProvider = Provider<AuditService>(
+  (ref) => AuditService(ref.watch(auditRepositoryProvider)),
+);
+final claimServiceProvider = Provider<ClaimService>(
+  (ref) => ClaimService(
+    ref.watch(claimRepositoryProvider),
+    ref.watch(auditServiceProvider),
+    ref.watch(transactionRunnerProvider),
+    DriftClaimOperationExecutor(
+      ref.watch(databaseProvider),
+      ref.watch(personRepositoryProvider),
+      ref.watch(placeRepositoryProvider),
+      ref.watch(parentChildRepositoryProvider),
+      ref.watch(partnershipRepositoryProvider),
+      ref.watch(residenceRepositoryProvider),
+      ref.watch(eventRepositoryProvider),
+    ),
+  ),
+);
+final claimConflictServiceProvider = Provider<ClaimConflictService>(
+  (ref) => const ClaimConflictService(),
+);
+final duplicateDetectionServiceProvider = Provider<DuplicateDetectionService>(
+  (ref) => const DuplicateDetectionService(),
+);
+final personMergeServiceProvider = Provider<PersonMergeService>(
+  (ref) => PersonMergeService(
+    DriftPersonMergeRepository(
+      ref.watch(databaseProvider),
+      ref.watch(claimRepositoryProvider),
+      ref.watch(auditRepositoryProvider),
+    ),
+  ),
+);
+final sourceServiceProvider = Provider<SourceService>(
+  (ref) => SourceService(
+    ref.watch(sourceRepositoryProvider),
+    ref.watch(mediaRepositoryProvider),
+    ref.watch(auditServiceProvider),
+    ref.watch(transactionRunnerProvider),
+  ),
+);
+final sourcesControllerProvider = Provider<SourcesController>(
+  (ref) => SourcesController(ref.watch(sourceServiceProvider)),
+);
+final reviewControllerProvider = Provider<ReviewController>(
+  (ref) => ReviewController(
+    ref.watch(personRepositoryProvider),
+    ref.watch(personNameRepositoryProvider),
+    ref.watch(parentChildRepositoryProvider),
+    ref.watch(partnershipRepositoryProvider),
+    ref.watch(duplicateCandidateRepositoryProvider),
+    ref.watch(duplicateDetectionServiceProvider),
+    ref.watch(personMergeServiceProvider),
+    ref.watch(auditServiceProvider),
+    ref.watch(transactionRunnerProvider),
+  ),
+);
 
 final personEditorServiceProvider = Provider<PersonEditorService>(
   (ref) => PersonEditorService(
@@ -82,10 +196,17 @@ final peopleControllerProvider = Provider<PeopleController>(
     ref.watch(residenceRepositoryProvider),
     ref.watch(eventRepositoryProvider),
     ref.watch(eventEditorServiceProvider),
+    ref.watch(auditServiceProvider),
+    ref.watch(transactionRunnerProvider),
   ),
 );
 final placesControllerProvider = Provider<PlacesController>(
-  (ref) => PlacesController(ref.watch(placeRepositoryProvider)),
+  (ref) => PlacesController(
+    ref.watch(placeRepositoryProvider),
+    ref.watch(residenceRepositoryProvider),
+    ref.watch(auditServiceProvider),
+    ref.watch(transactionRunnerProvider),
+  ),
 );
 
 final peopleProvider = StreamProvider<List<Person>>(
@@ -126,3 +247,37 @@ final personEventsProvider = StreamProvider.family<List<FamilyEvent>, PersonId>(
 final kinshipServiceProvider = Provider<KinshipService>(
   (ref) => const KinshipService(),
 );
+
+final sourcesProvider = StreamProvider<List<Source>>(
+  (ref) => ref.watch(sourceRepositoryProvider).watchAll(),
+);
+final sourceProvider = FutureProvider.family<Source?, SourceId>(
+  (ref, id) => ref.watch(sourceRepositoryProvider).get(id),
+);
+final sourceMediaProvider = StreamProvider.family<List<MediaAsset>, SourceId>(
+  (ref, id) => ref.watch(mediaRepositoryProvider).watchForSource(id),
+);
+final claimsProvider = StreamProvider<List<Claim>>(
+  (ref) => ref.watch(claimRepositoryProvider).watchAll(),
+);
+final subjectClaimsProvider =
+    StreamProvider.family<List<Claim>, (ClaimSubjectType, String)>(
+      (ref, subject) => ref
+          .watch(claimRepositoryProvider)
+          .watchForSubject(subject.$1, subject.$2),
+    );
+final sourceClaimsProvider = StreamProvider.family<List<Claim>, SourceId>(
+  (ref, id) => ref.watch(claimRepositoryProvider).watchForSource(id),
+);
+final claimConflictsProvider = Provider<AsyncValue<List<ClaimConflict>>>((ref) {
+  final claims = ref.watch(claimsProvider);
+  return claims.whenData(ref.watch(claimConflictServiceProvider).detect);
+});
+final duplicateCandidatesProvider = StreamProvider<List<DuplicateCandidate>>(
+  (ref) => ref.watch(duplicateCandidateRepositoryProvider).watchAll(),
+);
+final mergePreviewProvider =
+    FutureProvider.family<PersonMergePreview, (PersonId, PersonId)>(
+      (ref, pair) =>
+          ref.watch(reviewControllerProvider).previewMerge(pair.$1, pair.$2),
+    );

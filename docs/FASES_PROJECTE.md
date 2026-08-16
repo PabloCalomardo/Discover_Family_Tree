@@ -4,11 +4,13 @@
 
 ## Estat actual
 
-**Fase actual:** Fase 4 — Family Tree MVP
+**Fase actual:** Fase 7 — IA: importació de text
 
 **Estat:** EN CURS
 
-**Última actualització:** 2026-08-15
+**Fase anterior:** Fase 6 — Sources, Claims i Merge (completada)
+
+**Última actualització:** 2026-08-16
 
 ---
 
@@ -188,7 +190,7 @@ Un usuari pot construir manualment una història familiar bàsica només des de 
 
 ## Fase 4 — Family Tree MVP
 
-**Estat:** EN CURS
+**Estat:** COMPLETADA EL 2026-08-15
 
 ### Objectiu
 
@@ -245,10 +247,13 @@ Visualitzar i navegar el graf familiar.
 - 2026-08-15: nodes, barres, colzes i punts matrimonials s'ajusten a píxels
   enters, amb traços ortogonals sense antialias i ordre de pintura estable als
   encreuaments; afegides regressions de compacitat i alineació de coordenades.
-- 2026-08-15: `flutter analyze` finalitza sense incidències, els 40 tests
+- 2026-08-15: les branques d'origen d'una parella creixen cap als seus costats
+  exteriors: els germans del membre esquerre queden a l'esquerra i els del dret
+  a la dreta, evitant que famílies parentals diferents comparteixin trams.
+- 2026-08-15: `flutter analyze` finalitza sense incidències, els 41 tests
   passen i la compilació Windows debug es completa correctament.
-- Pendent de validació funcional de l'usuari abans de declarar la fase
-  completada i avançar a la fase 5.
+- 2026-08-15: fase 4 validada funcionalment per l'usuari i declarada completa;
+  la fase 5 queda pendent d'inici explícit.
 
 ### Criteri de finalització
 
@@ -258,21 +263,41 @@ L'arbre pot representar casos familiars normals i adopcions complexes de manera 
 
 ## Fase 5 — Format `.famhistory`
 
+**Estat:** COMPLETADA EL 2026-08-16
+
 ### Objectiu
 
 Fer el projecte transportable entre dispositius.
 
 ### Tasques
 
-- [ ] Definir `manifest.json` v1.
-- [ ] Crear projecte nou.
-- [ ] Obrir projecte existent.
-- [ ] Desar projecte.
-- [ ] Empaquetar SQLite + media.
-- [ ] Desempaquetar projecte temporalment.
-- [ ] Validar versió de format.
-- [ ] Crear backup manual.
-- [ ] Afegir checksums de media.
+- [x] Definir `manifest.json` v1.
+- [x] Crear projecte nou.
+- [x] Obrir projecte existent.
+- [x] Desar projecte.
+- [x] Empaquetar SQLite + media.
+- [x] Desempaquetar projecte temporalment.
+- [x] Validar versió de format.
+- [x] Crear backup manual.
+- [x] Afegir checksums de media.
+
+### Seguiment
+
+- 2026-08-15: fase iniciada amb autorització explícita de l'usuari; revisats
+  format mínim, arquitectura, persistència actual i decisions pendents.
+- 2026-08-15: implementat el contenidor ZIP `.famhistory` amb manifest v1,
+  instantània SQLite consistent, estructura de media i checksums SHA-256.
+- 2026-08-15: implementats nou projecte, obrir, desar, desar com i backup des
+  de la pantalla d'inici, amb selector de fitxers natiu de Windows.
+- 2026-08-15: l'obertura valida format, versió, estructura, integritat dels
+  media i rutes d'extracció abans d'activar el projecte.
+- 2026-08-15: la base local anterior es copia de manera segura al primer espai
+  de treball sense eliminar ni modificar l'original.
+- 2026-08-15: `flutter analyze` finalitza sense incidències, els 47 tests passen
+  i la compilació Windows release genera `family_history.exe` correctament.
+- 2026-08-16: l'usuari valida el flux funcional i declara completada la fase 5.
+- 2026-08-16: la fase 6 queda com a següent fase, pendent d'inici i de les
+  decisions de disseny corresponents.
 
 ### Criteri de finalització
 
@@ -282,23 +307,71 @@ Un projecte es pot copiar a un altre ordinador i obrir sense servidor ni depend�
 
 ## Fase 6 — Sources, Claims i Merge
 
+**Estat:** COMPLETADA EL 2026-08-16
+
 ### Objectiu
 
 Preservar evidència, conflictes històrics i resolució d'identitat.
 
 ### Tasques
 
-- [ ] Implementar `Source`.
-- [ ] Implementar `Media`.
-- [ ] Implementar `Claim`.
-- [ ] Implementar estats de claims.
-- [ ] Detectar claims contradictòries.
-- [ ] Implementar `DuplicateCandidate`.
-- [ ] Pantalla de revisió de duplicats.
-- [ ] Implementar merge manual de persones.
-- [ ] Resolució de camps un per un.
-- [ ] Conservar relacions durant merge.
-- [ ] Afegir `AuditEntry`.
+- [x] Implementar `Source`.
+- [x] Implementar `Media`.
+- [x] Implementar `Claim`.
+- [x] Aplicar claims d'operacions de domini de forma idempotent.
+- [x] Implementar estats de claims.
+- [x] Detectar claims contradictòries.
+- [x] Implementar `DuplicateCandidate`.
+- [x] Pantalla de revisió de duplicats.
+- [x] Implementar merge manual de persones.
+- [x] Resolució de camps un per un.
+- [x] Conservar relacions durant merge.
+- [x] Afegir `AuditEntry`.
+
+### Seguiment
+
+- 2026-08-16: fase iniciada amb aprovació explícita de l'usuari després de
+  l'auditoria dels models de fonts, media, claims, contradiccions, duplicats,
+  merge, auditoria, migració i UX inicial.
+- 2026-08-16: aprovades les decisions D1–D12: model bibliogràfic pla de
+  `Source`, media gestionada dins del workspace, claims híbrides tipades,
+  conflictes derivats, detecció determinista de duplicats, merge transaccional
+  camp per camp, auditoria per operació i evolució additiva a schema 4.
+- 2026-08-16: implementat l'schema 4 additiu amb `sources`, `media`,
+  `source_media`, `claims`, `duplicate_candidates`, `audit_entries` i
+  `audit_targets`, incloent índexs, constraints i migracions des dels schemas
+  1, 2 i 3 sense pèrdua de dades.
+- 2026-08-16: implementats models de domini i repositories separats de la UI,
+  media gestionada al workspace amb SHA-256 i miniatures derivades, claims
+  tipades, conflictes derivats i detector determinista de duplicats v1.
+- 2026-08-16: implementats revisió de contradiccions i duplicats, merge manual
+  A/B/personalitzat, conversió explícita de relacions bloquejants a claims,
+  reassociació de relacions i auditoria append-only per operació.
+- 2026-08-16: afegides les seccions `Fonts`, `Revisió` i `Evidència`, i rebuig
+  preventiu de projectes `.famhistory` amb un schema SQLite futur.
+- 2026-08-16: totes les tasques planificades de la fase estan implementades;
+  la fase continua **EN CURS** pendent de verificació tècnica final i validació
+  funcional explícita de l'usuari.
+- 2026-08-16: `flutter analyze` finalitza sense incidències, les 68 proves
+  passen i la compilació Windows release genera `family_history.exe`
+  correctament. La fase no es declara completada: resta pendent la validació
+  funcional explícita de l'usuari.
+- 2026-08-16: ampliades les claims perquè puguin crear persones i llocs,
+  modificar-ne camps i crear filiacions, parelles, residències i esdeveniments.
+  L'schema 5 afegeix `claim_applications`; «Accepta i aplica» és transaccional,
+  idempotent i auditat. Les eliminacions continuen requerint una ordre directa.
+- 2026-08-16: verificació ampliada completada amb `flutter analyze` sense
+  incidències, 73 proves superades i build Windows release correcte. La fase
+  continua **EN CURS** pendent de validació funcional explícita de l'usuari.
+- 2026-08-16: el formulari de claims deixa de dependre de l'activació prèvia
+  dels providers de la pantalla `Persones`: carrega instantànies mitjançant els
+  repositories i es pot obrir directament des de `Fonts`. La UX usa «Crear
+  parentesc» en lloc de «Crear filiació».
+- 2026-08-16: traduïts al català els enums visibles del formulari de claims i
+  fixada explícitament la política d'UI en català durant l'MVP. L'edició de
+  llocs permet assignar i desassignar residents amb sincronització
+  transaccional, soft-delete i auditoria de les residències afectades.
+- 2026-08-16: fase completada amb confirmació funcional explícita de l'usuari.
 
 ### Criteri de finalització
 
@@ -307,6 +380,8 @@ El sistema pot gestionar fonts, contradiccions i possibles persones duplicades s
 ---
 
 ## Fase 7 — IA: importació de text
+
+**Estat:** EN CURS DES DEL 2026-08-16
 
 ### Objectiu
 
@@ -325,6 +400,13 @@ Transformar text lliure en propostes de dades estructurades.
 - [ ] Implementar `EntityResolutionService`.
 - [ ] Implementar review UI.
 - [ ] Commit transaccional de canvis acceptats.
+
+### Seguiment
+
+- 2026-08-16: fase iniciada després de la confirmació explícita de la fase 6.
+- 2026-08-16: auditoria inicial de decisions d'arquitectura, proveïdor,
+  privacitat, persistència, resolució d'entitats i UX pendent d'aprovació abans
+  d'implementar.
 
 ### Criteri de finalització
 

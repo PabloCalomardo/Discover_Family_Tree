@@ -11,6 +11,17 @@ final class DriftPersonNameRepository implements PersonNameRepository {
   final db.AppDatabase _database;
 
   @override
+  Future<List<PersonName>> listAll() async {
+    final query = _database.select(_database.personNames)
+      ..where((table) => table.deletedAt.isNull())
+      ..orderBy([
+        (table) => OrderingTerm.desc(table.isPreferred),
+        (table) => OrderingTerm.asc(table.displayName),
+      ]);
+    return List.unmodifiable((await query.get()).map((row) => row.toDomain()));
+  }
+
+  @override
   Stream<List<PersonName>> watchAll() {
     final query = _database.select(_database.personNames)
       ..where((table) => table.deletedAt.isNull())

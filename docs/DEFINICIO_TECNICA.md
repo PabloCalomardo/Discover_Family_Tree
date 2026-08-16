@@ -67,13 +67,13 @@ Repositories
 
 ## 3. Estructura de carpetes
 
+Estructura implementada fins a la fase 5:
+
 ```text
 lib/
 │
 ├── app/
-│   ├── app.dart
-│   ├── router.dart
-│   └── theme/
+├── components/
 │
 ├── core/
 │   ├── errors/
@@ -82,38 +82,35 @@ lib/
 │   └── utils/
 │
 ├── database/
-│   ├── database.dart
 │   ├── tables/
-│   ├── daos/
+│   ├── mappers/
+│   ├── repositories/
 │   └── migrations/
 │
 ├── domain/
 │   ├── person/
 │   ├── relationship/
 │   ├── place/
-│   ├── event/
-│   ├── source/
-│   └── claim/
+│   └── event/
 │
 ├── services/
 │   ├── kinship/
-│   ├── merge/
-│   ├── import/
-│   ├── extraction/
-│   └── transcription/
+│   ├── person/
+│   ├── place/
+│   ├── event/
+│   └── project/
 │
 └── features/
     ├── home/
     ├── people/
     ├── family_tree/
-    ├── places/
-    ├── map/
-    ├── timeline/
-    ├── sources/
-    ├── import/
-    ├── review/
-    └── settings/
+    └── places/
 ```
+
+La fase 6 afegeix `domain/source`, `domain/claim`, `domain/duplicate`,
+`domain/audit`, `services/merge`, `services/source`, `services/claim`,
+`services/duplicate` i les features `sources` i `review`. Importació,
+extracció i transcripció continuen reservades a les fases 7 i 8.
 
 ## 4. Repository Pattern
 
@@ -254,16 +251,29 @@ Cal permetre:
 - transformar discrepàncies en claims contradictòries;
 - conservar totes les relacions no duplicades.
 
+Implementació de fase 6:
+
+- `PersonMergeRepository.preview` detecta autorelacions i cicles abans del
+  commit;
+- l'usuari escull supervivent i resol cada camp amb A, B o un valor
+  personalitzat;
+- noms, residències, participants, claims i candidates es reassocien;
+- relacions exactament duplicades o invàlides es retiren només després de
+  convertir-les en claims;
+- el commit comprova els `modifiedAt`, s'executa en una sola transacció i crea
+  una entrada d'auditoria detallada.
+
 ## 10. Possible duplicates
 
-Model conceptual:
+Model implementat:
 
 ```text
 DuplicateCandidate
 - personAId
 - personBId
 - confidence
-- reason
+- reasonCodes
+- detectorVersion
 - status
 ```
 
@@ -331,6 +341,10 @@ Accepted / Disputed Domain Data
 ```
 
 Això permet mantenir contradiccions històriques sense sobreescriure informació.
+Les claims poden proposar tant valors escalars com operacions no destructives:
+crear persones o llocs i crear filiacions, parelles, residències o
+esdeveniments. L'acció explícita «Accepta i aplica» materialitza l'operació una
+sola vegada i genera auditoria.
 
 ## 14. Media
 
@@ -419,9 +433,44 @@ L'LLM no pot retornar instruccions SQL.
   "projectId": "uuid",
   "name": "Nom del projecte",
   "createdAt": "ISO-8601",
-  "modifiedAt": "ISO-8601"
+  "modifiedAt": "ISO-8601",
+  "appVersion": "1.0.0+1",
+  "databaseSchemaVersion": 5,
+  "media": [
+    {
+      "path": "media/images/retrat.jpg",
+      "sha256": "hexadecimal SHA-256",
+      "size": 12345
+    }
+  ]
 }
 ```
+
+La versió 1 usa un contenidor ZIP. En desar es crea una instantània consistent
+de SQLite amb `VACUUM INTO`, es calculen tots els checksums i se substitueix la
+destinació mitjançant un fitxer temporal. En obrir es rebutgen versions futures,
+rutes insegures, fitxers obligatoris absents i media amb checksum o mida
+incorrectes abans de desempaquetar el projecte al seu espai de treball local.
+
+Flux implementat:
+
+```text
+Nou / Obrir
+  ↓
+Validar i preparar espai de treball local
+  ↓
+Obrir database.sqlite amb Drift
+  ↓
+Editar localment
+  ↓
+Desar / Desar com / Backup
+  ↓
+Instantània SQLite + manifest + media → .famhistory
+```
+
+L'obertura no activa el nou projecte fins que manifest, versió, estructura i
+checksums són vàlids. El fitxer històric anterior es conserva durant la
+migració inicial.
 
 Versions independents:
 
@@ -441,18 +490,30 @@ Exemple:
 familia-puig_2026-08-14.famhistory
 ```
 
-## 20. UI desktop inicial
+El backup manual crea un contenidor complet sense canviar la ruta principal de
+desament del projecte actiu.
 
-Navegació prevista:
+## 20. UI desktop
+
+Navegació implementada:
 
 ```text
 Inici
 Arbre
 Persones
 Llocs
+Fonts
+Revisió
+```
+
+La pantalla d'inici inclou resum de dades i les operacions `Nou projecte`,
+`Obrir`, `Desar`, `Desar com` i `Crear backup`.
+
+Navegació prevista per a fases posteriors:
+
+```text
 Història
 Mapa
-Fonts
 Importar
 Configuració
 ```

@@ -34,6 +34,9 @@ L'aplicació està especialment pensada per preservar coneixement familiar oral 
 8. Les fusions de persones sempre requereixen validació humana.
 9. Un projecte `.famhistory` pot contenir tantes branques i famílies connectades com sigui necessari.
 10. L'aplicació no està concebuda per contenir dades sensibles; se centra en història, relacions i anècdotes familiars.
+11. Durant l'MVP, tota la interfície i tots els formularis es presenten en
+    català. Els noms tècnics interns i els valors d'enums no poden aparèixer en
+    anglès a la UI. La internacionalització es planificarà més endavant.
 
 ## 4. Plataformes objectiu
 
@@ -64,7 +67,7 @@ Cada univers familiar es desa en un únic fitxer:
 familia-puig.famhistory
 ```
 
-Internament aquest fitxer contindrà, com a mínim:
+Internament aquest fitxer és un contenidor ZIP amb, com a mínim:
 
 ```text
 manifest.json
@@ -77,6 +80,12 @@ thumbnails/
 ```
 
 El fitxer `.famhistory` ha de ser transportable entre dispositius.
+
+El manifest v1 també registra independentment la versió de l'aplicació, la
+versió de l'schema SQLite i el checksum SHA-256 i la mida de cada media i
+miniatura. En obrir-lo es valida tot el contingut abans d'activar el projecte.
+En desar-lo es crea una instantània SQLite consistent i se substitueix el fitxer
+de destinació de manera segura.
 
 ## 6. Abast funcional
 
@@ -200,8 +209,14 @@ SQLite
 
 ## 9. Estat actual
 
-El projecte es troba en **Fase 4 — Family Tree MVP**, amb desenvolupament i
-validació funcional prioritaris a Windows. El nucli de domini, la persistència
-i la UI CRUD de persones, relacions, llocs, residències i esdeveniments ja
-estan implementats. La prioritat actual és visualitzar i navegar el graf
-familiar; la IA i la resta de UI avançada continuen fora de l'abast de la fase.
+Les fases 0–6 estan completades. El projecte disposa de nucli de domini,
+persistència Drift/SQLite schema 5, UI CRUD, arbre familiar navegable i cicle
+complet de projectes `.famhistory` transportables amb validació d'integritat.
+
+La fase 6 es va completar el 2026-08-16 amb validació funcional explícita. La
+fase actual és la **Fase 7 — IA: importació de text**, en curs des del
+2026-08-16. Abasta extracció estructurada, resolució d'entitats, revisió humana
+i commit transaccional; la transcripció d'àudio continua reservada a la fase 8.
+
+La validació funcional i la compilació continuen prioritzant Windows. macOS es
+manté ajornat fins a les proves finals multiplataforma de l'MVP.

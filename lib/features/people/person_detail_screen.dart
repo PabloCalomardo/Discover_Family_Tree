@@ -3,11 +3,13 @@ import 'package:family_history/app/providers.dart';
 import 'package:family_history/components/historical_date_field.dart';
 import 'package:family_history/core/ids/domain_id.dart';
 import 'package:family_history/domain/event/event.dart';
+import 'package:family_history/domain/claim/claim.dart';
 import 'package:family_history/domain/person/person.dart';
 import 'package:family_history/domain/place/residence.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
 import 'package:family_history/features/people/person_action_dialogs.dart';
+import 'package:family_history/features/sources/source_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -60,6 +62,8 @@ class PersonDetailScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(32),
             children: [
               _PersonOverview(person: value),
+              const SizedBox(height: 32),
+              _EvidenceSection(personId: personId),
               const SizedBox(height: 32),
               _RelationshipsSection(personId: personId),
               const SizedBox(height: 32),
@@ -121,6 +125,66 @@ class PersonDetailScreen extends ConsumerWidget {
       await controller.deletePerson(personId);
       if (context.mounted) context.go('/people');
     }
+  }
+}
+
+class _EvidenceSection extends ConsumerWidget {
+  const _EvidenceSection({required this.personId});
+  final PersonId personId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final claims = ref.watch(
+      subjectClaimsProvider((ClaimSubjectType.person, personId.value)),
+    );
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Evidència',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
+                OutlinedButton.icon(
+                  onPressed: () => context.go('/sources'),
+                  icon: const Icon(Icons.source_outlined),
+                  label: const Text('Fonts'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            claims.when(
+              loading: () => const LinearProgressIndicator(),
+              error: (error, _) => Text('$error'),
+              data: (items) => items.isEmpty
+                  ? const Text('Cap afirmació documentada.')
+                  : Column(
+                      children: items
+                          .map(
+                            (claim) => ListTile(
+                              dense: true,
+                              leading: Icon(
+                                claim.status == ClaimStatus.disputed
+                                    ? Icons.warning_amber
+                                    : Icons.fact_check_outlined,
+                              ),
+                              title: Text(claimPropertyLabel(claim.property)),
+                              subtitle: Text(claimValueLabel(claim.value)),
+                            ),
+                          )
+                          .toList(),
+                    ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

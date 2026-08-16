@@ -588,6 +588,7 @@ final class _FamilyTreeLayoutAlgorithm extends SugiyamaAlgorithm {
       blocks.sort(
         (first, second) => _minimumX(first).compareTo(_minimumX(second)),
       );
+      _placeSiblingBranchesOutsidePartnerships(blocks);
       var x = rowCenter - packedWidth(row) / 2;
       for (final block in blocks) {
         final ordered = block.toList()
@@ -731,6 +732,72 @@ final class _FamilyTreeLayoutAlgorithm extends SugiyamaAlgorithm {
       components.add(component);
     }
     return components;
+  }
+
+  void _placeSiblingBranchesOutsidePartnerships(List<Set<Node>> blocks) {
+    if (blocks.length < 2) return;
+    final blockByNode = <Node, Set<Node>>{
+      for (final block in blocks)
+        for (final node in block) node: block,
+    };
+    final partnerships = blocks.where((block) => block.length > 1).toList();
+    for (final partnership in partnerships) {
+      final orderedPartners = partnership.toList()
+        ..sort(
+          (first, second) => first.position.dx.compareTo(second.position.dx),
+        );
+      final before = _siblingBlocks(
+        orderedPartners.first,
+        partnership,
+        blockByNode,
+      );
+      final after = _siblingBlocks(
+        orderedPartners.last,
+        partnership,
+        blockByNode,
+      ).where((block) => !before.contains(block)).toList();
+      if (before.isEmpty && after.isEmpty) continue;
+      final originalOrder = <Set<Node>, int>{
+        for (var index = 0; index < blocks.length; index++)
+          blocks[index]: index,
+      };
+      before.sort(
+        (first, second) =>
+            originalOrder[first]!.compareTo(originalOrder[second]!),
+      );
+      after.sort(
+        (first, second) =>
+            originalOrder[first]!.compareTo(originalOrder[second]!),
+      );
+      blocks.removeWhere(
+        (block) => before.contains(block) || after.contains(block),
+      );
+      final partnershipIndex = blocks.indexOf(partnership);
+      blocks
+        ..insertAll(partnershipIndex, before)
+        ..insertAll(partnershipIndex + before.length + 1, after);
+    }
+  }
+
+  List<Set<Node>> _siblingBlocks(
+    Node person,
+    Set<Node> partnership,
+    Map<Node, Set<Node>> blockByNode,
+  ) {
+    final parents = <Node>{
+      for (final edge in generationEdges)
+        if (edge.$2 == person) edge.$1,
+    };
+    if (parents.isEmpty) return [];
+    final result = <Set<Node>>[];
+    for (final edge in generationEdges) {
+      if (!parents.contains(edge.$1) || edge.$2 == person) continue;
+      final block = blockByNode[edge.$2];
+      if (block != null && block != partnership && !result.contains(block)) {
+        result.add(block);
+      }
+    }
+    return result;
   }
 
   double _minimumX(Set<Node> nodes) => nodes

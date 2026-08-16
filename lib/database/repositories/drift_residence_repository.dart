@@ -12,6 +12,16 @@ final class DriftResidenceRepository implements ResidenceRepository {
   final db.AppDatabase _database;
 
   @override
+  Future<List<Residence>> listResidentsAtPlace(PlaceId placeId) async {
+    final query = _database.select(_database.residences)
+      ..where(
+        (table) =>
+            table.placeId.equals(placeId.value) & table.deletedAt.isNull(),
+      );
+    return _sortedResidences(await query.get());
+  }
+
+  @override
   Stream<List<Residence>> watchForPerson(PersonId personId) {
     final query = _database.select(_database.residences)
       ..where(

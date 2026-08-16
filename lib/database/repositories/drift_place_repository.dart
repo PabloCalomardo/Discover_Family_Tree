@@ -18,6 +18,14 @@ final class DriftPlaceRepository implements PlaceRepository {
   }
 
   @override
+  Future<List<Place>> listAll() async {
+    final query = _database.select(_database.places)
+      ..where((table) => table.deletedAt.isNull())
+      ..orderBy([(table) => OrderingTerm.asc(table.preferredName)]);
+    return List.unmodifiable((await query.get()).map((row) => row.toDomain()));
+  }
+
+  @override
   Stream<List<Place>> watchAll() {
     final query = _database.select(_database.places)
       ..where((table) => table.deletedAt.isNull())

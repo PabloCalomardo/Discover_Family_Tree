@@ -2,6 +2,7 @@ import 'dart:ui' show PointerDeviceKind;
 
 import 'package:drift/native.dart';
 import 'package:family_history/app/app.dart';
+import 'package:family_history/app/app_strings.dart';
 import 'package:family_history/app/providers.dart';
 import 'package:family_history/core/ids/domain_id.dart';
 import 'package:family_history/database/database.dart' as db;
@@ -9,10 +10,13 @@ import 'package:family_history/database/repositories/drift_person_name_repositor
 import 'package:family_history/database/repositories/drift_person_repository.dart';
 import 'package:family_history/database/repositories/drift_parent_child_relationship_repository.dart';
 import 'package:family_history/database/repositories/drift_partnership_repository.dart';
+import 'package:family_history/database/repositories/drift_place_repository.dart';
 import 'package:family_history/domain/person/person.dart';
 import 'package:family_history/domain/person/person_name.dart';
+import 'package:family_history/domain/place/place.dart';
 import 'package:family_history/domain/relationship/parent_child_relationship.dart';
 import 'package:family_history/domain/relationship/partnership.dart';
+import 'package:family_history/features/sources/claim_form_dialog.dart';
 import 'package:family_history/services/person/person_editor_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -69,6 +73,147 @@ void main() {
     expect(find.text('Joana Puig'), findsWidgets);
     expect(await database.select(database.persons).get(), hasLength(1));
     expect(await database.select(database.personNames).get(), hasLength(1));
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+    await database.close();
+  });
+
+  testWidgets('creates a source through the phase 6 user interface', (
+    tester,
+  ) async {
+    final database = db.AppDatabase(NativeDatabase.memory());
+    await tester.binding.setSurfaceSize(const Size(1280, 800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [databaseProvider.overrideWithValue(database)],
+        child: const FamilyHistoryApp(),
+      ),
+    );
+    await tester.pump(const Duration(milliseconds: 500));
+    GoRouter.of(tester.element(find.byType(NavigationRail))).go('/sources/new');
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).first, 'Registre civil');
+    await tester.scrollUntilVisible(
+      find.text('Desa'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
+    await tester.pump();
+    await tester.tap(find.text('Desa'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Registre civil'), findsWidgets);
+    expect(await database.select(database.sources).get(), hasLength(1));
+    expect(await database.select(database.auditEntries).get(), hasLength(1));
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+    await database.close();
+  });
+
+  testWidgets('opens claim operations without visiting the people tab', (
+    tester,
+  ) async {
+    final database = db.AppDatabase(NativeDatabase.memory());
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [databaseProvider.overrideWithValue(database)],
+        child: MaterialApp(
+          home: Consumer(
+            builder: (context, ref, _) => Scaffold(
+              body: FilledButton(
+                onPressed: () =>
+                    showClaimFormDialog(context, ref, SourceId.generate()),
+                child: const Text('Afegeix afirmació'),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Afegeix afirmació'));
+    await tester.pumpAndSettle();
+    expect(find.text('Nova afirmació'), findsOneWidget);
+    expect(find.text('Crear persona'), findsOneWidget);
+
+    await tester.tap(find.text('Crear persona'));
+    await tester.pumpAndSettle();
+    expect(find.text('Crear parentesc'), findsOneWidget);
+    await tester.tap(find.text('Crear lloc'));
+    await tester.pumpAndSettle();
+    expect(find.text('Altres'), findsOneWidget);
+    expect(find.text('other'), findsNothing);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+    await database.close();
+  });
+
+  testWidgets('assigns a resident while editing a place', (tester) async {
+    final database = db.AppDatabase(NativeDatabase.memory());
+    final now = DateTime.utc(2026, 8, 16);
+    final personId = PersonId.generate();
+    await DriftPersonRepository(database).create(
+      Person(
+        id: personId,
+        sex: PersonSex.unknown,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    await DriftPersonNameRepository(database).create(
+      PersonName(
+        id: PersonNameId.generate(),
+        personId: personId,
+        displayName: 'Maria Resident',
+        type: PersonNameType.birth,
+        isPreferred: true,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    final placeId = PlaceId.generate();
+    await DriftPlaceRepository(database).create(
+      Place(
+        id: placeId,
+        preferredName: 'Casa familiar',
+        type: PlaceType.house,
+        createdAt: now,
+        modifiedAt: now,
+      ),
+    );
+    await tester.binding.setSurfaceSize(const Size(1280, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [databaseProvider.overrideWithValue(database)],
+        child: const FamilyHistoryApp(),
+      ),
+    );
+    await tester.pump(const Duration(milliseconds: 500));
+
+    GoRouter.of(tester.element(find.byType(NavigationRail)))
+        .go('/places/${placeId.value}/edit');
+    await tester.pumpAndSettle();
+    expect(find.text('Residents del lloc'), findsOneWidget);
+    expect(find.text('Maria Resident'), findsOneWidget);
+    await tester.tap(find.text('Maria Resident'));
+    await tester.scrollUntilVisible(
+      find.text(AppStrings.save),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.tap(find.text(AppStrings.save));
+    await tester.pumpAndSettle();
+
+    final residences = await database.select(database.residences).get();
+    expect(residences, hasLength(1));
+    expect(residences.single.personId, personId.value);
+    expect(residences.single.placeId, placeId.value);
+
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pumpAndSettle();
     await database.close();
@@ -431,6 +576,15 @@ void main() {
     final expandedPartnerNode = expandedGraphView.graph.getNodeUsingId(
       'person:${partnerId.value}',
     );
+    final expandedSpouseNode = expandedGraphView.graph.getNodeUsingId(
+      'person:${secondPersonId.value}',
+    );
+    final expandedSiblingNode = expandedGraphView.graph.getNodeUsingId(
+      'person:${siblingId.value}',
+    );
+    final expandedParentNode = expandedGraphView.graph.getNodeUsingId(
+      'person:${personId.value}',
+    );
     final inLawMotherNode = expandedGraphView.graph.getNodeUsingId(
       'person:${inLawMotherId.value}',
     );
@@ -438,6 +592,27 @@ void main() {
     expect(
       inLawMotherNode.position.dy,
       lessThan(expandedPartnerNode.position.dy),
+    );
+    final spouseDirection =
+        expandedPartnerNode.position.dx - expandedSpouseNode.position.dx;
+    final siblingDirection =
+        expandedSiblingNode.position.dx - expandedSpouseNode.position.dx;
+    expect(spouseDirection * siblingDirection, lessThan(0));
+
+    double centerX(gv.Node node) => node.position.dx + node.width / 2;
+    final firstFamilyPoints = [
+      centerX(expandedParentNode),
+      centerX(expandedSpouseNode),
+      centerX(expandedSiblingNode),
+    ]..sort();
+    final secondFamilyPoints = [
+      centerX(inLawMotherNode),
+      centerX(expandedPartnerNode),
+    ]..sort();
+    expect(
+      firstFamilyPoints.last < secondFamilyPoints.first ||
+          secondFamilyPoints.last < firstFamilyPoints.first,
+      isTrue,
     );
 
     GoRouter.of(tester.element(find.byType(NavigationRail)))

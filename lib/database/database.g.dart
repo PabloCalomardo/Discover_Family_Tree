@@ -7172,6 +7172,5063 @@ class EventParticipantsCompanion extends UpdateCompanion<EventParticipant> {
   }
 }
 
+class $SourcesTable extends Sources with TableInfo<$SourcesTable, Source> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SourcesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<String> type = GeneratedColumn<String>(
+    'type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _descriptionMeta = const VerificationMeta(
+    'description',
+  );
+  @override
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+    'description',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sourceDatePrecisionMeta =
+      const VerificationMeta('sourceDatePrecision');
+  @override
+  late final GeneratedColumn<String> sourceDatePrecision =
+      GeneratedColumn<String>(
+        'source_date_precision',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _sourceDateStartDateMeta =
+      const VerificationMeta('sourceDateStartDate');
+  @override
+  late final GeneratedColumn<DateTime> sourceDateStartDate =
+      GeneratedColumn<DateTime>(
+        'source_date_start_date',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _sourceDateEndDateMeta = const VerificationMeta(
+    'sourceDateEndDate',
+  );
+  @override
+  late final GeneratedColumn<DateTime> sourceDateEndDate =
+      GeneratedColumn<DateTime>(
+        'source_date_end_date',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _sourceDateDisplayTextMeta =
+      const VerificationMeta('sourceDateDisplayText');
+  @override
+  late final GeneratedColumn<String> sourceDateDisplayText =
+      GeneratedColumn<String>(
+        'source_date_display_text',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _creatorMeta = const VerificationMeta(
+    'creator',
+  );
+  @override
+  late final GeneratedColumn<String> creator = GeneratedColumn<String>(
+    'creator',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _repositoryNameMeta = const VerificationMeta(
+    'repositoryName',
+  );
+  @override
+  late final GeneratedColumn<String> repositoryName = GeneratedColumn<String>(
+    'repository_name',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _referenceCodeMeta = const VerificationMeta(
+    'referenceCode',
+  );
+  @override
+  late final GeneratedColumn<String> referenceCode = GeneratedColumn<String>(
+    'reference_code',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _originalLocationMeta = const VerificationMeta(
+    'originalLocation',
+  );
+  @override
+  late final GeneratedColumn<String> originalLocation = GeneratedColumn<String>(
+    'original_location',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _urlMeta = const VerificationMeta('url');
+  @override
+  late final GeneratedColumn<String> url = GeneratedColumn<String>(
+    'url',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _accessedAtMeta = const VerificationMeta(
+    'accessedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> accessedAt = GeneratedColumn<DateTime>(
+    'accessed_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modifiedAtMeta = const VerificationMeta(
+    'modifiedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> modifiedAt = GeneratedColumn<DateTime>(
+    'modified_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    type,
+    title,
+    description,
+    sourceDatePrecision,
+    sourceDateStartDate,
+    sourceDateEndDate,
+    sourceDateDisplayText,
+    creator,
+    repositoryName,
+    referenceCode,
+    originalLocation,
+    url,
+    accessedAt,
+    notes,
+    createdAt,
+    modifiedAt,
+    deletedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'sources';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Source> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+        _typeMeta,
+        type.isAcceptableOrUnknown(data['type']!, _typeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
+    if (data.containsKey('description')) {
+      context.handle(
+        _descriptionMeta,
+        description.isAcceptableOrUnknown(
+          data['description']!,
+          _descriptionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('source_date_precision')) {
+      context.handle(
+        _sourceDatePrecisionMeta,
+        sourceDatePrecision.isAcceptableOrUnknown(
+          data['source_date_precision']!,
+          _sourceDatePrecisionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('source_date_start_date')) {
+      context.handle(
+        _sourceDateStartDateMeta,
+        sourceDateStartDate.isAcceptableOrUnknown(
+          data['source_date_start_date']!,
+          _sourceDateStartDateMeta,
+        ),
+      );
+    }
+    if (data.containsKey('source_date_end_date')) {
+      context.handle(
+        _sourceDateEndDateMeta,
+        sourceDateEndDate.isAcceptableOrUnknown(
+          data['source_date_end_date']!,
+          _sourceDateEndDateMeta,
+        ),
+      );
+    }
+    if (data.containsKey('source_date_display_text')) {
+      context.handle(
+        _sourceDateDisplayTextMeta,
+        sourceDateDisplayText.isAcceptableOrUnknown(
+          data['source_date_display_text']!,
+          _sourceDateDisplayTextMeta,
+        ),
+      );
+    }
+    if (data.containsKey('creator')) {
+      context.handle(
+        _creatorMeta,
+        creator.isAcceptableOrUnknown(data['creator']!, _creatorMeta),
+      );
+    }
+    if (data.containsKey('repository_name')) {
+      context.handle(
+        _repositoryNameMeta,
+        repositoryName.isAcceptableOrUnknown(
+          data['repository_name']!,
+          _repositoryNameMeta,
+        ),
+      );
+    }
+    if (data.containsKey('reference_code')) {
+      context.handle(
+        _referenceCodeMeta,
+        referenceCode.isAcceptableOrUnknown(
+          data['reference_code']!,
+          _referenceCodeMeta,
+        ),
+      );
+    }
+    if (data.containsKey('original_location')) {
+      context.handle(
+        _originalLocationMeta,
+        originalLocation.isAcceptableOrUnknown(
+          data['original_location']!,
+          _originalLocationMeta,
+        ),
+      );
+    }
+    if (data.containsKey('url')) {
+      context.handle(
+        _urlMeta,
+        url.isAcceptableOrUnknown(data['url']!, _urlMeta),
+      );
+    }
+    if (data.containsKey('accessed_at')) {
+      context.handle(
+        _accessedAtMeta,
+        accessedAt.isAcceptableOrUnknown(data['accessed_at']!, _accessedAtMeta),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('modified_at')) {
+      context.handle(
+        _modifiedAtMeta,
+        modifiedAt.isAcceptableOrUnknown(data['modified_at']!, _modifiedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_modifiedAtMeta);
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Source map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Source(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      type: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}type'],
+      )!,
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      )!,
+      description: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}description'],
+      ),
+      sourceDatePrecision: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}source_date_precision'],
+      ),
+      sourceDateStartDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}source_date_start_date'],
+      ),
+      sourceDateEndDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}source_date_end_date'],
+      ),
+      sourceDateDisplayText: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}source_date_display_text'],
+      ),
+      creator: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}creator'],
+      ),
+      repositoryName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}repository_name'],
+      ),
+      referenceCode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}reference_code'],
+      ),
+      originalLocation: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}original_location'],
+      ),
+      url: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}url'],
+      ),
+      accessedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}accessed_at'],
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      modifiedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}modified_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+    );
+  }
+
+  @override
+  $SourcesTable createAlias(String alias) {
+    return $SourcesTable(attachedDatabase, alias);
+  }
+}
+
+class Source extends DataClass implements Insertable<Source> {
+  final String id;
+  final String type;
+  final String title;
+  final String? description;
+  final String? sourceDatePrecision;
+  final DateTime? sourceDateStartDate;
+  final DateTime? sourceDateEndDate;
+  final String? sourceDateDisplayText;
+  final String? creator;
+  final String? repositoryName;
+  final String? referenceCode;
+  final String? originalLocation;
+  final String? url;
+  final DateTime? accessedAt;
+  final String? notes;
+  final DateTime createdAt;
+  final DateTime modifiedAt;
+  final DateTime? deletedAt;
+  const Source({
+    required this.id,
+    required this.type,
+    required this.title,
+    this.description,
+    this.sourceDatePrecision,
+    this.sourceDateStartDate,
+    this.sourceDateEndDate,
+    this.sourceDateDisplayText,
+    this.creator,
+    this.repositoryName,
+    this.referenceCode,
+    this.originalLocation,
+    this.url,
+    this.accessedAt,
+    this.notes,
+    required this.createdAt,
+    required this.modifiedAt,
+    this.deletedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['type'] = Variable<String>(type);
+    map['title'] = Variable<String>(title);
+    if (!nullToAbsent || description != null) {
+      map['description'] = Variable<String>(description);
+    }
+    if (!nullToAbsent || sourceDatePrecision != null) {
+      map['source_date_precision'] = Variable<String>(sourceDatePrecision);
+    }
+    if (!nullToAbsent || sourceDateStartDate != null) {
+      map['source_date_start_date'] = Variable<DateTime>(sourceDateStartDate);
+    }
+    if (!nullToAbsent || sourceDateEndDate != null) {
+      map['source_date_end_date'] = Variable<DateTime>(sourceDateEndDate);
+    }
+    if (!nullToAbsent || sourceDateDisplayText != null) {
+      map['source_date_display_text'] = Variable<String>(sourceDateDisplayText);
+    }
+    if (!nullToAbsent || creator != null) {
+      map['creator'] = Variable<String>(creator);
+    }
+    if (!nullToAbsent || repositoryName != null) {
+      map['repository_name'] = Variable<String>(repositoryName);
+    }
+    if (!nullToAbsent || referenceCode != null) {
+      map['reference_code'] = Variable<String>(referenceCode);
+    }
+    if (!nullToAbsent || originalLocation != null) {
+      map['original_location'] = Variable<String>(originalLocation);
+    }
+    if (!nullToAbsent || url != null) {
+      map['url'] = Variable<String>(url);
+    }
+    if (!nullToAbsent || accessedAt != null) {
+      map['accessed_at'] = Variable<DateTime>(accessedAt);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['modified_at'] = Variable<DateTime>(modifiedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    return map;
+  }
+
+  SourcesCompanion toCompanion(bool nullToAbsent) {
+    return SourcesCompanion(
+      id: Value(id),
+      type: Value(type),
+      title: Value(title),
+      description: description == null && nullToAbsent
+          ? const Value.absent()
+          : Value(description),
+      sourceDatePrecision: sourceDatePrecision == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sourceDatePrecision),
+      sourceDateStartDate: sourceDateStartDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sourceDateStartDate),
+      sourceDateEndDate: sourceDateEndDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sourceDateEndDate),
+      sourceDateDisplayText: sourceDateDisplayText == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sourceDateDisplayText),
+      creator: creator == null && nullToAbsent
+          ? const Value.absent()
+          : Value(creator),
+      repositoryName: repositoryName == null && nullToAbsent
+          ? const Value.absent()
+          : Value(repositoryName),
+      referenceCode: referenceCode == null && nullToAbsent
+          ? const Value.absent()
+          : Value(referenceCode),
+      originalLocation: originalLocation == null && nullToAbsent
+          ? const Value.absent()
+          : Value(originalLocation),
+      url: url == null && nullToAbsent ? const Value.absent() : Value(url),
+      accessedAt: accessedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(accessedAt),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+      createdAt: Value(createdAt),
+      modifiedAt: Value(modifiedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+    );
+  }
+
+  factory Source.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Source(
+      id: serializer.fromJson<String>(json['id']),
+      type: serializer.fromJson<String>(json['type']),
+      title: serializer.fromJson<String>(json['title']),
+      description: serializer.fromJson<String?>(json['description']),
+      sourceDatePrecision: serializer.fromJson<String?>(
+        json['sourceDatePrecision'],
+      ),
+      sourceDateStartDate: serializer.fromJson<DateTime?>(
+        json['sourceDateStartDate'],
+      ),
+      sourceDateEndDate: serializer.fromJson<DateTime?>(
+        json['sourceDateEndDate'],
+      ),
+      sourceDateDisplayText: serializer.fromJson<String?>(
+        json['sourceDateDisplayText'],
+      ),
+      creator: serializer.fromJson<String?>(json['creator']),
+      repositoryName: serializer.fromJson<String?>(json['repositoryName']),
+      referenceCode: serializer.fromJson<String?>(json['referenceCode']),
+      originalLocation: serializer.fromJson<String?>(json['originalLocation']),
+      url: serializer.fromJson<String?>(json['url']),
+      accessedAt: serializer.fromJson<DateTime?>(json['accessedAt']),
+      notes: serializer.fromJson<String?>(json['notes']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      modifiedAt: serializer.fromJson<DateTime>(json['modifiedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'type': serializer.toJson<String>(type),
+      'title': serializer.toJson<String>(title),
+      'description': serializer.toJson<String?>(description),
+      'sourceDatePrecision': serializer.toJson<String?>(sourceDatePrecision),
+      'sourceDateStartDate': serializer.toJson<DateTime?>(sourceDateStartDate),
+      'sourceDateEndDate': serializer.toJson<DateTime?>(sourceDateEndDate),
+      'sourceDateDisplayText': serializer.toJson<String?>(
+        sourceDateDisplayText,
+      ),
+      'creator': serializer.toJson<String?>(creator),
+      'repositoryName': serializer.toJson<String?>(repositoryName),
+      'referenceCode': serializer.toJson<String?>(referenceCode),
+      'originalLocation': serializer.toJson<String?>(originalLocation),
+      'url': serializer.toJson<String?>(url),
+      'accessedAt': serializer.toJson<DateTime?>(accessedAt),
+      'notes': serializer.toJson<String?>(notes),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'modifiedAt': serializer.toJson<DateTime>(modifiedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+    };
+  }
+
+  Source copyWith({
+    String? id,
+    String? type,
+    String? title,
+    Value<String?> description = const Value.absent(),
+    Value<String?> sourceDatePrecision = const Value.absent(),
+    Value<DateTime?> sourceDateStartDate = const Value.absent(),
+    Value<DateTime?> sourceDateEndDate = const Value.absent(),
+    Value<String?> sourceDateDisplayText = const Value.absent(),
+    Value<String?> creator = const Value.absent(),
+    Value<String?> repositoryName = const Value.absent(),
+    Value<String?> referenceCode = const Value.absent(),
+    Value<String?> originalLocation = const Value.absent(),
+    Value<String?> url = const Value.absent(),
+    Value<DateTime?> accessedAt = const Value.absent(),
+    Value<String?> notes = const Value.absent(),
+    DateTime? createdAt,
+    DateTime? modifiedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+  }) => Source(
+    id: id ?? this.id,
+    type: type ?? this.type,
+    title: title ?? this.title,
+    description: description.present ? description.value : this.description,
+    sourceDatePrecision: sourceDatePrecision.present
+        ? sourceDatePrecision.value
+        : this.sourceDatePrecision,
+    sourceDateStartDate: sourceDateStartDate.present
+        ? sourceDateStartDate.value
+        : this.sourceDateStartDate,
+    sourceDateEndDate: sourceDateEndDate.present
+        ? sourceDateEndDate.value
+        : this.sourceDateEndDate,
+    sourceDateDisplayText: sourceDateDisplayText.present
+        ? sourceDateDisplayText.value
+        : this.sourceDateDisplayText,
+    creator: creator.present ? creator.value : this.creator,
+    repositoryName: repositoryName.present
+        ? repositoryName.value
+        : this.repositoryName,
+    referenceCode: referenceCode.present
+        ? referenceCode.value
+        : this.referenceCode,
+    originalLocation: originalLocation.present
+        ? originalLocation.value
+        : this.originalLocation,
+    url: url.present ? url.value : this.url,
+    accessedAt: accessedAt.present ? accessedAt.value : this.accessedAt,
+    notes: notes.present ? notes.value : this.notes,
+    createdAt: createdAt ?? this.createdAt,
+    modifiedAt: modifiedAt ?? this.modifiedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+  );
+  Source copyWithCompanion(SourcesCompanion data) {
+    return Source(
+      id: data.id.present ? data.id.value : this.id,
+      type: data.type.present ? data.type.value : this.type,
+      title: data.title.present ? data.title.value : this.title,
+      description: data.description.present
+          ? data.description.value
+          : this.description,
+      sourceDatePrecision: data.sourceDatePrecision.present
+          ? data.sourceDatePrecision.value
+          : this.sourceDatePrecision,
+      sourceDateStartDate: data.sourceDateStartDate.present
+          ? data.sourceDateStartDate.value
+          : this.sourceDateStartDate,
+      sourceDateEndDate: data.sourceDateEndDate.present
+          ? data.sourceDateEndDate.value
+          : this.sourceDateEndDate,
+      sourceDateDisplayText: data.sourceDateDisplayText.present
+          ? data.sourceDateDisplayText.value
+          : this.sourceDateDisplayText,
+      creator: data.creator.present ? data.creator.value : this.creator,
+      repositoryName: data.repositoryName.present
+          ? data.repositoryName.value
+          : this.repositoryName,
+      referenceCode: data.referenceCode.present
+          ? data.referenceCode.value
+          : this.referenceCode,
+      originalLocation: data.originalLocation.present
+          ? data.originalLocation.value
+          : this.originalLocation,
+      url: data.url.present ? data.url.value : this.url,
+      accessedAt: data.accessedAt.present
+          ? data.accessedAt.value
+          : this.accessedAt,
+      notes: data.notes.present ? data.notes.value : this.notes,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      modifiedAt: data.modifiedAt.present
+          ? data.modifiedAt.value
+          : this.modifiedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Source(')
+          ..write('id: $id, ')
+          ..write('type: $type, ')
+          ..write('title: $title, ')
+          ..write('description: $description, ')
+          ..write('sourceDatePrecision: $sourceDatePrecision, ')
+          ..write('sourceDateStartDate: $sourceDateStartDate, ')
+          ..write('sourceDateEndDate: $sourceDateEndDate, ')
+          ..write('sourceDateDisplayText: $sourceDateDisplayText, ')
+          ..write('creator: $creator, ')
+          ..write('repositoryName: $repositoryName, ')
+          ..write('referenceCode: $referenceCode, ')
+          ..write('originalLocation: $originalLocation, ')
+          ..write('url: $url, ')
+          ..write('accessedAt: $accessedAt, ')
+          ..write('notes: $notes, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('deletedAt: $deletedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    type,
+    title,
+    description,
+    sourceDatePrecision,
+    sourceDateStartDate,
+    sourceDateEndDate,
+    sourceDateDisplayText,
+    creator,
+    repositoryName,
+    referenceCode,
+    originalLocation,
+    url,
+    accessedAt,
+    notes,
+    createdAt,
+    modifiedAt,
+    deletedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Source &&
+          other.id == this.id &&
+          other.type == this.type &&
+          other.title == this.title &&
+          other.description == this.description &&
+          other.sourceDatePrecision == this.sourceDatePrecision &&
+          other.sourceDateStartDate == this.sourceDateStartDate &&
+          other.sourceDateEndDate == this.sourceDateEndDate &&
+          other.sourceDateDisplayText == this.sourceDateDisplayText &&
+          other.creator == this.creator &&
+          other.repositoryName == this.repositoryName &&
+          other.referenceCode == this.referenceCode &&
+          other.originalLocation == this.originalLocation &&
+          other.url == this.url &&
+          other.accessedAt == this.accessedAt &&
+          other.notes == this.notes &&
+          other.createdAt == this.createdAt &&
+          other.modifiedAt == this.modifiedAt &&
+          other.deletedAt == this.deletedAt);
+}
+
+class SourcesCompanion extends UpdateCompanion<Source> {
+  final Value<String> id;
+  final Value<String> type;
+  final Value<String> title;
+  final Value<String?> description;
+  final Value<String?> sourceDatePrecision;
+  final Value<DateTime?> sourceDateStartDate;
+  final Value<DateTime?> sourceDateEndDate;
+  final Value<String?> sourceDateDisplayText;
+  final Value<String?> creator;
+  final Value<String?> repositoryName;
+  final Value<String?> referenceCode;
+  final Value<String?> originalLocation;
+  final Value<String?> url;
+  final Value<DateTime?> accessedAt;
+  final Value<String?> notes;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> modifiedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<int> rowid;
+  const SourcesCompanion({
+    this.id = const Value.absent(),
+    this.type = const Value.absent(),
+    this.title = const Value.absent(),
+    this.description = const Value.absent(),
+    this.sourceDatePrecision = const Value.absent(),
+    this.sourceDateStartDate = const Value.absent(),
+    this.sourceDateEndDate = const Value.absent(),
+    this.sourceDateDisplayText = const Value.absent(),
+    this.creator = const Value.absent(),
+    this.repositoryName = const Value.absent(),
+    this.referenceCode = const Value.absent(),
+    this.originalLocation = const Value.absent(),
+    this.url = const Value.absent(),
+    this.accessedAt = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.modifiedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SourcesCompanion.insert({
+    required String id,
+    required String type,
+    required String title,
+    this.description = const Value.absent(),
+    this.sourceDatePrecision = const Value.absent(),
+    this.sourceDateStartDate = const Value.absent(),
+    this.sourceDateEndDate = const Value.absent(),
+    this.sourceDateDisplayText = const Value.absent(),
+    this.creator = const Value.absent(),
+    this.repositoryName = const Value.absent(),
+    this.referenceCode = const Value.absent(),
+    this.originalLocation = const Value.absent(),
+    this.url = const Value.absent(),
+    this.accessedAt = const Value.absent(),
+    this.notes = const Value.absent(),
+    required DateTime createdAt,
+    required DateTime modifiedAt,
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       type = Value(type),
+       title = Value(title),
+       createdAt = Value(createdAt),
+       modifiedAt = Value(modifiedAt);
+  static Insertable<Source> custom({
+    Expression<String>? id,
+    Expression<String>? type,
+    Expression<String>? title,
+    Expression<String>? description,
+    Expression<String>? sourceDatePrecision,
+    Expression<DateTime>? sourceDateStartDate,
+    Expression<DateTime>? sourceDateEndDate,
+    Expression<String>? sourceDateDisplayText,
+    Expression<String>? creator,
+    Expression<String>? repositoryName,
+    Expression<String>? referenceCode,
+    Expression<String>? originalLocation,
+    Expression<String>? url,
+    Expression<DateTime>? accessedAt,
+    Expression<String>? notes,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? modifiedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (type != null) 'type': type,
+      if (title != null) 'title': title,
+      if (description != null) 'description': description,
+      if (sourceDatePrecision != null)
+        'source_date_precision': sourceDatePrecision,
+      if (sourceDateStartDate != null)
+        'source_date_start_date': sourceDateStartDate,
+      if (sourceDateEndDate != null) 'source_date_end_date': sourceDateEndDate,
+      if (sourceDateDisplayText != null)
+        'source_date_display_text': sourceDateDisplayText,
+      if (creator != null) 'creator': creator,
+      if (repositoryName != null) 'repository_name': repositoryName,
+      if (referenceCode != null) 'reference_code': referenceCode,
+      if (originalLocation != null) 'original_location': originalLocation,
+      if (url != null) 'url': url,
+      if (accessedAt != null) 'accessed_at': accessedAt,
+      if (notes != null) 'notes': notes,
+      if (createdAt != null) 'created_at': createdAt,
+      if (modifiedAt != null) 'modified_at': modifiedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SourcesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? type,
+    Value<String>? title,
+    Value<String?>? description,
+    Value<String?>? sourceDatePrecision,
+    Value<DateTime?>? sourceDateStartDate,
+    Value<DateTime?>? sourceDateEndDate,
+    Value<String?>? sourceDateDisplayText,
+    Value<String?>? creator,
+    Value<String?>? repositoryName,
+    Value<String?>? referenceCode,
+    Value<String?>? originalLocation,
+    Value<String?>? url,
+    Value<DateTime?>? accessedAt,
+    Value<String?>? notes,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? modifiedAt,
+    Value<DateTime?>? deletedAt,
+    Value<int>? rowid,
+  }) {
+    return SourcesCompanion(
+      id: id ?? this.id,
+      type: type ?? this.type,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      sourceDatePrecision: sourceDatePrecision ?? this.sourceDatePrecision,
+      sourceDateStartDate: sourceDateStartDate ?? this.sourceDateStartDate,
+      sourceDateEndDate: sourceDateEndDate ?? this.sourceDateEndDate,
+      sourceDateDisplayText:
+          sourceDateDisplayText ?? this.sourceDateDisplayText,
+      creator: creator ?? this.creator,
+      repositoryName: repositoryName ?? this.repositoryName,
+      referenceCode: referenceCode ?? this.referenceCode,
+      originalLocation: originalLocation ?? this.originalLocation,
+      url: url ?? this.url,
+      accessedAt: accessedAt ?? this.accessedAt,
+      notes: notes ?? this.notes,
+      createdAt: createdAt ?? this.createdAt,
+      modifiedAt: modifiedAt ?? this.modifiedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (description.present) {
+      map['description'] = Variable<String>(description.value);
+    }
+    if (sourceDatePrecision.present) {
+      map['source_date_precision'] = Variable<String>(
+        sourceDatePrecision.value,
+      );
+    }
+    if (sourceDateStartDate.present) {
+      map['source_date_start_date'] = Variable<DateTime>(
+        sourceDateStartDate.value,
+      );
+    }
+    if (sourceDateEndDate.present) {
+      map['source_date_end_date'] = Variable<DateTime>(sourceDateEndDate.value);
+    }
+    if (sourceDateDisplayText.present) {
+      map['source_date_display_text'] = Variable<String>(
+        sourceDateDisplayText.value,
+      );
+    }
+    if (creator.present) {
+      map['creator'] = Variable<String>(creator.value);
+    }
+    if (repositoryName.present) {
+      map['repository_name'] = Variable<String>(repositoryName.value);
+    }
+    if (referenceCode.present) {
+      map['reference_code'] = Variable<String>(referenceCode.value);
+    }
+    if (originalLocation.present) {
+      map['original_location'] = Variable<String>(originalLocation.value);
+    }
+    if (url.present) {
+      map['url'] = Variable<String>(url.value);
+    }
+    if (accessedAt.present) {
+      map['accessed_at'] = Variable<DateTime>(accessedAt.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (modifiedAt.present) {
+      map['modified_at'] = Variable<DateTime>(modifiedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SourcesCompanion(')
+          ..write('id: $id, ')
+          ..write('type: $type, ')
+          ..write('title: $title, ')
+          ..write('description: $description, ')
+          ..write('sourceDatePrecision: $sourceDatePrecision, ')
+          ..write('sourceDateStartDate: $sourceDateStartDate, ')
+          ..write('sourceDateEndDate: $sourceDateEndDate, ')
+          ..write('sourceDateDisplayText: $sourceDateDisplayText, ')
+          ..write('creator: $creator, ')
+          ..write('repositoryName: $repositoryName, ')
+          ..write('referenceCode: $referenceCode, ')
+          ..write('originalLocation: $originalLocation, ')
+          ..write('url: $url, ')
+          ..write('accessedAt: $accessedAt, ')
+          ..write('notes: $notes, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $MediaAssetsTable extends MediaAssets
+    with TableInfo<$MediaAssetsTable, MediaAsset> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MediaAssetsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<String> type = GeneratedColumn<String>(
+    'type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _relativePathMeta = const VerificationMeta(
+    'relativePath',
+  );
+  @override
+  late final GeneratedColumn<String> relativePath = GeneratedColumn<String>(
+    'relative_path',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _mimeTypeMeta = const VerificationMeta(
+    'mimeType',
+  );
+  @override
+  late final GeneratedColumn<String> mimeType = GeneratedColumn<String>(
+    'mime_type',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _originalFilenameMeta = const VerificationMeta(
+    'originalFilename',
+  );
+  @override
+  late final GeneratedColumn<String> originalFilename = GeneratedColumn<String>(
+    'original_filename',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _checksumSha256Meta = const VerificationMeta(
+    'checksumSha256',
+  );
+  @override
+  late final GeneratedColumn<String> checksumSha256 = GeneratedColumn<String>(
+    'checksum_sha256',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 64,
+      maxTextLength: 64,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _fileSizeMeta = const VerificationMeta(
+    'fileSize',
+  );
+  @override
+  late final GeneratedColumn<int> fileSize = GeneratedColumn<int>(
+    'file_size',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modifiedAtMeta = const VerificationMeta(
+    'modifiedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> modifiedAt = GeneratedColumn<DateTime>(
+    'modified_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    type,
+    relativePath,
+    mimeType,
+    originalFilename,
+    checksumSha256,
+    fileSize,
+    createdAt,
+    modifiedAt,
+    deletedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'media';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<MediaAsset> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+        _typeMeta,
+        type.isAcceptableOrUnknown(data['type']!, _typeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
+    if (data.containsKey('relative_path')) {
+      context.handle(
+        _relativePathMeta,
+        relativePath.isAcceptableOrUnknown(
+          data['relative_path']!,
+          _relativePathMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_relativePathMeta);
+    }
+    if (data.containsKey('mime_type')) {
+      context.handle(
+        _mimeTypeMeta,
+        mimeType.isAcceptableOrUnknown(data['mime_type']!, _mimeTypeMeta),
+      );
+    }
+    if (data.containsKey('original_filename')) {
+      context.handle(
+        _originalFilenameMeta,
+        originalFilename.isAcceptableOrUnknown(
+          data['original_filename']!,
+          _originalFilenameMeta,
+        ),
+      );
+    }
+    if (data.containsKey('checksum_sha256')) {
+      context.handle(
+        _checksumSha256Meta,
+        checksumSha256.isAcceptableOrUnknown(
+          data['checksum_sha256']!,
+          _checksumSha256Meta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_checksumSha256Meta);
+    }
+    if (data.containsKey('file_size')) {
+      context.handle(
+        _fileSizeMeta,
+        fileSize.isAcceptableOrUnknown(data['file_size']!, _fileSizeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_fileSizeMeta);
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('modified_at')) {
+      context.handle(
+        _modifiedAtMeta,
+        modifiedAt.isAcceptableOrUnknown(data['modified_at']!, _modifiedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_modifiedAtMeta);
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  MediaAsset map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return MediaAsset(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      type: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}type'],
+      )!,
+      relativePath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}relative_path'],
+      )!,
+      mimeType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}mime_type'],
+      ),
+      originalFilename: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}original_filename'],
+      ),
+      checksumSha256: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}checksum_sha256'],
+      )!,
+      fileSize: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}file_size'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      modifiedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}modified_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+    );
+  }
+
+  @override
+  $MediaAssetsTable createAlias(String alias) {
+    return $MediaAssetsTable(attachedDatabase, alias);
+  }
+}
+
+class MediaAsset extends DataClass implements Insertable<MediaAsset> {
+  final String id;
+  final String type;
+  final String relativePath;
+  final String? mimeType;
+  final String? originalFilename;
+  final String checksumSha256;
+  final int fileSize;
+  final DateTime createdAt;
+  final DateTime modifiedAt;
+  final DateTime? deletedAt;
+  const MediaAsset({
+    required this.id,
+    required this.type,
+    required this.relativePath,
+    this.mimeType,
+    this.originalFilename,
+    required this.checksumSha256,
+    required this.fileSize,
+    required this.createdAt,
+    required this.modifiedAt,
+    this.deletedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['type'] = Variable<String>(type);
+    map['relative_path'] = Variable<String>(relativePath);
+    if (!nullToAbsent || mimeType != null) {
+      map['mime_type'] = Variable<String>(mimeType);
+    }
+    if (!nullToAbsent || originalFilename != null) {
+      map['original_filename'] = Variable<String>(originalFilename);
+    }
+    map['checksum_sha256'] = Variable<String>(checksumSha256);
+    map['file_size'] = Variable<int>(fileSize);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['modified_at'] = Variable<DateTime>(modifiedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    return map;
+  }
+
+  MediaAssetsCompanion toCompanion(bool nullToAbsent) {
+    return MediaAssetsCompanion(
+      id: Value(id),
+      type: Value(type),
+      relativePath: Value(relativePath),
+      mimeType: mimeType == null && nullToAbsent
+          ? const Value.absent()
+          : Value(mimeType),
+      originalFilename: originalFilename == null && nullToAbsent
+          ? const Value.absent()
+          : Value(originalFilename),
+      checksumSha256: Value(checksumSha256),
+      fileSize: Value(fileSize),
+      createdAt: Value(createdAt),
+      modifiedAt: Value(modifiedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+    );
+  }
+
+  factory MediaAsset.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return MediaAsset(
+      id: serializer.fromJson<String>(json['id']),
+      type: serializer.fromJson<String>(json['type']),
+      relativePath: serializer.fromJson<String>(json['relativePath']),
+      mimeType: serializer.fromJson<String?>(json['mimeType']),
+      originalFilename: serializer.fromJson<String?>(json['originalFilename']),
+      checksumSha256: serializer.fromJson<String>(json['checksumSha256']),
+      fileSize: serializer.fromJson<int>(json['fileSize']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      modifiedAt: serializer.fromJson<DateTime>(json['modifiedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'type': serializer.toJson<String>(type),
+      'relativePath': serializer.toJson<String>(relativePath),
+      'mimeType': serializer.toJson<String?>(mimeType),
+      'originalFilename': serializer.toJson<String?>(originalFilename),
+      'checksumSha256': serializer.toJson<String>(checksumSha256),
+      'fileSize': serializer.toJson<int>(fileSize),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'modifiedAt': serializer.toJson<DateTime>(modifiedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+    };
+  }
+
+  MediaAsset copyWith({
+    String? id,
+    String? type,
+    String? relativePath,
+    Value<String?> mimeType = const Value.absent(),
+    Value<String?> originalFilename = const Value.absent(),
+    String? checksumSha256,
+    int? fileSize,
+    DateTime? createdAt,
+    DateTime? modifiedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+  }) => MediaAsset(
+    id: id ?? this.id,
+    type: type ?? this.type,
+    relativePath: relativePath ?? this.relativePath,
+    mimeType: mimeType.present ? mimeType.value : this.mimeType,
+    originalFilename: originalFilename.present
+        ? originalFilename.value
+        : this.originalFilename,
+    checksumSha256: checksumSha256 ?? this.checksumSha256,
+    fileSize: fileSize ?? this.fileSize,
+    createdAt: createdAt ?? this.createdAt,
+    modifiedAt: modifiedAt ?? this.modifiedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+  );
+  MediaAsset copyWithCompanion(MediaAssetsCompanion data) {
+    return MediaAsset(
+      id: data.id.present ? data.id.value : this.id,
+      type: data.type.present ? data.type.value : this.type,
+      relativePath: data.relativePath.present
+          ? data.relativePath.value
+          : this.relativePath,
+      mimeType: data.mimeType.present ? data.mimeType.value : this.mimeType,
+      originalFilename: data.originalFilename.present
+          ? data.originalFilename.value
+          : this.originalFilename,
+      checksumSha256: data.checksumSha256.present
+          ? data.checksumSha256.value
+          : this.checksumSha256,
+      fileSize: data.fileSize.present ? data.fileSize.value : this.fileSize,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      modifiedAt: data.modifiedAt.present
+          ? data.modifiedAt.value
+          : this.modifiedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MediaAsset(')
+          ..write('id: $id, ')
+          ..write('type: $type, ')
+          ..write('relativePath: $relativePath, ')
+          ..write('mimeType: $mimeType, ')
+          ..write('originalFilename: $originalFilename, ')
+          ..write('checksumSha256: $checksumSha256, ')
+          ..write('fileSize: $fileSize, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('deletedAt: $deletedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    type,
+    relativePath,
+    mimeType,
+    originalFilename,
+    checksumSha256,
+    fileSize,
+    createdAt,
+    modifiedAt,
+    deletedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is MediaAsset &&
+          other.id == this.id &&
+          other.type == this.type &&
+          other.relativePath == this.relativePath &&
+          other.mimeType == this.mimeType &&
+          other.originalFilename == this.originalFilename &&
+          other.checksumSha256 == this.checksumSha256 &&
+          other.fileSize == this.fileSize &&
+          other.createdAt == this.createdAt &&
+          other.modifiedAt == this.modifiedAt &&
+          other.deletedAt == this.deletedAt);
+}
+
+class MediaAssetsCompanion extends UpdateCompanion<MediaAsset> {
+  final Value<String> id;
+  final Value<String> type;
+  final Value<String> relativePath;
+  final Value<String?> mimeType;
+  final Value<String?> originalFilename;
+  final Value<String> checksumSha256;
+  final Value<int> fileSize;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> modifiedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<int> rowid;
+  const MediaAssetsCompanion({
+    this.id = const Value.absent(),
+    this.type = const Value.absent(),
+    this.relativePath = const Value.absent(),
+    this.mimeType = const Value.absent(),
+    this.originalFilename = const Value.absent(),
+    this.checksumSha256 = const Value.absent(),
+    this.fileSize = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.modifiedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  MediaAssetsCompanion.insert({
+    required String id,
+    required String type,
+    required String relativePath,
+    this.mimeType = const Value.absent(),
+    this.originalFilename = const Value.absent(),
+    required String checksumSha256,
+    required int fileSize,
+    required DateTime createdAt,
+    required DateTime modifiedAt,
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       type = Value(type),
+       relativePath = Value(relativePath),
+       checksumSha256 = Value(checksumSha256),
+       fileSize = Value(fileSize),
+       createdAt = Value(createdAt),
+       modifiedAt = Value(modifiedAt);
+  static Insertable<MediaAsset> custom({
+    Expression<String>? id,
+    Expression<String>? type,
+    Expression<String>? relativePath,
+    Expression<String>? mimeType,
+    Expression<String>? originalFilename,
+    Expression<String>? checksumSha256,
+    Expression<int>? fileSize,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? modifiedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (type != null) 'type': type,
+      if (relativePath != null) 'relative_path': relativePath,
+      if (mimeType != null) 'mime_type': mimeType,
+      if (originalFilename != null) 'original_filename': originalFilename,
+      if (checksumSha256 != null) 'checksum_sha256': checksumSha256,
+      if (fileSize != null) 'file_size': fileSize,
+      if (createdAt != null) 'created_at': createdAt,
+      if (modifiedAt != null) 'modified_at': modifiedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  MediaAssetsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? type,
+    Value<String>? relativePath,
+    Value<String?>? mimeType,
+    Value<String?>? originalFilename,
+    Value<String>? checksumSha256,
+    Value<int>? fileSize,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? modifiedAt,
+    Value<DateTime?>? deletedAt,
+    Value<int>? rowid,
+  }) {
+    return MediaAssetsCompanion(
+      id: id ?? this.id,
+      type: type ?? this.type,
+      relativePath: relativePath ?? this.relativePath,
+      mimeType: mimeType ?? this.mimeType,
+      originalFilename: originalFilename ?? this.originalFilename,
+      checksumSha256: checksumSha256 ?? this.checksumSha256,
+      fileSize: fileSize ?? this.fileSize,
+      createdAt: createdAt ?? this.createdAt,
+      modifiedAt: modifiedAt ?? this.modifiedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
+    if (relativePath.present) {
+      map['relative_path'] = Variable<String>(relativePath.value);
+    }
+    if (mimeType.present) {
+      map['mime_type'] = Variable<String>(mimeType.value);
+    }
+    if (originalFilename.present) {
+      map['original_filename'] = Variable<String>(originalFilename.value);
+    }
+    if (checksumSha256.present) {
+      map['checksum_sha256'] = Variable<String>(checksumSha256.value);
+    }
+    if (fileSize.present) {
+      map['file_size'] = Variable<int>(fileSize.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (modifiedAt.present) {
+      map['modified_at'] = Variable<DateTime>(modifiedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MediaAssetsCompanion(')
+          ..write('id: $id, ')
+          ..write('type: $type, ')
+          ..write('relativePath: $relativePath, ')
+          ..write('mimeType: $mimeType, ')
+          ..write('originalFilename: $originalFilename, ')
+          ..write('checksumSha256: $checksumSha256, ')
+          ..write('fileSize: $fileSize, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $SourceMediaLinksTable extends SourceMediaLinks
+    with TableInfo<$SourceMediaLinksTable, SourceMediaLink> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SourceMediaLinksTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _sourceIdMeta = const VerificationMeta(
+    'sourceId',
+  );
+  @override
+  late final GeneratedColumn<String> sourceId = GeneratedColumn<String>(
+    'source_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES sources (id)',
+    ),
+  );
+  static const VerificationMeta _mediaIdMeta = const VerificationMeta(
+    'mediaId',
+  );
+  @override
+  late final GeneratedColumn<String> mediaId = GeneratedColumn<String>(
+    'media_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES media (id)',
+    ),
+  );
+  static const VerificationMeta _roleMeta = const VerificationMeta('role');
+  @override
+  late final GeneratedColumn<String> role = GeneratedColumn<String>(
+    'role',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _captionMeta = const VerificationMeta(
+    'caption',
+  );
+  @override
+  late final GeneratedColumn<String> caption = GeneratedColumn<String>(
+    'caption',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modifiedAtMeta = const VerificationMeta(
+    'modifiedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> modifiedAt = GeneratedColumn<DateTime>(
+    'modified_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    sourceId,
+    mediaId,
+    role,
+    caption,
+    sortOrder,
+    createdAt,
+    modifiedAt,
+    deletedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'source_media';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SourceMediaLink> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('source_id')) {
+      context.handle(
+        _sourceIdMeta,
+        sourceId.isAcceptableOrUnknown(data['source_id']!, _sourceIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_sourceIdMeta);
+    }
+    if (data.containsKey('media_id')) {
+      context.handle(
+        _mediaIdMeta,
+        mediaId.isAcceptableOrUnknown(data['media_id']!, _mediaIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_mediaIdMeta);
+    }
+    if (data.containsKey('role')) {
+      context.handle(
+        _roleMeta,
+        role.isAcceptableOrUnknown(data['role']!, _roleMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_roleMeta);
+    }
+    if (data.containsKey('caption')) {
+      context.handle(
+        _captionMeta,
+        caption.isAcceptableOrUnknown(data['caption']!, _captionMeta),
+      );
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('modified_at')) {
+      context.handle(
+        _modifiedAtMeta,
+        modifiedAt.isAcceptableOrUnknown(data['modified_at']!, _modifiedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_modifiedAtMeta);
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SourceMediaLink map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SourceMediaLink(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      sourceId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}source_id'],
+      )!,
+      mediaId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}media_id'],
+      )!,
+      role: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}role'],
+      )!,
+      caption: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}caption'],
+      ),
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      modifiedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}modified_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+    );
+  }
+
+  @override
+  $SourceMediaLinksTable createAlias(String alias) {
+    return $SourceMediaLinksTable(attachedDatabase, alias);
+  }
+}
+
+class SourceMediaLink extends DataClass implements Insertable<SourceMediaLink> {
+  final String id;
+  final String sourceId;
+  final String mediaId;
+  final String role;
+  final String? caption;
+  final int sortOrder;
+  final DateTime createdAt;
+  final DateTime modifiedAt;
+  final DateTime? deletedAt;
+  const SourceMediaLink({
+    required this.id,
+    required this.sourceId,
+    required this.mediaId,
+    required this.role,
+    this.caption,
+    required this.sortOrder,
+    required this.createdAt,
+    required this.modifiedAt,
+    this.deletedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['source_id'] = Variable<String>(sourceId);
+    map['media_id'] = Variable<String>(mediaId);
+    map['role'] = Variable<String>(role);
+    if (!nullToAbsent || caption != null) {
+      map['caption'] = Variable<String>(caption);
+    }
+    map['sort_order'] = Variable<int>(sortOrder);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['modified_at'] = Variable<DateTime>(modifiedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    return map;
+  }
+
+  SourceMediaLinksCompanion toCompanion(bool nullToAbsent) {
+    return SourceMediaLinksCompanion(
+      id: Value(id),
+      sourceId: Value(sourceId),
+      mediaId: Value(mediaId),
+      role: Value(role),
+      caption: caption == null && nullToAbsent
+          ? const Value.absent()
+          : Value(caption),
+      sortOrder: Value(sortOrder),
+      createdAt: Value(createdAt),
+      modifiedAt: Value(modifiedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+    );
+  }
+
+  factory SourceMediaLink.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SourceMediaLink(
+      id: serializer.fromJson<String>(json['id']),
+      sourceId: serializer.fromJson<String>(json['sourceId']),
+      mediaId: serializer.fromJson<String>(json['mediaId']),
+      role: serializer.fromJson<String>(json['role']),
+      caption: serializer.fromJson<String?>(json['caption']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      modifiedAt: serializer.fromJson<DateTime>(json['modifiedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'sourceId': serializer.toJson<String>(sourceId),
+      'mediaId': serializer.toJson<String>(mediaId),
+      'role': serializer.toJson<String>(role),
+      'caption': serializer.toJson<String?>(caption),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'modifiedAt': serializer.toJson<DateTime>(modifiedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+    };
+  }
+
+  SourceMediaLink copyWith({
+    String? id,
+    String? sourceId,
+    String? mediaId,
+    String? role,
+    Value<String?> caption = const Value.absent(),
+    int? sortOrder,
+    DateTime? createdAt,
+    DateTime? modifiedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+  }) => SourceMediaLink(
+    id: id ?? this.id,
+    sourceId: sourceId ?? this.sourceId,
+    mediaId: mediaId ?? this.mediaId,
+    role: role ?? this.role,
+    caption: caption.present ? caption.value : this.caption,
+    sortOrder: sortOrder ?? this.sortOrder,
+    createdAt: createdAt ?? this.createdAt,
+    modifiedAt: modifiedAt ?? this.modifiedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+  );
+  SourceMediaLink copyWithCompanion(SourceMediaLinksCompanion data) {
+    return SourceMediaLink(
+      id: data.id.present ? data.id.value : this.id,
+      sourceId: data.sourceId.present ? data.sourceId.value : this.sourceId,
+      mediaId: data.mediaId.present ? data.mediaId.value : this.mediaId,
+      role: data.role.present ? data.role.value : this.role,
+      caption: data.caption.present ? data.caption.value : this.caption,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      modifiedAt: data.modifiedAt.present
+          ? data.modifiedAt.value
+          : this.modifiedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SourceMediaLink(')
+          ..write('id: $id, ')
+          ..write('sourceId: $sourceId, ')
+          ..write('mediaId: $mediaId, ')
+          ..write('role: $role, ')
+          ..write('caption: $caption, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('deletedAt: $deletedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    sourceId,
+    mediaId,
+    role,
+    caption,
+    sortOrder,
+    createdAt,
+    modifiedAt,
+    deletedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SourceMediaLink &&
+          other.id == this.id &&
+          other.sourceId == this.sourceId &&
+          other.mediaId == this.mediaId &&
+          other.role == this.role &&
+          other.caption == this.caption &&
+          other.sortOrder == this.sortOrder &&
+          other.createdAt == this.createdAt &&
+          other.modifiedAt == this.modifiedAt &&
+          other.deletedAt == this.deletedAt);
+}
+
+class SourceMediaLinksCompanion extends UpdateCompanion<SourceMediaLink> {
+  final Value<String> id;
+  final Value<String> sourceId;
+  final Value<String> mediaId;
+  final Value<String> role;
+  final Value<String?> caption;
+  final Value<int> sortOrder;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> modifiedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<int> rowid;
+  const SourceMediaLinksCompanion({
+    this.id = const Value.absent(),
+    this.sourceId = const Value.absent(),
+    this.mediaId = const Value.absent(),
+    this.role = const Value.absent(),
+    this.caption = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.modifiedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SourceMediaLinksCompanion.insert({
+    required String id,
+    required String sourceId,
+    required String mediaId,
+    required String role,
+    this.caption = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    required DateTime createdAt,
+    required DateTime modifiedAt,
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       sourceId = Value(sourceId),
+       mediaId = Value(mediaId),
+       role = Value(role),
+       createdAt = Value(createdAt),
+       modifiedAt = Value(modifiedAt);
+  static Insertable<SourceMediaLink> custom({
+    Expression<String>? id,
+    Expression<String>? sourceId,
+    Expression<String>? mediaId,
+    Expression<String>? role,
+    Expression<String>? caption,
+    Expression<int>? sortOrder,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? modifiedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (sourceId != null) 'source_id': sourceId,
+      if (mediaId != null) 'media_id': mediaId,
+      if (role != null) 'role': role,
+      if (caption != null) 'caption': caption,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (createdAt != null) 'created_at': createdAt,
+      if (modifiedAt != null) 'modified_at': modifiedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SourceMediaLinksCompanion copyWith({
+    Value<String>? id,
+    Value<String>? sourceId,
+    Value<String>? mediaId,
+    Value<String>? role,
+    Value<String?>? caption,
+    Value<int>? sortOrder,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? modifiedAt,
+    Value<DateTime?>? deletedAt,
+    Value<int>? rowid,
+  }) {
+    return SourceMediaLinksCompanion(
+      id: id ?? this.id,
+      sourceId: sourceId ?? this.sourceId,
+      mediaId: mediaId ?? this.mediaId,
+      role: role ?? this.role,
+      caption: caption ?? this.caption,
+      sortOrder: sortOrder ?? this.sortOrder,
+      createdAt: createdAt ?? this.createdAt,
+      modifiedAt: modifiedAt ?? this.modifiedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (sourceId.present) {
+      map['source_id'] = Variable<String>(sourceId.value);
+    }
+    if (mediaId.present) {
+      map['media_id'] = Variable<String>(mediaId.value);
+    }
+    if (role.present) {
+      map['role'] = Variable<String>(role.value);
+    }
+    if (caption.present) {
+      map['caption'] = Variable<String>(caption.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (modifiedAt.present) {
+      map['modified_at'] = Variable<DateTime>(modifiedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SourceMediaLinksCompanion(')
+          ..write('id: $id, ')
+          ..write('sourceId: $sourceId, ')
+          ..write('mediaId: $mediaId, ')
+          ..write('role: $role, ')
+          ..write('caption: $caption, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ClaimsTable extends Claims with TableInfo<$ClaimsTable, Claim> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ClaimsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _subjectTypeMeta = const VerificationMeta(
+    'subjectType',
+  );
+  @override
+  late final GeneratedColumn<String> subjectType = GeneratedColumn<String>(
+    'subject_type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _subjectIdMeta = const VerificationMeta(
+    'subjectId',
+  );
+  @override
+  late final GeneratedColumn<String> subjectId = GeneratedColumn<String>(
+    'subject_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _propertyMeta = const VerificationMeta(
+    'property',
+  );
+  @override
+  late final GeneratedColumn<String> property = GeneratedColumn<String>(
+    'property',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _valueTypeMeta = const VerificationMeta(
+    'valueType',
+  );
+  @override
+  late final GeneratedColumn<String> valueType = GeneratedColumn<String>(
+    'value_type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _valueJsonMeta = const VerificationMeta(
+    'valueJson',
+  );
+  @override
+  late final GeneratedColumn<String> valueJson = GeneratedColumn<String>(
+    'value_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _payloadVersionMeta = const VerificationMeta(
+    'payloadVersion',
+  );
+  @override
+  late final GeneratedColumn<int> payloadVersion = GeneratedColumn<int>(
+    'payload_version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _sourceIdMeta = const VerificationMeta(
+    'sourceId',
+  );
+  @override
+  late final GeneratedColumn<String> sourceId = GeneratedColumn<String>(
+    'source_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES sources (id)',
+    ),
+  );
+  static const VerificationMeta _sourceLocatorMeta = const VerificationMeta(
+    'sourceLocator',
+  );
+  @override
+  late final GeneratedColumn<String> sourceLocator = GeneratedColumn<String>(
+    'source_locator',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _confidenceMeta = const VerificationMeta(
+    'confidence',
+  );
+  @override
+  late final GeneratedColumn<double> confidence = GeneratedColumn<double>(
+    'confidence',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modifiedAtMeta = const VerificationMeta(
+    'modifiedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> modifiedAt = GeneratedColumn<DateTime>(
+    'modified_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    subjectType,
+    subjectId,
+    property,
+    valueType,
+    valueJson,
+    payloadVersion,
+    sourceId,
+    sourceLocator,
+    confidence,
+    status,
+    createdAt,
+    modifiedAt,
+    deletedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'claims';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Claim> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('subject_type')) {
+      context.handle(
+        _subjectTypeMeta,
+        subjectType.isAcceptableOrUnknown(
+          data['subject_type']!,
+          _subjectTypeMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_subjectTypeMeta);
+    }
+    if (data.containsKey('subject_id')) {
+      context.handle(
+        _subjectIdMeta,
+        subjectId.isAcceptableOrUnknown(data['subject_id']!, _subjectIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_subjectIdMeta);
+    }
+    if (data.containsKey('property')) {
+      context.handle(
+        _propertyMeta,
+        property.isAcceptableOrUnknown(data['property']!, _propertyMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_propertyMeta);
+    }
+    if (data.containsKey('value_type')) {
+      context.handle(
+        _valueTypeMeta,
+        valueType.isAcceptableOrUnknown(data['value_type']!, _valueTypeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_valueTypeMeta);
+    }
+    if (data.containsKey('value_json')) {
+      context.handle(
+        _valueJsonMeta,
+        valueJson.isAcceptableOrUnknown(data['value_json']!, _valueJsonMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_valueJsonMeta);
+    }
+    if (data.containsKey('payload_version')) {
+      context.handle(
+        _payloadVersionMeta,
+        payloadVersion.isAcceptableOrUnknown(
+          data['payload_version']!,
+          _payloadVersionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('source_id')) {
+      context.handle(
+        _sourceIdMeta,
+        sourceId.isAcceptableOrUnknown(data['source_id']!, _sourceIdMeta),
+      );
+    }
+    if (data.containsKey('source_locator')) {
+      context.handle(
+        _sourceLocatorMeta,
+        sourceLocator.isAcceptableOrUnknown(
+          data['source_locator']!,
+          _sourceLocatorMeta,
+        ),
+      );
+    }
+    if (data.containsKey('confidence')) {
+      context.handle(
+        _confidenceMeta,
+        confidence.isAcceptableOrUnknown(data['confidence']!, _confidenceMeta),
+      );
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_statusMeta);
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('modified_at')) {
+      context.handle(
+        _modifiedAtMeta,
+        modifiedAt.isAcceptableOrUnknown(data['modified_at']!, _modifiedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_modifiedAtMeta);
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Claim map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Claim(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      subjectType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}subject_type'],
+      )!,
+      subjectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}subject_id'],
+      )!,
+      property: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}property'],
+      )!,
+      valueType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}value_type'],
+      )!,
+      valueJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}value_json'],
+      )!,
+      payloadVersion: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}payload_version'],
+      )!,
+      sourceId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}source_id'],
+      ),
+      sourceLocator: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}source_locator'],
+      ),
+      confidence: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}confidence'],
+      ),
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}status'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      modifiedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}modified_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+    );
+  }
+
+  @override
+  $ClaimsTable createAlias(String alias) {
+    return $ClaimsTable(attachedDatabase, alias);
+  }
+}
+
+class Claim extends DataClass implements Insertable<Claim> {
+  final String id;
+  final String subjectType;
+  final String subjectId;
+  final String property;
+  final String valueType;
+  final String valueJson;
+  final int payloadVersion;
+  final String? sourceId;
+  final String? sourceLocator;
+  final double? confidence;
+  final String status;
+  final DateTime createdAt;
+  final DateTime modifiedAt;
+  final DateTime? deletedAt;
+  const Claim({
+    required this.id,
+    required this.subjectType,
+    required this.subjectId,
+    required this.property,
+    required this.valueType,
+    required this.valueJson,
+    required this.payloadVersion,
+    this.sourceId,
+    this.sourceLocator,
+    this.confidence,
+    required this.status,
+    required this.createdAt,
+    required this.modifiedAt,
+    this.deletedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['subject_type'] = Variable<String>(subjectType);
+    map['subject_id'] = Variable<String>(subjectId);
+    map['property'] = Variable<String>(property);
+    map['value_type'] = Variable<String>(valueType);
+    map['value_json'] = Variable<String>(valueJson);
+    map['payload_version'] = Variable<int>(payloadVersion);
+    if (!nullToAbsent || sourceId != null) {
+      map['source_id'] = Variable<String>(sourceId);
+    }
+    if (!nullToAbsent || sourceLocator != null) {
+      map['source_locator'] = Variable<String>(sourceLocator);
+    }
+    if (!nullToAbsent || confidence != null) {
+      map['confidence'] = Variable<double>(confidence);
+    }
+    map['status'] = Variable<String>(status);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['modified_at'] = Variable<DateTime>(modifiedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    return map;
+  }
+
+  ClaimsCompanion toCompanion(bool nullToAbsent) {
+    return ClaimsCompanion(
+      id: Value(id),
+      subjectType: Value(subjectType),
+      subjectId: Value(subjectId),
+      property: Value(property),
+      valueType: Value(valueType),
+      valueJson: Value(valueJson),
+      payloadVersion: Value(payloadVersion),
+      sourceId: sourceId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sourceId),
+      sourceLocator: sourceLocator == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sourceLocator),
+      confidence: confidence == null && nullToAbsent
+          ? const Value.absent()
+          : Value(confidence),
+      status: Value(status),
+      createdAt: Value(createdAt),
+      modifiedAt: Value(modifiedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+    );
+  }
+
+  factory Claim.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Claim(
+      id: serializer.fromJson<String>(json['id']),
+      subjectType: serializer.fromJson<String>(json['subjectType']),
+      subjectId: serializer.fromJson<String>(json['subjectId']),
+      property: serializer.fromJson<String>(json['property']),
+      valueType: serializer.fromJson<String>(json['valueType']),
+      valueJson: serializer.fromJson<String>(json['valueJson']),
+      payloadVersion: serializer.fromJson<int>(json['payloadVersion']),
+      sourceId: serializer.fromJson<String?>(json['sourceId']),
+      sourceLocator: serializer.fromJson<String?>(json['sourceLocator']),
+      confidence: serializer.fromJson<double?>(json['confidence']),
+      status: serializer.fromJson<String>(json['status']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      modifiedAt: serializer.fromJson<DateTime>(json['modifiedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'subjectType': serializer.toJson<String>(subjectType),
+      'subjectId': serializer.toJson<String>(subjectId),
+      'property': serializer.toJson<String>(property),
+      'valueType': serializer.toJson<String>(valueType),
+      'valueJson': serializer.toJson<String>(valueJson),
+      'payloadVersion': serializer.toJson<int>(payloadVersion),
+      'sourceId': serializer.toJson<String?>(sourceId),
+      'sourceLocator': serializer.toJson<String?>(sourceLocator),
+      'confidence': serializer.toJson<double?>(confidence),
+      'status': serializer.toJson<String>(status),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'modifiedAt': serializer.toJson<DateTime>(modifiedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+    };
+  }
+
+  Claim copyWith({
+    String? id,
+    String? subjectType,
+    String? subjectId,
+    String? property,
+    String? valueType,
+    String? valueJson,
+    int? payloadVersion,
+    Value<String?> sourceId = const Value.absent(),
+    Value<String?> sourceLocator = const Value.absent(),
+    Value<double?> confidence = const Value.absent(),
+    String? status,
+    DateTime? createdAt,
+    DateTime? modifiedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+  }) => Claim(
+    id: id ?? this.id,
+    subjectType: subjectType ?? this.subjectType,
+    subjectId: subjectId ?? this.subjectId,
+    property: property ?? this.property,
+    valueType: valueType ?? this.valueType,
+    valueJson: valueJson ?? this.valueJson,
+    payloadVersion: payloadVersion ?? this.payloadVersion,
+    sourceId: sourceId.present ? sourceId.value : this.sourceId,
+    sourceLocator: sourceLocator.present
+        ? sourceLocator.value
+        : this.sourceLocator,
+    confidence: confidence.present ? confidence.value : this.confidence,
+    status: status ?? this.status,
+    createdAt: createdAt ?? this.createdAt,
+    modifiedAt: modifiedAt ?? this.modifiedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+  );
+  Claim copyWithCompanion(ClaimsCompanion data) {
+    return Claim(
+      id: data.id.present ? data.id.value : this.id,
+      subjectType: data.subjectType.present
+          ? data.subjectType.value
+          : this.subjectType,
+      subjectId: data.subjectId.present ? data.subjectId.value : this.subjectId,
+      property: data.property.present ? data.property.value : this.property,
+      valueType: data.valueType.present ? data.valueType.value : this.valueType,
+      valueJson: data.valueJson.present ? data.valueJson.value : this.valueJson,
+      payloadVersion: data.payloadVersion.present
+          ? data.payloadVersion.value
+          : this.payloadVersion,
+      sourceId: data.sourceId.present ? data.sourceId.value : this.sourceId,
+      sourceLocator: data.sourceLocator.present
+          ? data.sourceLocator.value
+          : this.sourceLocator,
+      confidence: data.confidence.present
+          ? data.confidence.value
+          : this.confidence,
+      status: data.status.present ? data.status.value : this.status,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      modifiedAt: data.modifiedAt.present
+          ? data.modifiedAt.value
+          : this.modifiedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Claim(')
+          ..write('id: $id, ')
+          ..write('subjectType: $subjectType, ')
+          ..write('subjectId: $subjectId, ')
+          ..write('property: $property, ')
+          ..write('valueType: $valueType, ')
+          ..write('valueJson: $valueJson, ')
+          ..write('payloadVersion: $payloadVersion, ')
+          ..write('sourceId: $sourceId, ')
+          ..write('sourceLocator: $sourceLocator, ')
+          ..write('confidence: $confidence, ')
+          ..write('status: $status, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('deletedAt: $deletedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    subjectType,
+    subjectId,
+    property,
+    valueType,
+    valueJson,
+    payloadVersion,
+    sourceId,
+    sourceLocator,
+    confidence,
+    status,
+    createdAt,
+    modifiedAt,
+    deletedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Claim &&
+          other.id == this.id &&
+          other.subjectType == this.subjectType &&
+          other.subjectId == this.subjectId &&
+          other.property == this.property &&
+          other.valueType == this.valueType &&
+          other.valueJson == this.valueJson &&
+          other.payloadVersion == this.payloadVersion &&
+          other.sourceId == this.sourceId &&
+          other.sourceLocator == this.sourceLocator &&
+          other.confidence == this.confidence &&
+          other.status == this.status &&
+          other.createdAt == this.createdAt &&
+          other.modifiedAt == this.modifiedAt &&
+          other.deletedAt == this.deletedAt);
+}
+
+class ClaimsCompanion extends UpdateCompanion<Claim> {
+  final Value<String> id;
+  final Value<String> subjectType;
+  final Value<String> subjectId;
+  final Value<String> property;
+  final Value<String> valueType;
+  final Value<String> valueJson;
+  final Value<int> payloadVersion;
+  final Value<String?> sourceId;
+  final Value<String?> sourceLocator;
+  final Value<double?> confidence;
+  final Value<String> status;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> modifiedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<int> rowid;
+  const ClaimsCompanion({
+    this.id = const Value.absent(),
+    this.subjectType = const Value.absent(),
+    this.subjectId = const Value.absent(),
+    this.property = const Value.absent(),
+    this.valueType = const Value.absent(),
+    this.valueJson = const Value.absent(),
+    this.payloadVersion = const Value.absent(),
+    this.sourceId = const Value.absent(),
+    this.sourceLocator = const Value.absent(),
+    this.confidence = const Value.absent(),
+    this.status = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.modifiedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ClaimsCompanion.insert({
+    required String id,
+    required String subjectType,
+    required String subjectId,
+    required String property,
+    required String valueType,
+    required String valueJson,
+    this.payloadVersion = const Value.absent(),
+    this.sourceId = const Value.absent(),
+    this.sourceLocator = const Value.absent(),
+    this.confidence = const Value.absent(),
+    required String status,
+    required DateTime createdAt,
+    required DateTime modifiedAt,
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       subjectType = Value(subjectType),
+       subjectId = Value(subjectId),
+       property = Value(property),
+       valueType = Value(valueType),
+       valueJson = Value(valueJson),
+       status = Value(status),
+       createdAt = Value(createdAt),
+       modifiedAt = Value(modifiedAt);
+  static Insertable<Claim> custom({
+    Expression<String>? id,
+    Expression<String>? subjectType,
+    Expression<String>? subjectId,
+    Expression<String>? property,
+    Expression<String>? valueType,
+    Expression<String>? valueJson,
+    Expression<int>? payloadVersion,
+    Expression<String>? sourceId,
+    Expression<String>? sourceLocator,
+    Expression<double>? confidence,
+    Expression<String>? status,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? modifiedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (subjectType != null) 'subject_type': subjectType,
+      if (subjectId != null) 'subject_id': subjectId,
+      if (property != null) 'property': property,
+      if (valueType != null) 'value_type': valueType,
+      if (valueJson != null) 'value_json': valueJson,
+      if (payloadVersion != null) 'payload_version': payloadVersion,
+      if (sourceId != null) 'source_id': sourceId,
+      if (sourceLocator != null) 'source_locator': sourceLocator,
+      if (confidence != null) 'confidence': confidence,
+      if (status != null) 'status': status,
+      if (createdAt != null) 'created_at': createdAt,
+      if (modifiedAt != null) 'modified_at': modifiedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ClaimsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? subjectType,
+    Value<String>? subjectId,
+    Value<String>? property,
+    Value<String>? valueType,
+    Value<String>? valueJson,
+    Value<int>? payloadVersion,
+    Value<String?>? sourceId,
+    Value<String?>? sourceLocator,
+    Value<double?>? confidence,
+    Value<String>? status,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? modifiedAt,
+    Value<DateTime?>? deletedAt,
+    Value<int>? rowid,
+  }) {
+    return ClaimsCompanion(
+      id: id ?? this.id,
+      subjectType: subjectType ?? this.subjectType,
+      subjectId: subjectId ?? this.subjectId,
+      property: property ?? this.property,
+      valueType: valueType ?? this.valueType,
+      valueJson: valueJson ?? this.valueJson,
+      payloadVersion: payloadVersion ?? this.payloadVersion,
+      sourceId: sourceId ?? this.sourceId,
+      sourceLocator: sourceLocator ?? this.sourceLocator,
+      confidence: confidence ?? this.confidence,
+      status: status ?? this.status,
+      createdAt: createdAt ?? this.createdAt,
+      modifiedAt: modifiedAt ?? this.modifiedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (subjectType.present) {
+      map['subject_type'] = Variable<String>(subjectType.value);
+    }
+    if (subjectId.present) {
+      map['subject_id'] = Variable<String>(subjectId.value);
+    }
+    if (property.present) {
+      map['property'] = Variable<String>(property.value);
+    }
+    if (valueType.present) {
+      map['value_type'] = Variable<String>(valueType.value);
+    }
+    if (valueJson.present) {
+      map['value_json'] = Variable<String>(valueJson.value);
+    }
+    if (payloadVersion.present) {
+      map['payload_version'] = Variable<int>(payloadVersion.value);
+    }
+    if (sourceId.present) {
+      map['source_id'] = Variable<String>(sourceId.value);
+    }
+    if (sourceLocator.present) {
+      map['source_locator'] = Variable<String>(sourceLocator.value);
+    }
+    if (confidence.present) {
+      map['confidence'] = Variable<double>(confidence.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (modifiedAt.present) {
+      map['modified_at'] = Variable<DateTime>(modifiedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ClaimsCompanion(')
+          ..write('id: $id, ')
+          ..write('subjectType: $subjectType, ')
+          ..write('subjectId: $subjectId, ')
+          ..write('property: $property, ')
+          ..write('valueType: $valueType, ')
+          ..write('valueJson: $valueJson, ')
+          ..write('payloadVersion: $payloadVersion, ')
+          ..write('sourceId: $sourceId, ')
+          ..write('sourceLocator: $sourceLocator, ')
+          ..write('confidence: $confidence, ')
+          ..write('status: $status, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ClaimApplicationsTable extends ClaimApplications
+    with TableInfo<$ClaimApplicationsTable, ClaimApplication> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ClaimApplicationsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _claimIdMeta = const VerificationMeta(
+    'claimId',
+  );
+  @override
+  late final GeneratedColumn<String> claimId = GeneratedColumn<String>(
+    'claim_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES claims (id)',
+    ),
+  );
+  static const VerificationMeta _operationTypeMeta = const VerificationMeta(
+    'operationType',
+  );
+  @override
+  late final GeneratedColumn<String> operationType = GeneratedColumn<String>(
+    'operation_type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _resultEntityTypeMeta = const VerificationMeta(
+    'resultEntityType',
+  );
+  @override
+  late final GeneratedColumn<String> resultEntityType = GeneratedColumn<String>(
+    'result_entity_type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _resultEntityIdMeta = const VerificationMeta(
+    'resultEntityId',
+  );
+  @override
+  late final GeneratedColumn<String> resultEntityId = GeneratedColumn<String>(
+    'result_entity_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _appliedAtMeta = const VerificationMeta(
+    'appliedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> appliedAt = GeneratedColumn<DateTime>(
+    'applied_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _payloadJsonMeta = const VerificationMeta(
+    'payloadJson',
+  );
+  @override
+  late final GeneratedColumn<String> payloadJson = GeneratedColumn<String>(
+    'payload_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    claimId,
+    operationType,
+    resultEntityType,
+    resultEntityId,
+    appliedAt,
+    payloadJson,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'claim_applications';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ClaimApplication> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('claim_id')) {
+      context.handle(
+        _claimIdMeta,
+        claimId.isAcceptableOrUnknown(data['claim_id']!, _claimIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_claimIdMeta);
+    }
+    if (data.containsKey('operation_type')) {
+      context.handle(
+        _operationTypeMeta,
+        operationType.isAcceptableOrUnknown(
+          data['operation_type']!,
+          _operationTypeMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_operationTypeMeta);
+    }
+    if (data.containsKey('result_entity_type')) {
+      context.handle(
+        _resultEntityTypeMeta,
+        resultEntityType.isAcceptableOrUnknown(
+          data['result_entity_type']!,
+          _resultEntityTypeMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_resultEntityTypeMeta);
+    }
+    if (data.containsKey('result_entity_id')) {
+      context.handle(
+        _resultEntityIdMeta,
+        resultEntityId.isAcceptableOrUnknown(
+          data['result_entity_id']!,
+          _resultEntityIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_resultEntityIdMeta);
+    }
+    if (data.containsKey('applied_at')) {
+      context.handle(
+        _appliedAtMeta,
+        appliedAt.isAcceptableOrUnknown(data['applied_at']!, _appliedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_appliedAtMeta);
+    }
+    if (data.containsKey('payload_json')) {
+      context.handle(
+        _payloadJsonMeta,
+        payloadJson.isAcceptableOrUnknown(
+          data['payload_json']!,
+          _payloadJsonMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_payloadJsonMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {claimId};
+  @override
+  ClaimApplication map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ClaimApplication(
+      claimId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}claim_id'],
+      )!,
+      operationType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}operation_type'],
+      )!,
+      resultEntityType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}result_entity_type'],
+      )!,
+      resultEntityId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}result_entity_id'],
+      )!,
+      appliedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}applied_at'],
+      )!,
+      payloadJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}payload_json'],
+      )!,
+    );
+  }
+
+  @override
+  $ClaimApplicationsTable createAlias(String alias) {
+    return $ClaimApplicationsTable(attachedDatabase, alias);
+  }
+}
+
+class ClaimApplication extends DataClass
+    implements Insertable<ClaimApplication> {
+  final String claimId;
+  final String operationType;
+  final String resultEntityType;
+  final String resultEntityId;
+  final DateTime appliedAt;
+  final String payloadJson;
+  const ClaimApplication({
+    required this.claimId,
+    required this.operationType,
+    required this.resultEntityType,
+    required this.resultEntityId,
+    required this.appliedAt,
+    required this.payloadJson,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['claim_id'] = Variable<String>(claimId);
+    map['operation_type'] = Variable<String>(operationType);
+    map['result_entity_type'] = Variable<String>(resultEntityType);
+    map['result_entity_id'] = Variable<String>(resultEntityId);
+    map['applied_at'] = Variable<DateTime>(appliedAt);
+    map['payload_json'] = Variable<String>(payloadJson);
+    return map;
+  }
+
+  ClaimApplicationsCompanion toCompanion(bool nullToAbsent) {
+    return ClaimApplicationsCompanion(
+      claimId: Value(claimId),
+      operationType: Value(operationType),
+      resultEntityType: Value(resultEntityType),
+      resultEntityId: Value(resultEntityId),
+      appliedAt: Value(appliedAt),
+      payloadJson: Value(payloadJson),
+    );
+  }
+
+  factory ClaimApplication.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ClaimApplication(
+      claimId: serializer.fromJson<String>(json['claimId']),
+      operationType: serializer.fromJson<String>(json['operationType']),
+      resultEntityType: serializer.fromJson<String>(json['resultEntityType']),
+      resultEntityId: serializer.fromJson<String>(json['resultEntityId']),
+      appliedAt: serializer.fromJson<DateTime>(json['appliedAt']),
+      payloadJson: serializer.fromJson<String>(json['payloadJson']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'claimId': serializer.toJson<String>(claimId),
+      'operationType': serializer.toJson<String>(operationType),
+      'resultEntityType': serializer.toJson<String>(resultEntityType),
+      'resultEntityId': serializer.toJson<String>(resultEntityId),
+      'appliedAt': serializer.toJson<DateTime>(appliedAt),
+      'payloadJson': serializer.toJson<String>(payloadJson),
+    };
+  }
+
+  ClaimApplication copyWith({
+    String? claimId,
+    String? operationType,
+    String? resultEntityType,
+    String? resultEntityId,
+    DateTime? appliedAt,
+    String? payloadJson,
+  }) => ClaimApplication(
+    claimId: claimId ?? this.claimId,
+    operationType: operationType ?? this.operationType,
+    resultEntityType: resultEntityType ?? this.resultEntityType,
+    resultEntityId: resultEntityId ?? this.resultEntityId,
+    appliedAt: appliedAt ?? this.appliedAt,
+    payloadJson: payloadJson ?? this.payloadJson,
+  );
+  ClaimApplication copyWithCompanion(ClaimApplicationsCompanion data) {
+    return ClaimApplication(
+      claimId: data.claimId.present ? data.claimId.value : this.claimId,
+      operationType: data.operationType.present
+          ? data.operationType.value
+          : this.operationType,
+      resultEntityType: data.resultEntityType.present
+          ? data.resultEntityType.value
+          : this.resultEntityType,
+      resultEntityId: data.resultEntityId.present
+          ? data.resultEntityId.value
+          : this.resultEntityId,
+      appliedAt: data.appliedAt.present ? data.appliedAt.value : this.appliedAt,
+      payloadJson: data.payloadJson.present
+          ? data.payloadJson.value
+          : this.payloadJson,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ClaimApplication(')
+          ..write('claimId: $claimId, ')
+          ..write('operationType: $operationType, ')
+          ..write('resultEntityType: $resultEntityType, ')
+          ..write('resultEntityId: $resultEntityId, ')
+          ..write('appliedAt: $appliedAt, ')
+          ..write('payloadJson: $payloadJson')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    claimId,
+    operationType,
+    resultEntityType,
+    resultEntityId,
+    appliedAt,
+    payloadJson,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ClaimApplication &&
+          other.claimId == this.claimId &&
+          other.operationType == this.operationType &&
+          other.resultEntityType == this.resultEntityType &&
+          other.resultEntityId == this.resultEntityId &&
+          other.appliedAt == this.appliedAt &&
+          other.payloadJson == this.payloadJson);
+}
+
+class ClaimApplicationsCompanion extends UpdateCompanion<ClaimApplication> {
+  final Value<String> claimId;
+  final Value<String> operationType;
+  final Value<String> resultEntityType;
+  final Value<String> resultEntityId;
+  final Value<DateTime> appliedAt;
+  final Value<String> payloadJson;
+  final Value<int> rowid;
+  const ClaimApplicationsCompanion({
+    this.claimId = const Value.absent(),
+    this.operationType = const Value.absent(),
+    this.resultEntityType = const Value.absent(),
+    this.resultEntityId = const Value.absent(),
+    this.appliedAt = const Value.absent(),
+    this.payloadJson = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ClaimApplicationsCompanion.insert({
+    required String claimId,
+    required String operationType,
+    required String resultEntityType,
+    required String resultEntityId,
+    required DateTime appliedAt,
+    required String payloadJson,
+    this.rowid = const Value.absent(),
+  }) : claimId = Value(claimId),
+       operationType = Value(operationType),
+       resultEntityType = Value(resultEntityType),
+       resultEntityId = Value(resultEntityId),
+       appliedAt = Value(appliedAt),
+       payloadJson = Value(payloadJson);
+  static Insertable<ClaimApplication> custom({
+    Expression<String>? claimId,
+    Expression<String>? operationType,
+    Expression<String>? resultEntityType,
+    Expression<String>? resultEntityId,
+    Expression<DateTime>? appliedAt,
+    Expression<String>? payloadJson,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (claimId != null) 'claim_id': claimId,
+      if (operationType != null) 'operation_type': operationType,
+      if (resultEntityType != null) 'result_entity_type': resultEntityType,
+      if (resultEntityId != null) 'result_entity_id': resultEntityId,
+      if (appliedAt != null) 'applied_at': appliedAt,
+      if (payloadJson != null) 'payload_json': payloadJson,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ClaimApplicationsCompanion copyWith({
+    Value<String>? claimId,
+    Value<String>? operationType,
+    Value<String>? resultEntityType,
+    Value<String>? resultEntityId,
+    Value<DateTime>? appliedAt,
+    Value<String>? payloadJson,
+    Value<int>? rowid,
+  }) {
+    return ClaimApplicationsCompanion(
+      claimId: claimId ?? this.claimId,
+      operationType: operationType ?? this.operationType,
+      resultEntityType: resultEntityType ?? this.resultEntityType,
+      resultEntityId: resultEntityId ?? this.resultEntityId,
+      appliedAt: appliedAt ?? this.appliedAt,
+      payloadJson: payloadJson ?? this.payloadJson,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (claimId.present) {
+      map['claim_id'] = Variable<String>(claimId.value);
+    }
+    if (operationType.present) {
+      map['operation_type'] = Variable<String>(operationType.value);
+    }
+    if (resultEntityType.present) {
+      map['result_entity_type'] = Variable<String>(resultEntityType.value);
+    }
+    if (resultEntityId.present) {
+      map['result_entity_id'] = Variable<String>(resultEntityId.value);
+    }
+    if (appliedAt.present) {
+      map['applied_at'] = Variable<DateTime>(appliedAt.value);
+    }
+    if (payloadJson.present) {
+      map['payload_json'] = Variable<String>(payloadJson.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ClaimApplicationsCompanion(')
+          ..write('claimId: $claimId, ')
+          ..write('operationType: $operationType, ')
+          ..write('resultEntityType: $resultEntityType, ')
+          ..write('resultEntityId: $resultEntityId, ')
+          ..write('appliedAt: $appliedAt, ')
+          ..write('payloadJson: $payloadJson, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $DuplicateCandidatesTable extends DuplicateCandidates
+    with TableInfo<$DuplicateCandidatesTable, DuplicateCandidate> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $DuplicateCandidatesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _personAIdMeta = const VerificationMeta(
+    'personAId',
+  );
+  @override
+  late final GeneratedColumn<String> personAId = GeneratedColumn<String>(
+    'person_a_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES persons (id)',
+    ),
+  );
+  static const VerificationMeta _personBIdMeta = const VerificationMeta(
+    'personBId',
+  );
+  @override
+  late final GeneratedColumn<String> personBId = GeneratedColumn<String>(
+    'person_b_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES persons (id)',
+    ),
+  );
+  static const VerificationMeta _scoreMeta = const VerificationMeta('score');
+  @override
+  late final GeneratedColumn<int> score = GeneratedColumn<int>(
+    'score',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _reasonCodesJsonMeta = const VerificationMeta(
+    'reasonCodesJson',
+  );
+  @override
+  late final GeneratedColumn<String> reasonCodesJson = GeneratedColumn<String>(
+    'reason_codes_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _detectorVersionMeta = const VerificationMeta(
+    'detectorVersion',
+  );
+  @override
+  late final GeneratedColumn<int> detectorVersion = GeneratedColumn<int>(
+    'detector_version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _lastEvaluatedAtMeta = const VerificationMeta(
+    'lastEvaluatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> lastEvaluatedAt =
+      GeneratedColumn<DateTime>(
+        'last_evaluated_at',
+        aliasedName,
+        false,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: true,
+      );
+  static const VerificationMeta _resolvedAtMeta = const VerificationMeta(
+    'resolvedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> resolvedAt = GeneratedColumn<DateTime>(
+    'resolved_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _mergedIntoPersonIdMeta =
+      const VerificationMeta('mergedIntoPersonId');
+  @override
+  late final GeneratedColumn<String> mergedIntoPersonId =
+      GeneratedColumn<String>(
+        'merged_into_person_id',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'REFERENCES persons (id)',
+        ),
+      );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _modifiedAtMeta = const VerificationMeta(
+    'modifiedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> modifiedAt = GeneratedColumn<DateTime>(
+    'modified_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    personAId,
+    personBId,
+    score,
+    reasonCodesJson,
+    detectorVersion,
+    status,
+    lastEvaluatedAt,
+    resolvedAt,
+    mergedIntoPersonId,
+    createdAt,
+    modifiedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'duplicate_candidates';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<DuplicateCandidate> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('person_a_id')) {
+      context.handle(
+        _personAIdMeta,
+        personAId.isAcceptableOrUnknown(data['person_a_id']!, _personAIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_personAIdMeta);
+    }
+    if (data.containsKey('person_b_id')) {
+      context.handle(
+        _personBIdMeta,
+        personBId.isAcceptableOrUnknown(data['person_b_id']!, _personBIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_personBIdMeta);
+    }
+    if (data.containsKey('score')) {
+      context.handle(
+        _scoreMeta,
+        score.isAcceptableOrUnknown(data['score']!, _scoreMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_scoreMeta);
+    }
+    if (data.containsKey('reason_codes_json')) {
+      context.handle(
+        _reasonCodesJsonMeta,
+        reasonCodesJson.isAcceptableOrUnknown(
+          data['reason_codes_json']!,
+          _reasonCodesJsonMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_reasonCodesJsonMeta);
+    }
+    if (data.containsKey('detector_version')) {
+      context.handle(
+        _detectorVersionMeta,
+        detectorVersion.isAcceptableOrUnknown(
+          data['detector_version']!,
+          _detectorVersionMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_detectorVersionMeta);
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_statusMeta);
+    }
+    if (data.containsKey('last_evaluated_at')) {
+      context.handle(
+        _lastEvaluatedAtMeta,
+        lastEvaluatedAt.isAcceptableOrUnknown(
+          data['last_evaluated_at']!,
+          _lastEvaluatedAtMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_lastEvaluatedAtMeta);
+    }
+    if (data.containsKey('resolved_at')) {
+      context.handle(
+        _resolvedAtMeta,
+        resolvedAt.isAcceptableOrUnknown(data['resolved_at']!, _resolvedAtMeta),
+      );
+    }
+    if (data.containsKey('merged_into_person_id')) {
+      context.handle(
+        _mergedIntoPersonIdMeta,
+        mergedIntoPersonId.isAcceptableOrUnknown(
+          data['merged_into_person_id']!,
+          _mergedIntoPersonIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('modified_at')) {
+      context.handle(
+        _modifiedAtMeta,
+        modifiedAt.isAcceptableOrUnknown(data['modified_at']!, _modifiedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_modifiedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  DuplicateCandidate map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return DuplicateCandidate(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      personAId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}person_a_id'],
+      )!,
+      personBId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}person_b_id'],
+      )!,
+      score: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}score'],
+      )!,
+      reasonCodesJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}reason_codes_json'],
+      )!,
+      detectorVersion: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}detector_version'],
+      )!,
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}status'],
+      )!,
+      lastEvaluatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}last_evaluated_at'],
+      )!,
+      resolvedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}resolved_at'],
+      ),
+      mergedIntoPersonId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}merged_into_person_id'],
+      ),
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      modifiedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}modified_at'],
+      )!,
+    );
+  }
+
+  @override
+  $DuplicateCandidatesTable createAlias(String alias) {
+    return $DuplicateCandidatesTable(attachedDatabase, alias);
+  }
+}
+
+class DuplicateCandidate extends DataClass
+    implements Insertable<DuplicateCandidate> {
+  final String id;
+  final String personAId;
+  final String personBId;
+  final int score;
+  final String reasonCodesJson;
+  final int detectorVersion;
+  final String status;
+  final DateTime lastEvaluatedAt;
+  final DateTime? resolvedAt;
+  final String? mergedIntoPersonId;
+  final DateTime createdAt;
+  final DateTime modifiedAt;
+  const DuplicateCandidate({
+    required this.id,
+    required this.personAId,
+    required this.personBId,
+    required this.score,
+    required this.reasonCodesJson,
+    required this.detectorVersion,
+    required this.status,
+    required this.lastEvaluatedAt,
+    this.resolvedAt,
+    this.mergedIntoPersonId,
+    required this.createdAt,
+    required this.modifiedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['person_a_id'] = Variable<String>(personAId);
+    map['person_b_id'] = Variable<String>(personBId);
+    map['score'] = Variable<int>(score);
+    map['reason_codes_json'] = Variable<String>(reasonCodesJson);
+    map['detector_version'] = Variable<int>(detectorVersion);
+    map['status'] = Variable<String>(status);
+    map['last_evaluated_at'] = Variable<DateTime>(lastEvaluatedAt);
+    if (!nullToAbsent || resolvedAt != null) {
+      map['resolved_at'] = Variable<DateTime>(resolvedAt);
+    }
+    if (!nullToAbsent || mergedIntoPersonId != null) {
+      map['merged_into_person_id'] = Variable<String>(mergedIntoPersonId);
+    }
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['modified_at'] = Variable<DateTime>(modifiedAt);
+    return map;
+  }
+
+  DuplicateCandidatesCompanion toCompanion(bool nullToAbsent) {
+    return DuplicateCandidatesCompanion(
+      id: Value(id),
+      personAId: Value(personAId),
+      personBId: Value(personBId),
+      score: Value(score),
+      reasonCodesJson: Value(reasonCodesJson),
+      detectorVersion: Value(detectorVersion),
+      status: Value(status),
+      lastEvaluatedAt: Value(lastEvaluatedAt),
+      resolvedAt: resolvedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(resolvedAt),
+      mergedIntoPersonId: mergedIntoPersonId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(mergedIntoPersonId),
+      createdAt: Value(createdAt),
+      modifiedAt: Value(modifiedAt),
+    );
+  }
+
+  factory DuplicateCandidate.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return DuplicateCandidate(
+      id: serializer.fromJson<String>(json['id']),
+      personAId: serializer.fromJson<String>(json['personAId']),
+      personBId: serializer.fromJson<String>(json['personBId']),
+      score: serializer.fromJson<int>(json['score']),
+      reasonCodesJson: serializer.fromJson<String>(json['reasonCodesJson']),
+      detectorVersion: serializer.fromJson<int>(json['detectorVersion']),
+      status: serializer.fromJson<String>(json['status']),
+      lastEvaluatedAt: serializer.fromJson<DateTime>(json['lastEvaluatedAt']),
+      resolvedAt: serializer.fromJson<DateTime?>(json['resolvedAt']),
+      mergedIntoPersonId: serializer.fromJson<String?>(
+        json['mergedIntoPersonId'],
+      ),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      modifiedAt: serializer.fromJson<DateTime>(json['modifiedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'personAId': serializer.toJson<String>(personAId),
+      'personBId': serializer.toJson<String>(personBId),
+      'score': serializer.toJson<int>(score),
+      'reasonCodesJson': serializer.toJson<String>(reasonCodesJson),
+      'detectorVersion': serializer.toJson<int>(detectorVersion),
+      'status': serializer.toJson<String>(status),
+      'lastEvaluatedAt': serializer.toJson<DateTime>(lastEvaluatedAt),
+      'resolvedAt': serializer.toJson<DateTime?>(resolvedAt),
+      'mergedIntoPersonId': serializer.toJson<String?>(mergedIntoPersonId),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'modifiedAt': serializer.toJson<DateTime>(modifiedAt),
+    };
+  }
+
+  DuplicateCandidate copyWith({
+    String? id,
+    String? personAId,
+    String? personBId,
+    int? score,
+    String? reasonCodesJson,
+    int? detectorVersion,
+    String? status,
+    DateTime? lastEvaluatedAt,
+    Value<DateTime?> resolvedAt = const Value.absent(),
+    Value<String?> mergedIntoPersonId = const Value.absent(),
+    DateTime? createdAt,
+    DateTime? modifiedAt,
+  }) => DuplicateCandidate(
+    id: id ?? this.id,
+    personAId: personAId ?? this.personAId,
+    personBId: personBId ?? this.personBId,
+    score: score ?? this.score,
+    reasonCodesJson: reasonCodesJson ?? this.reasonCodesJson,
+    detectorVersion: detectorVersion ?? this.detectorVersion,
+    status: status ?? this.status,
+    lastEvaluatedAt: lastEvaluatedAt ?? this.lastEvaluatedAt,
+    resolvedAt: resolvedAt.present ? resolvedAt.value : this.resolvedAt,
+    mergedIntoPersonId: mergedIntoPersonId.present
+        ? mergedIntoPersonId.value
+        : this.mergedIntoPersonId,
+    createdAt: createdAt ?? this.createdAt,
+    modifiedAt: modifiedAt ?? this.modifiedAt,
+  );
+  DuplicateCandidate copyWithCompanion(DuplicateCandidatesCompanion data) {
+    return DuplicateCandidate(
+      id: data.id.present ? data.id.value : this.id,
+      personAId: data.personAId.present ? data.personAId.value : this.personAId,
+      personBId: data.personBId.present ? data.personBId.value : this.personBId,
+      score: data.score.present ? data.score.value : this.score,
+      reasonCodesJson: data.reasonCodesJson.present
+          ? data.reasonCodesJson.value
+          : this.reasonCodesJson,
+      detectorVersion: data.detectorVersion.present
+          ? data.detectorVersion.value
+          : this.detectorVersion,
+      status: data.status.present ? data.status.value : this.status,
+      lastEvaluatedAt: data.lastEvaluatedAt.present
+          ? data.lastEvaluatedAt.value
+          : this.lastEvaluatedAt,
+      resolvedAt: data.resolvedAt.present
+          ? data.resolvedAt.value
+          : this.resolvedAt,
+      mergedIntoPersonId: data.mergedIntoPersonId.present
+          ? data.mergedIntoPersonId.value
+          : this.mergedIntoPersonId,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      modifiedAt: data.modifiedAt.present
+          ? data.modifiedAt.value
+          : this.modifiedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DuplicateCandidate(')
+          ..write('id: $id, ')
+          ..write('personAId: $personAId, ')
+          ..write('personBId: $personBId, ')
+          ..write('score: $score, ')
+          ..write('reasonCodesJson: $reasonCodesJson, ')
+          ..write('detectorVersion: $detectorVersion, ')
+          ..write('status: $status, ')
+          ..write('lastEvaluatedAt: $lastEvaluatedAt, ')
+          ..write('resolvedAt: $resolvedAt, ')
+          ..write('mergedIntoPersonId: $mergedIntoPersonId, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    personAId,
+    personBId,
+    score,
+    reasonCodesJson,
+    detectorVersion,
+    status,
+    lastEvaluatedAt,
+    resolvedAt,
+    mergedIntoPersonId,
+    createdAt,
+    modifiedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is DuplicateCandidate &&
+          other.id == this.id &&
+          other.personAId == this.personAId &&
+          other.personBId == this.personBId &&
+          other.score == this.score &&
+          other.reasonCodesJson == this.reasonCodesJson &&
+          other.detectorVersion == this.detectorVersion &&
+          other.status == this.status &&
+          other.lastEvaluatedAt == this.lastEvaluatedAt &&
+          other.resolvedAt == this.resolvedAt &&
+          other.mergedIntoPersonId == this.mergedIntoPersonId &&
+          other.createdAt == this.createdAt &&
+          other.modifiedAt == this.modifiedAt);
+}
+
+class DuplicateCandidatesCompanion extends UpdateCompanion<DuplicateCandidate> {
+  final Value<String> id;
+  final Value<String> personAId;
+  final Value<String> personBId;
+  final Value<int> score;
+  final Value<String> reasonCodesJson;
+  final Value<int> detectorVersion;
+  final Value<String> status;
+  final Value<DateTime> lastEvaluatedAt;
+  final Value<DateTime?> resolvedAt;
+  final Value<String?> mergedIntoPersonId;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> modifiedAt;
+  final Value<int> rowid;
+  const DuplicateCandidatesCompanion({
+    this.id = const Value.absent(),
+    this.personAId = const Value.absent(),
+    this.personBId = const Value.absent(),
+    this.score = const Value.absent(),
+    this.reasonCodesJson = const Value.absent(),
+    this.detectorVersion = const Value.absent(),
+    this.status = const Value.absent(),
+    this.lastEvaluatedAt = const Value.absent(),
+    this.resolvedAt = const Value.absent(),
+    this.mergedIntoPersonId = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.modifiedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  DuplicateCandidatesCompanion.insert({
+    required String id,
+    required String personAId,
+    required String personBId,
+    required int score,
+    required String reasonCodesJson,
+    required int detectorVersion,
+    required String status,
+    required DateTime lastEvaluatedAt,
+    this.resolvedAt = const Value.absent(),
+    this.mergedIntoPersonId = const Value.absent(),
+    required DateTime createdAt,
+    required DateTime modifiedAt,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       personAId = Value(personAId),
+       personBId = Value(personBId),
+       score = Value(score),
+       reasonCodesJson = Value(reasonCodesJson),
+       detectorVersion = Value(detectorVersion),
+       status = Value(status),
+       lastEvaluatedAt = Value(lastEvaluatedAt),
+       createdAt = Value(createdAt),
+       modifiedAt = Value(modifiedAt);
+  static Insertable<DuplicateCandidate> custom({
+    Expression<String>? id,
+    Expression<String>? personAId,
+    Expression<String>? personBId,
+    Expression<int>? score,
+    Expression<String>? reasonCodesJson,
+    Expression<int>? detectorVersion,
+    Expression<String>? status,
+    Expression<DateTime>? lastEvaluatedAt,
+    Expression<DateTime>? resolvedAt,
+    Expression<String>? mergedIntoPersonId,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? modifiedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (personAId != null) 'person_a_id': personAId,
+      if (personBId != null) 'person_b_id': personBId,
+      if (score != null) 'score': score,
+      if (reasonCodesJson != null) 'reason_codes_json': reasonCodesJson,
+      if (detectorVersion != null) 'detector_version': detectorVersion,
+      if (status != null) 'status': status,
+      if (lastEvaluatedAt != null) 'last_evaluated_at': lastEvaluatedAt,
+      if (resolvedAt != null) 'resolved_at': resolvedAt,
+      if (mergedIntoPersonId != null)
+        'merged_into_person_id': mergedIntoPersonId,
+      if (createdAt != null) 'created_at': createdAt,
+      if (modifiedAt != null) 'modified_at': modifiedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  DuplicateCandidatesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? personAId,
+    Value<String>? personBId,
+    Value<int>? score,
+    Value<String>? reasonCodesJson,
+    Value<int>? detectorVersion,
+    Value<String>? status,
+    Value<DateTime>? lastEvaluatedAt,
+    Value<DateTime?>? resolvedAt,
+    Value<String?>? mergedIntoPersonId,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? modifiedAt,
+    Value<int>? rowid,
+  }) {
+    return DuplicateCandidatesCompanion(
+      id: id ?? this.id,
+      personAId: personAId ?? this.personAId,
+      personBId: personBId ?? this.personBId,
+      score: score ?? this.score,
+      reasonCodesJson: reasonCodesJson ?? this.reasonCodesJson,
+      detectorVersion: detectorVersion ?? this.detectorVersion,
+      status: status ?? this.status,
+      lastEvaluatedAt: lastEvaluatedAt ?? this.lastEvaluatedAt,
+      resolvedAt: resolvedAt ?? this.resolvedAt,
+      mergedIntoPersonId: mergedIntoPersonId ?? this.mergedIntoPersonId,
+      createdAt: createdAt ?? this.createdAt,
+      modifiedAt: modifiedAt ?? this.modifiedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (personAId.present) {
+      map['person_a_id'] = Variable<String>(personAId.value);
+    }
+    if (personBId.present) {
+      map['person_b_id'] = Variable<String>(personBId.value);
+    }
+    if (score.present) {
+      map['score'] = Variable<int>(score.value);
+    }
+    if (reasonCodesJson.present) {
+      map['reason_codes_json'] = Variable<String>(reasonCodesJson.value);
+    }
+    if (detectorVersion.present) {
+      map['detector_version'] = Variable<int>(detectorVersion.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (lastEvaluatedAt.present) {
+      map['last_evaluated_at'] = Variable<DateTime>(lastEvaluatedAt.value);
+    }
+    if (resolvedAt.present) {
+      map['resolved_at'] = Variable<DateTime>(resolvedAt.value);
+    }
+    if (mergedIntoPersonId.present) {
+      map['merged_into_person_id'] = Variable<String>(mergedIntoPersonId.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (modifiedAt.present) {
+      map['modified_at'] = Variable<DateTime>(modifiedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DuplicateCandidatesCompanion(')
+          ..write('id: $id, ')
+          ..write('personAId: $personAId, ')
+          ..write('personBId: $personBId, ')
+          ..write('score: $score, ')
+          ..write('reasonCodesJson: $reasonCodesJson, ')
+          ..write('detectorVersion: $detectorVersion, ')
+          ..write('status: $status, ')
+          ..write('lastEvaluatedAt: $lastEvaluatedAt, ')
+          ..write('resolvedAt: $resolvedAt, ')
+          ..write('mergedIntoPersonId: $mergedIntoPersonId, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('modifiedAt: $modifiedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $AuditEntriesTable extends AuditEntries
+    with TableInfo<$AuditEntriesTable, AuditEntry> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AuditEntriesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<String> type = GeneratedColumn<String>(
+    'type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _originMeta = const VerificationMeta('origin');
+  @override
+  late final GeneratedColumn<String> origin = GeneratedColumn<String>(
+    'origin',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _occurredAtMeta = const VerificationMeta(
+    'occurredAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> occurredAt = GeneratedColumn<DateTime>(
+    'occurred_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _payloadVersionMeta = const VerificationMeta(
+    'payloadVersion',
+  );
+  @override
+  late final GeneratedColumn<int> payloadVersion = GeneratedColumn<int>(
+    'payload_version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _payloadJsonMeta = const VerificationMeta(
+    'payloadJson',
+  );
+  @override
+  late final GeneratedColumn<String> payloadJson = GeneratedColumn<String>(
+    'payload_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    type,
+    origin,
+    occurredAt,
+    payloadVersion,
+    payloadJson,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'audit_entries';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<AuditEntry> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+        _typeMeta,
+        type.isAcceptableOrUnknown(data['type']!, _typeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
+    if (data.containsKey('origin')) {
+      context.handle(
+        _originMeta,
+        origin.isAcceptableOrUnknown(data['origin']!, _originMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_originMeta);
+    }
+    if (data.containsKey('occurred_at')) {
+      context.handle(
+        _occurredAtMeta,
+        occurredAt.isAcceptableOrUnknown(data['occurred_at']!, _occurredAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_occurredAtMeta);
+    }
+    if (data.containsKey('payload_version')) {
+      context.handle(
+        _payloadVersionMeta,
+        payloadVersion.isAcceptableOrUnknown(
+          data['payload_version']!,
+          _payloadVersionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('payload_json')) {
+      context.handle(
+        _payloadJsonMeta,
+        payloadJson.isAcceptableOrUnknown(
+          data['payload_json']!,
+          _payloadJsonMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_payloadJsonMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  AuditEntry map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return AuditEntry(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      type: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}type'],
+      )!,
+      origin: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}origin'],
+      )!,
+      occurredAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}occurred_at'],
+      )!,
+      payloadVersion: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}payload_version'],
+      )!,
+      payloadJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}payload_json'],
+      )!,
+    );
+  }
+
+  @override
+  $AuditEntriesTable createAlias(String alias) {
+    return $AuditEntriesTable(attachedDatabase, alias);
+  }
+}
+
+class AuditEntry extends DataClass implements Insertable<AuditEntry> {
+  final String id;
+  final String type;
+  final String origin;
+  final DateTime occurredAt;
+  final int payloadVersion;
+  final String payloadJson;
+  const AuditEntry({
+    required this.id,
+    required this.type,
+    required this.origin,
+    required this.occurredAt,
+    required this.payloadVersion,
+    required this.payloadJson,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['type'] = Variable<String>(type);
+    map['origin'] = Variable<String>(origin);
+    map['occurred_at'] = Variable<DateTime>(occurredAt);
+    map['payload_version'] = Variable<int>(payloadVersion);
+    map['payload_json'] = Variable<String>(payloadJson);
+    return map;
+  }
+
+  AuditEntriesCompanion toCompanion(bool nullToAbsent) {
+    return AuditEntriesCompanion(
+      id: Value(id),
+      type: Value(type),
+      origin: Value(origin),
+      occurredAt: Value(occurredAt),
+      payloadVersion: Value(payloadVersion),
+      payloadJson: Value(payloadJson),
+    );
+  }
+
+  factory AuditEntry.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return AuditEntry(
+      id: serializer.fromJson<String>(json['id']),
+      type: serializer.fromJson<String>(json['type']),
+      origin: serializer.fromJson<String>(json['origin']),
+      occurredAt: serializer.fromJson<DateTime>(json['occurredAt']),
+      payloadVersion: serializer.fromJson<int>(json['payloadVersion']),
+      payloadJson: serializer.fromJson<String>(json['payloadJson']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'type': serializer.toJson<String>(type),
+      'origin': serializer.toJson<String>(origin),
+      'occurredAt': serializer.toJson<DateTime>(occurredAt),
+      'payloadVersion': serializer.toJson<int>(payloadVersion),
+      'payloadJson': serializer.toJson<String>(payloadJson),
+    };
+  }
+
+  AuditEntry copyWith({
+    String? id,
+    String? type,
+    String? origin,
+    DateTime? occurredAt,
+    int? payloadVersion,
+    String? payloadJson,
+  }) => AuditEntry(
+    id: id ?? this.id,
+    type: type ?? this.type,
+    origin: origin ?? this.origin,
+    occurredAt: occurredAt ?? this.occurredAt,
+    payloadVersion: payloadVersion ?? this.payloadVersion,
+    payloadJson: payloadJson ?? this.payloadJson,
+  );
+  AuditEntry copyWithCompanion(AuditEntriesCompanion data) {
+    return AuditEntry(
+      id: data.id.present ? data.id.value : this.id,
+      type: data.type.present ? data.type.value : this.type,
+      origin: data.origin.present ? data.origin.value : this.origin,
+      occurredAt: data.occurredAt.present
+          ? data.occurredAt.value
+          : this.occurredAt,
+      payloadVersion: data.payloadVersion.present
+          ? data.payloadVersion.value
+          : this.payloadVersion,
+      payloadJson: data.payloadJson.present
+          ? data.payloadJson.value
+          : this.payloadJson,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AuditEntry(')
+          ..write('id: $id, ')
+          ..write('type: $type, ')
+          ..write('origin: $origin, ')
+          ..write('occurredAt: $occurredAt, ')
+          ..write('payloadVersion: $payloadVersion, ')
+          ..write('payloadJson: $payloadJson')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, type, origin, occurredAt, payloadVersion, payloadJson);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is AuditEntry &&
+          other.id == this.id &&
+          other.type == this.type &&
+          other.origin == this.origin &&
+          other.occurredAt == this.occurredAt &&
+          other.payloadVersion == this.payloadVersion &&
+          other.payloadJson == this.payloadJson);
+}
+
+class AuditEntriesCompanion extends UpdateCompanion<AuditEntry> {
+  final Value<String> id;
+  final Value<String> type;
+  final Value<String> origin;
+  final Value<DateTime> occurredAt;
+  final Value<int> payloadVersion;
+  final Value<String> payloadJson;
+  final Value<int> rowid;
+  const AuditEntriesCompanion({
+    this.id = const Value.absent(),
+    this.type = const Value.absent(),
+    this.origin = const Value.absent(),
+    this.occurredAt = const Value.absent(),
+    this.payloadVersion = const Value.absent(),
+    this.payloadJson = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  AuditEntriesCompanion.insert({
+    required String id,
+    required String type,
+    required String origin,
+    required DateTime occurredAt,
+    this.payloadVersion = const Value.absent(),
+    required String payloadJson,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       type = Value(type),
+       origin = Value(origin),
+       occurredAt = Value(occurredAt),
+       payloadJson = Value(payloadJson);
+  static Insertable<AuditEntry> custom({
+    Expression<String>? id,
+    Expression<String>? type,
+    Expression<String>? origin,
+    Expression<DateTime>? occurredAt,
+    Expression<int>? payloadVersion,
+    Expression<String>? payloadJson,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (type != null) 'type': type,
+      if (origin != null) 'origin': origin,
+      if (occurredAt != null) 'occurred_at': occurredAt,
+      if (payloadVersion != null) 'payload_version': payloadVersion,
+      if (payloadJson != null) 'payload_json': payloadJson,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  AuditEntriesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? type,
+    Value<String>? origin,
+    Value<DateTime>? occurredAt,
+    Value<int>? payloadVersion,
+    Value<String>? payloadJson,
+    Value<int>? rowid,
+  }) {
+    return AuditEntriesCompanion(
+      id: id ?? this.id,
+      type: type ?? this.type,
+      origin: origin ?? this.origin,
+      occurredAt: occurredAt ?? this.occurredAt,
+      payloadVersion: payloadVersion ?? this.payloadVersion,
+      payloadJson: payloadJson ?? this.payloadJson,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
+    if (origin.present) {
+      map['origin'] = Variable<String>(origin.value);
+    }
+    if (occurredAt.present) {
+      map['occurred_at'] = Variable<DateTime>(occurredAt.value);
+    }
+    if (payloadVersion.present) {
+      map['payload_version'] = Variable<int>(payloadVersion.value);
+    }
+    if (payloadJson.present) {
+      map['payload_json'] = Variable<String>(payloadJson.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AuditEntriesCompanion(')
+          ..write('id: $id, ')
+          ..write('type: $type, ')
+          ..write('origin: $origin, ')
+          ..write('occurredAt: $occurredAt, ')
+          ..write('payloadVersion: $payloadVersion, ')
+          ..write('payloadJson: $payloadJson, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $AuditTargetsTable extends AuditTargets
+    with TableInfo<$AuditTargetsTable, AuditTarget> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AuditTargetsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _auditEntryIdMeta = const VerificationMeta(
+    'auditEntryId',
+  );
+  @override
+  late final GeneratedColumn<String> auditEntryId = GeneratedColumn<String>(
+    'audit_entry_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES audit_entries (id)',
+    ),
+  );
+  static const VerificationMeta _entityTypeMeta = const VerificationMeta(
+    'entityType',
+  );
+  @override
+  late final GeneratedColumn<String> entityType = GeneratedColumn<String>(
+    'entity_type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _entityIdMeta = const VerificationMeta(
+    'entityId',
+  );
+  @override
+  late final GeneratedColumn<String> entityId = GeneratedColumn<String>(
+    'entity_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _roleMeta = const VerificationMeta('role');
+  @override
+  late final GeneratedColumn<String> role = GeneratedColumn<String>(
+    'role',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    auditEntryId,
+    entityType,
+    entityId,
+    role,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'audit_targets';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<AuditTarget> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('audit_entry_id')) {
+      context.handle(
+        _auditEntryIdMeta,
+        auditEntryId.isAcceptableOrUnknown(
+          data['audit_entry_id']!,
+          _auditEntryIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_auditEntryIdMeta);
+    }
+    if (data.containsKey('entity_type')) {
+      context.handle(
+        _entityTypeMeta,
+        entityType.isAcceptableOrUnknown(data['entity_type']!, _entityTypeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_entityTypeMeta);
+    }
+    if (data.containsKey('entity_id')) {
+      context.handle(
+        _entityIdMeta,
+        entityId.isAcceptableOrUnknown(data['entity_id']!, _entityIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_entityIdMeta);
+    }
+    if (data.containsKey('role')) {
+      context.handle(
+        _roleMeta,
+        role.isAcceptableOrUnknown(data['role']!, _roleMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_roleMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  AuditTarget map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return AuditTarget(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      auditEntryId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}audit_entry_id'],
+      )!,
+      entityType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}entity_type'],
+      )!,
+      entityId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}entity_id'],
+      )!,
+      role: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}role'],
+      )!,
+    );
+  }
+
+  @override
+  $AuditTargetsTable createAlias(String alias) {
+    return $AuditTargetsTable(attachedDatabase, alias);
+  }
+}
+
+class AuditTarget extends DataClass implements Insertable<AuditTarget> {
+  final int id;
+  final String auditEntryId;
+  final String entityType;
+  final String entityId;
+  final String role;
+  const AuditTarget({
+    required this.id,
+    required this.auditEntryId,
+    required this.entityType,
+    required this.entityId,
+    required this.role,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['audit_entry_id'] = Variable<String>(auditEntryId);
+    map['entity_type'] = Variable<String>(entityType);
+    map['entity_id'] = Variable<String>(entityId);
+    map['role'] = Variable<String>(role);
+    return map;
+  }
+
+  AuditTargetsCompanion toCompanion(bool nullToAbsent) {
+    return AuditTargetsCompanion(
+      id: Value(id),
+      auditEntryId: Value(auditEntryId),
+      entityType: Value(entityType),
+      entityId: Value(entityId),
+      role: Value(role),
+    );
+  }
+
+  factory AuditTarget.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return AuditTarget(
+      id: serializer.fromJson<int>(json['id']),
+      auditEntryId: serializer.fromJson<String>(json['auditEntryId']),
+      entityType: serializer.fromJson<String>(json['entityType']),
+      entityId: serializer.fromJson<String>(json['entityId']),
+      role: serializer.fromJson<String>(json['role']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'auditEntryId': serializer.toJson<String>(auditEntryId),
+      'entityType': serializer.toJson<String>(entityType),
+      'entityId': serializer.toJson<String>(entityId),
+      'role': serializer.toJson<String>(role),
+    };
+  }
+
+  AuditTarget copyWith({
+    int? id,
+    String? auditEntryId,
+    String? entityType,
+    String? entityId,
+    String? role,
+  }) => AuditTarget(
+    id: id ?? this.id,
+    auditEntryId: auditEntryId ?? this.auditEntryId,
+    entityType: entityType ?? this.entityType,
+    entityId: entityId ?? this.entityId,
+    role: role ?? this.role,
+  );
+  AuditTarget copyWithCompanion(AuditTargetsCompanion data) {
+    return AuditTarget(
+      id: data.id.present ? data.id.value : this.id,
+      auditEntryId: data.auditEntryId.present
+          ? data.auditEntryId.value
+          : this.auditEntryId,
+      entityType: data.entityType.present
+          ? data.entityType.value
+          : this.entityType,
+      entityId: data.entityId.present ? data.entityId.value : this.entityId,
+      role: data.role.present ? data.role.value : this.role,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AuditTarget(')
+          ..write('id: $id, ')
+          ..write('auditEntryId: $auditEntryId, ')
+          ..write('entityType: $entityType, ')
+          ..write('entityId: $entityId, ')
+          ..write('role: $role')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, auditEntryId, entityType, entityId, role);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is AuditTarget &&
+          other.id == this.id &&
+          other.auditEntryId == this.auditEntryId &&
+          other.entityType == this.entityType &&
+          other.entityId == this.entityId &&
+          other.role == this.role);
+}
+
+class AuditTargetsCompanion extends UpdateCompanion<AuditTarget> {
+  final Value<int> id;
+  final Value<String> auditEntryId;
+  final Value<String> entityType;
+  final Value<String> entityId;
+  final Value<String> role;
+  const AuditTargetsCompanion({
+    this.id = const Value.absent(),
+    this.auditEntryId = const Value.absent(),
+    this.entityType = const Value.absent(),
+    this.entityId = const Value.absent(),
+    this.role = const Value.absent(),
+  });
+  AuditTargetsCompanion.insert({
+    this.id = const Value.absent(),
+    required String auditEntryId,
+    required String entityType,
+    required String entityId,
+    required String role,
+  }) : auditEntryId = Value(auditEntryId),
+       entityType = Value(entityType),
+       entityId = Value(entityId),
+       role = Value(role);
+  static Insertable<AuditTarget> custom({
+    Expression<int>? id,
+    Expression<String>? auditEntryId,
+    Expression<String>? entityType,
+    Expression<String>? entityId,
+    Expression<String>? role,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (auditEntryId != null) 'audit_entry_id': auditEntryId,
+      if (entityType != null) 'entity_type': entityType,
+      if (entityId != null) 'entity_id': entityId,
+      if (role != null) 'role': role,
+    });
+  }
+
+  AuditTargetsCompanion copyWith({
+    Value<int>? id,
+    Value<String>? auditEntryId,
+    Value<String>? entityType,
+    Value<String>? entityId,
+    Value<String>? role,
+  }) {
+    return AuditTargetsCompanion(
+      id: id ?? this.id,
+      auditEntryId: auditEntryId ?? this.auditEntryId,
+      entityType: entityType ?? this.entityType,
+      entityId: entityId ?? this.entityId,
+      role: role ?? this.role,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (auditEntryId.present) {
+      map['audit_entry_id'] = Variable<String>(auditEntryId.value);
+    }
+    if (entityType.present) {
+      map['entity_type'] = Variable<String>(entityType.value);
+    }
+    if (entityId.present) {
+      map['entity_id'] = Variable<String>(entityId.value);
+    }
+    if (role.present) {
+      map['role'] = Variable<String>(role.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AuditTargetsCompanion(')
+          ..write('id: $id, ')
+          ..write('auditEntryId: $auditEntryId, ')
+          ..write('entityType: $entityType, ')
+          ..write('entityId: $entityId, ')
+          ..write('role: $role')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -7188,6 +12245,18 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $EventsTable events = $EventsTable(this);
   late final $EventParticipantsTable eventParticipants =
       $EventParticipantsTable(this);
+  late final $SourcesTable sources = $SourcesTable(this);
+  late final $MediaAssetsTable mediaAssets = $MediaAssetsTable(this);
+  late final $SourceMediaLinksTable sourceMediaLinks = $SourceMediaLinksTable(
+    this,
+  );
+  late final $ClaimsTable claims = $ClaimsTable(this);
+  late final $ClaimApplicationsTable claimApplications =
+      $ClaimApplicationsTable(this);
+  late final $DuplicateCandidatesTable duplicateCandidates =
+      $DuplicateCandidatesTable(this);
+  late final $AuditEntriesTable auditEntries = $AuditEntriesTable(this);
+  late final $AuditTargetsTable auditTargets = $AuditTargetsTable(this);
   late final Index personNamesPersonId = Index(
     'person_names_person_id',
     'CREATE INDEX person_names_person_id ON person_names (person_id)',
@@ -7244,6 +12313,62 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     'event_participants_person_id',
     'CREATE INDEX event_participants_person_id ON event_participants (person_id)',
   );
+  late final Index mediaRelativePathActive = Index(
+    'media_relative_path_active',
+    'CREATE UNIQUE INDEX media_relative_path_active ON media (relative_path) WHERE deleted_at IS NULL',
+  );
+  late final Index mediaChecksumSizeActive = Index(
+    'media_checksum_size_active',
+    'CREATE UNIQUE INDEX media_checksum_size_active ON media (checksum_sha256, file_size) WHERE deleted_at IS NULL',
+  );
+  late final Index sourceMediaSourceId = Index(
+    'source_media_source_id',
+    'CREATE INDEX source_media_source_id ON source_media (source_id)',
+  );
+  late final Index sourceMediaMediaId = Index(
+    'source_media_media_id',
+    'CREATE INDEX source_media_media_id ON source_media (media_id)',
+  );
+  late final Index sourceMediaPairActive = Index(
+    'source_media_pair_active',
+    'CREATE UNIQUE INDEX source_media_pair_active ON source_media (source_id, media_id) WHERE deleted_at IS NULL',
+  );
+  late final Index claimsSubject = Index(
+    'claims_subject',
+    'CREATE INDEX claims_subject ON claims (subject_type, subject_id)',
+  );
+  late final Index claimsSubjectProperty = Index(
+    'claims_subject_property',
+    'CREATE INDEX claims_subject_property ON claims (subject_type, subject_id, property)',
+  );
+  late final Index claimsSourceId = Index(
+    'claims_source_id',
+    'CREATE INDEX claims_source_id ON claims (source_id)',
+  );
+  late final Index claimsStatus = Index(
+    'claims_status',
+    'CREATE INDEX claims_status ON claims (status)',
+  );
+  late final Index claimApplicationsResult = Index(
+    'claim_applications_result',
+    'CREATE INDEX claim_applications_result ON claim_applications (result_entity_type, result_entity_id)',
+  );
+  late final Index duplicateCandidatesPair = Index(
+    'duplicate_candidates_pair',
+    'CREATE UNIQUE INDEX duplicate_candidates_pair ON duplicate_candidates (person_a_id, person_b_id)',
+  );
+  late final Index duplicateCandidatesStatus = Index(
+    'duplicate_candidates_status',
+    'CREATE INDEX duplicate_candidates_status ON duplicate_candidates (status)',
+  );
+  late final Index auditEntriesOccurredAt = Index(
+    'audit_entries_occurred_at',
+    'CREATE INDEX audit_entries_occurred_at ON audit_entries (occurred_at)',
+  );
+  late final Index auditTargetsEntity = Index(
+    'audit_targets_entity',
+    'CREATE INDEX audit_targets_entity ON audit_targets (entity_type, entity_id)',
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -7259,6 +12384,14 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     residences,
     events,
     eventParticipants,
+    sources,
+    mediaAssets,
+    sourceMediaLinks,
+    claims,
+    claimApplications,
+    duplicateCandidates,
+    auditEntries,
+    auditTargets,
     personNamesPersonId,
     personNamesOnePreferredActive,
     parentChildParentId,
@@ -7273,6 +12406,20 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     eventsPlaceId,
     eventParticipantsEventId,
     eventParticipantsPersonId,
+    mediaRelativePathActive,
+    mediaChecksumSizeActive,
+    sourceMediaSourceId,
+    sourceMediaMediaId,
+    sourceMediaPairActive,
+    claimsSubject,
+    claimsSubjectProperty,
+    claimsSourceId,
+    claimsStatus,
+    claimApplicationsResult,
+    duplicateCandidatesPair,
+    duplicateCandidatesStatus,
+    auditEntriesOccurredAt,
+    auditTargetsEntity,
   ];
 }
 
@@ -7657,6 +12804,81 @@ final class $$PersonsTableReferences
       manager.$state.copyWith(prefetchedData: cache),
     );
   }
+
+  static MultiTypedResultKey<
+    $DuplicateCandidatesTable,
+    List<DuplicateCandidate>
+  >
+  _duplicateCandidatesAsATable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.duplicateCandidates,
+        aliasName: 'persons__id__duplicate_candidates__person_a_id',
+      );
+
+  $$DuplicateCandidatesTableProcessedTableManager get duplicateCandidatesAsA {
+    final manager = $$DuplicateCandidatesTableTableManager(
+      $_db,
+      $_db.duplicateCandidates,
+    ).filter((f) => f.personAId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _duplicateCandidatesAsATable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<
+    $DuplicateCandidatesTable,
+    List<DuplicateCandidate>
+  >
+  _duplicateCandidatesAsBTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.duplicateCandidates,
+        aliasName: 'persons__id__duplicate_candidates__person_b_id',
+      );
+
+  $$DuplicateCandidatesTableProcessedTableManager get duplicateCandidatesAsB {
+    final manager = $$DuplicateCandidatesTableTableManager(
+      $_db,
+      $_db.duplicateCandidates,
+    ).filter((f) => f.personBId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _duplicateCandidatesAsBTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<
+    $DuplicateCandidatesTable,
+    List<DuplicateCandidate>
+  >
+  _duplicateCandidatesRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.duplicateCandidates,
+        aliasName: 'persons__id__duplicate_candidates__merged_into_person_id',
+      );
+
+  $$DuplicateCandidatesTableProcessedTableManager get duplicateCandidatesRefs {
+    final manager =
+        $$DuplicateCandidatesTableTableManager(
+          $_db,
+          $_db.duplicateCandidates,
+        ).filter(
+          (f) => f.mergedIntoPersonId.id.sqlEquals($_itemColumn<String>('id')!),
+        );
+
+    final cache = $_typedResult.readTableOrNull(
+      _duplicateCandidatesRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$PersonsTableFilterComposer
@@ -7913,6 +13135,81 @@ class $$PersonsTableFilterComposer
           }) => $$EventParticipantsTableFilterComposer(
             $db: $db,
             $table: $db.eventParticipants,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> duplicateCandidatesAsA(
+    Expression<bool> Function($$DuplicateCandidatesTableFilterComposer f) f,
+  ) {
+    final $$DuplicateCandidatesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.duplicateCandidates,
+      getReferencedColumn: (t) => t.personAId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DuplicateCandidatesTableFilterComposer(
+            $db: $db,
+            $table: $db.duplicateCandidates,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> duplicateCandidatesAsB(
+    Expression<bool> Function($$DuplicateCandidatesTableFilterComposer f) f,
+  ) {
+    final $$DuplicateCandidatesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.duplicateCandidates,
+      getReferencedColumn: (t) => t.personBId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DuplicateCandidatesTableFilterComposer(
+            $db: $db,
+            $table: $db.duplicateCandidates,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> duplicateCandidatesRefs(
+    Expression<bool> Function($$DuplicateCandidatesTableFilterComposer f) f,
+  ) {
+    final $$DuplicateCandidatesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.duplicateCandidates,
+      getReferencedColumn: (t) => t.mergedIntoPersonId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DuplicateCandidatesTableFilterComposer(
+            $db: $db,
+            $table: $db.duplicateCandidates,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -8259,6 +13556,84 @@ class $$PersonsTableAnnotationComposer
         );
     return f(composer);
   }
+
+  Expression<T> duplicateCandidatesAsA<T extends Object>(
+    Expression<T> Function($$DuplicateCandidatesTableAnnotationComposer a) f,
+  ) {
+    final $$DuplicateCandidatesTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.duplicateCandidates,
+          getReferencedColumn: (t) => t.personAId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$DuplicateCandidatesTableAnnotationComposer(
+                $db: $db,
+                $table: $db.duplicateCandidates,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
+  Expression<T> duplicateCandidatesAsB<T extends Object>(
+    Expression<T> Function($$DuplicateCandidatesTableAnnotationComposer a) f,
+  ) {
+    final $$DuplicateCandidatesTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.duplicateCandidates,
+          getReferencedColumn: (t) => t.personBId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$DuplicateCandidatesTableAnnotationComposer(
+                $db: $db,
+                $table: $db.duplicateCandidates,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
+  Expression<T> duplicateCandidatesRefs<T extends Object>(
+    Expression<T> Function($$DuplicateCandidatesTableAnnotationComposer a) f,
+  ) {
+    final $$DuplicateCandidatesTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.duplicateCandidates,
+          getReferencedColumn: (t) => t.mergedIntoPersonId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$DuplicateCandidatesTableAnnotationComposer(
+                $db: $db,
+                $table: $db.duplicateCandidates,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
 }
 
 class $$PersonsTableTableManager
@@ -8282,6 +13657,9 @@ class $$PersonsTableTableManager
             bool partnershipsAsPersonB,
             bool residencesRefs,
             bool eventParticipantsRefs,
+            bool duplicateCandidatesAsA,
+            bool duplicateCandidatesAsB,
+            bool duplicateCandidatesRefs,
           })
         > {
   $$PersonsTableTableManager(_$AppDatabase db, $PersonsTable table)
@@ -8384,6 +13762,9 @@ class $$PersonsTableTableManager
                 partnershipsAsPersonB = false,
                 residencesRefs = false,
                 eventParticipantsRefs = false,
+                duplicateCandidatesAsA = false,
+                duplicateCandidatesAsB = false,
+                duplicateCandidatesRefs = false,
               }) {
                 return PrefetchHooks(
                   db: db,
@@ -8395,6 +13776,9 @@ class $$PersonsTableTableManager
                     if (partnershipsAsPersonB) db.partnerships,
                     if (residencesRefs) db.residences,
                     if (eventParticipantsRefs) db.eventParticipants,
+                    if (duplicateCandidatesAsA) db.duplicateCandidates,
+                    if (duplicateCandidatesAsB) db.duplicateCandidates,
+                    if (duplicateCandidatesRefs) db.duplicateCandidates,
                   ],
                   addJoins: null,
                   getPrefetchedDataCallback: (items) async {
@@ -8546,6 +13930,69 @@ class $$PersonsTableTableManager
                               ),
                           typedResults: items,
                         ),
+                      if (duplicateCandidatesAsA)
+                        await $_getPrefetchedData<
+                          Person,
+                          $PersonsTable,
+                          DuplicateCandidate
+                        >(
+                          currentTable: table,
+                          referencedTable: $$PersonsTableReferences
+                              ._duplicateCandidatesAsATable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$PersonsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).duplicateCandidatesAsA,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.personAId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (duplicateCandidatesAsB)
+                        await $_getPrefetchedData<
+                          Person,
+                          $PersonsTable,
+                          DuplicateCandidate
+                        >(
+                          currentTable: table,
+                          referencedTable: $$PersonsTableReferences
+                              ._duplicateCandidatesAsBTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$PersonsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).duplicateCandidatesAsB,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.personBId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (duplicateCandidatesRefs)
+                        await $_getPrefetchedData<
+                          Person,
+                          $PersonsTable,
+                          DuplicateCandidate
+                        >(
+                          currentTable: table,
+                          referencedTable: $$PersonsTableReferences
+                              ._duplicateCandidatesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$PersonsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).duplicateCandidatesRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.mergedIntoPersonId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
                     ];
                   },
                 );
@@ -8574,6 +14021,9 @@ typedef $$PersonsTableProcessedTableManager =
         bool partnershipsAsPersonB,
         bool residencesRefs,
         bool eventParticipantsRefs,
+        bool duplicateCandidatesAsA,
+        bool duplicateCandidatesAsB,
+        bool duplicateCandidatesRefs,
       })
     >;
 typedef $$PersonNamesTableCreateCompanionBuilder =
@@ -13247,6 +18697,3805 @@ typedef $$EventParticipantsTableProcessedTableManager =
       EventParticipant,
       PrefetchHooks Function({bool eventId, bool personId})
     >;
+typedef $$SourcesTableCreateCompanionBuilder = SourcesCompanion Function({
+  required String id,
+  required String type,
+  required String title,
+  Value<String?> description,
+  Value<String?> sourceDatePrecision,
+  Value<DateTime?> sourceDateStartDate,
+  Value<DateTime?> sourceDateEndDate,
+  Value<String?> sourceDateDisplayText,
+  Value<String?> creator,
+  Value<String?> repositoryName,
+  Value<String?> referenceCode,
+  Value<String?> originalLocation,
+  Value<String?> url,
+  Value<DateTime?> accessedAt,
+  Value<String?> notes,
+  required DateTime createdAt,
+  required DateTime modifiedAt,
+  Value<DateTime?> deletedAt,
+  Value<int> rowid,
+});
+typedef $$SourcesTableUpdateCompanionBuilder = SourcesCompanion Function({
+  Value<String> id,
+  Value<String> type,
+  Value<String> title,
+  Value<String?> description,
+  Value<String?> sourceDatePrecision,
+  Value<DateTime?> sourceDateStartDate,
+  Value<DateTime?> sourceDateEndDate,
+  Value<String?> sourceDateDisplayText,
+  Value<String?> creator,
+  Value<String?> repositoryName,
+  Value<String?> referenceCode,
+  Value<String?> originalLocation,
+  Value<String?> url,
+  Value<DateTime?> accessedAt,
+  Value<String?> notes,
+  Value<DateTime> createdAt,
+  Value<DateTime> modifiedAt,
+  Value<DateTime?> deletedAt,
+  Value<int> rowid,
+});
+
+final class $$SourcesTableReferences
+    extends BaseReferences<_$AppDatabase, $SourcesTable, Source> {
+  $$SourcesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static MultiTypedResultKey<$SourceMediaLinksTable, List<SourceMediaLink>>
+  _sourceMediaLinksRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.sourceMediaLinks,
+    aliasName: 'sources__id__source_media__source_id',
+  );
+
+  $$SourceMediaLinksTableProcessedTableManager get sourceMediaLinksRefs {
+    final manager = $$SourceMediaLinksTableTableManager(
+      $_db,
+      $_db.sourceMediaLinks,
+    ).filter((f) => f.sourceId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _sourceMediaLinksRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$ClaimsTable, List<Claim>> _claimsRefsTable(
+    _$AppDatabase db,
+  ) => MultiTypedResultKey.fromTable(
+    db.claims,
+    aliasName: 'sources__id__claims__source_id',
+  );
+
+  $$ClaimsTableProcessedTableManager get claimsRefs {
+    final manager = $$ClaimsTableTableManager(
+      $_db,
+      $_db.claims,
+    ).filter((f) => f.sourceId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_claimsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+}
+
+class $$SourcesTableFilterComposer
+    extends Composer<_$AppDatabase, $SourcesTable> {
+  $$SourcesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sourceDatePrecision => $composableBuilder(
+    column: $table.sourceDatePrecision,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get sourceDateStartDate => $composableBuilder(
+    column: $table.sourceDateStartDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get sourceDateEndDate => $composableBuilder(
+    column: $table.sourceDateEndDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sourceDateDisplayText => $composableBuilder(
+    column: $table.sourceDateDisplayText,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get creator => $composableBuilder(
+    column: $table.creator,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get repositoryName => $composableBuilder(
+    column: $table.repositoryName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get referenceCode => $composableBuilder(
+    column: $table.referenceCode,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get originalLocation => $composableBuilder(
+    column: $table.originalLocation,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get url => $composableBuilder(
+    column: $table.url,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get accessedAt => $composableBuilder(
+    column: $table.accessedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  Expression<bool> sourceMediaLinksRefs(
+    Expression<bool> Function($$SourceMediaLinksTableFilterComposer f) f,
+  ) {
+    final $$SourceMediaLinksTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.sourceMediaLinks,
+      getReferencedColumn: (t) => t.sourceId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SourceMediaLinksTableFilterComposer(
+            $db: $db,
+            $table: $db.sourceMediaLinks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> claimsRefs(
+    Expression<bool> Function($$ClaimsTableFilterComposer f) f,
+  ) {
+    final $$ClaimsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.claims,
+      getReferencedColumn: (t) => t.sourceId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ClaimsTableFilterComposer(
+            $db: $db,
+            $table: $db.claims,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$SourcesTableOrderingComposer
+    extends Composer<_$AppDatabase, $SourcesTable> {
+  $$SourcesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sourceDatePrecision => $composableBuilder(
+    column: $table.sourceDatePrecision,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get sourceDateStartDate => $composableBuilder(
+    column: $table.sourceDateStartDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get sourceDateEndDate => $composableBuilder(
+    column: $table.sourceDateEndDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sourceDateDisplayText => $composableBuilder(
+    column: $table.sourceDateDisplayText,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get creator => $composableBuilder(
+    column: $table.creator,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get repositoryName => $composableBuilder(
+    column: $table.repositoryName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get referenceCode => $composableBuilder(
+    column: $table.referenceCode,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get originalLocation => $composableBuilder(
+    column: $table.originalLocation,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get url => $composableBuilder(
+    column: $table.url,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get accessedAt => $composableBuilder(
+    column: $table.accessedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$SourcesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SourcesTable> {
+  $$SourcesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get sourceDatePrecision => $composableBuilder(
+    column: $table.sourceDatePrecision,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get sourceDateStartDate => $composableBuilder(
+    column: $table.sourceDateStartDate,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get sourceDateEndDate => $composableBuilder(
+    column: $table.sourceDateEndDate,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get sourceDateDisplayText => $composableBuilder(
+    column: $table.sourceDateDisplayText,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get creator =>
+      $composableBuilder(column: $table.creator, builder: (column) => column);
+
+  GeneratedColumn<String> get repositoryName => $composableBuilder(
+    column: $table.repositoryName,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get referenceCode => $composableBuilder(
+    column: $table.referenceCode,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get originalLocation => $composableBuilder(
+    column: $table.originalLocation,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get url =>
+      $composableBuilder(column: $table.url, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get accessedAt => $composableBuilder(
+    column: $table.accessedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  Expression<T> sourceMediaLinksRefs<T extends Object>(
+    Expression<T> Function($$SourceMediaLinksTableAnnotationComposer a) f,
+  ) {
+    final $$SourceMediaLinksTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.sourceMediaLinks,
+      getReferencedColumn: (t) => t.sourceId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SourceMediaLinksTableAnnotationComposer(
+            $db: $db,
+            $table: $db.sourceMediaLinks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> claimsRefs<T extends Object>(
+    Expression<T> Function($$ClaimsTableAnnotationComposer a) f,
+  ) {
+    final $$ClaimsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.claims,
+      getReferencedColumn: (t) => t.sourceId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ClaimsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.claims,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$SourcesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SourcesTable,
+          Source,
+          $$SourcesTableFilterComposer,
+          $$SourcesTableOrderingComposer,
+          $$SourcesTableAnnotationComposer,
+          $$SourcesTableCreateCompanionBuilder,
+          $$SourcesTableUpdateCompanionBuilder,
+          (Source, $$SourcesTableReferences),
+          Source,
+          PrefetchHooks Function({bool sourceMediaLinksRefs, bool claimsRefs})
+        > {
+  $$SourcesTableTableManager(_$AppDatabase db, $SourcesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SourcesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SourcesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SourcesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> type = const Value.absent(),
+                Value<String> title = const Value.absent(),
+                Value<String?> description = const Value.absent(),
+                Value<String?> sourceDatePrecision = const Value.absent(),
+                Value<DateTime?> sourceDateStartDate = const Value.absent(),
+                Value<DateTime?> sourceDateEndDate = const Value.absent(),
+                Value<String?> sourceDateDisplayText = const Value.absent(),
+                Value<String?> creator = const Value.absent(),
+                Value<String?> repositoryName = const Value.absent(),
+                Value<String?> referenceCode = const Value.absent(),
+                Value<String?> originalLocation = const Value.absent(),
+                Value<String?> url = const Value.absent(),
+                Value<DateTime?> accessedAt = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> modifiedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SourcesCompanion(
+                id: id,
+                type: type,
+                title: title,
+                description: description,
+                sourceDatePrecision: sourceDatePrecision,
+                sourceDateStartDate: sourceDateStartDate,
+                sourceDateEndDate: sourceDateEndDate,
+                sourceDateDisplayText: sourceDateDisplayText,
+                creator: creator,
+                repositoryName: repositoryName,
+                referenceCode: referenceCode,
+                originalLocation: originalLocation,
+                url: url,
+                accessedAt: accessedAt,
+                notes: notes,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String type,
+                required String title,
+                Value<String?> description = const Value.absent(),
+                Value<String?> sourceDatePrecision = const Value.absent(),
+                Value<DateTime?> sourceDateStartDate = const Value.absent(),
+                Value<DateTime?> sourceDateEndDate = const Value.absent(),
+                Value<String?> sourceDateDisplayText = const Value.absent(),
+                Value<String?> creator = const Value.absent(),
+                Value<String?> repositoryName = const Value.absent(),
+                Value<String?> referenceCode = const Value.absent(),
+                Value<String?> originalLocation = const Value.absent(),
+                Value<String?> url = const Value.absent(),
+                Value<DateTime?> accessedAt = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                required DateTime createdAt,
+                required DateTime modifiedAt,
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SourcesCompanion.insert(
+                id: id,
+                type: type,
+                title: title,
+                description: description,
+                sourceDatePrecision: sourceDatePrecision,
+                sourceDateStartDate: sourceDateStartDate,
+                sourceDateEndDate: sourceDateEndDate,
+                sourceDateDisplayText: sourceDateDisplayText,
+                creator: creator,
+                repositoryName: repositoryName,
+                referenceCode: referenceCode,
+                originalLocation: originalLocation,
+                url: url,
+                accessedAt: accessedAt,
+                notes: notes,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$SourcesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback:
+              ({sourceMediaLinksRefs = false, claimsRefs = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (sourceMediaLinksRefs) db.sourceMediaLinks,
+                    if (claimsRefs) db.claims,
+                  ],
+                  addJoins: null,
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (sourceMediaLinksRefs)
+                        await $_getPrefetchedData<
+                          Source,
+                          $SourcesTable,
+                          SourceMediaLink
+                        >(
+                          currentTable: table,
+                          referencedTable: $$SourcesTableReferences
+                              ._sourceMediaLinksRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$SourcesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).sourceMediaLinksRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.sourceId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (claimsRefs)
+                        await $_getPrefetchedData<Source, $SourcesTable, Claim>(
+                          currentTable: table,
+                          referencedTable: $$SourcesTableReferences
+                              ._claimsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$SourcesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).claimsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.sourceId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
+              },
+        ),
+      );
+}
+
+typedef $$SourcesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SourcesTable,
+      Source,
+      $$SourcesTableFilterComposer,
+      $$SourcesTableOrderingComposer,
+      $$SourcesTableAnnotationComposer,
+      $$SourcesTableCreateCompanionBuilder,
+      $$SourcesTableUpdateCompanionBuilder,
+      (Source, $$SourcesTableReferences),
+      Source,
+      PrefetchHooks Function({bool sourceMediaLinksRefs, bool claimsRefs})
+    >;
+typedef $$MediaAssetsTableCreateCompanionBuilder =
+    MediaAssetsCompanion Function({
+      required String id,
+      required String type,
+      required String relativePath,
+      Value<String?> mimeType,
+      Value<String?> originalFilename,
+      required String checksumSha256,
+      required int fileSize,
+      required DateTime createdAt,
+      required DateTime modifiedAt,
+      Value<DateTime?> deletedAt,
+      Value<int> rowid,
+    });
+typedef $$MediaAssetsTableUpdateCompanionBuilder =
+    MediaAssetsCompanion Function({
+      Value<String> id,
+      Value<String> type,
+      Value<String> relativePath,
+      Value<String?> mimeType,
+      Value<String?> originalFilename,
+      Value<String> checksumSha256,
+      Value<int> fileSize,
+      Value<DateTime> createdAt,
+      Value<DateTime> modifiedAt,
+      Value<DateTime?> deletedAt,
+      Value<int> rowid,
+    });
+
+final class $$MediaAssetsTableReferences
+    extends BaseReferences<_$AppDatabase, $MediaAssetsTable, MediaAsset> {
+  $$MediaAssetsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static MultiTypedResultKey<$SourceMediaLinksTable, List<SourceMediaLink>>
+  _sourceMediaLinksRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.sourceMediaLinks,
+    aliasName: 'media__id__source_media__media_id',
+  );
+
+  $$SourceMediaLinksTableProcessedTableManager get sourceMediaLinksRefs {
+    final manager = $$SourceMediaLinksTableTableManager(
+      $_db,
+      $_db.sourceMediaLinks,
+    ).filter((f) => f.mediaId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _sourceMediaLinksRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+}
+
+class $$MediaAssetsTableFilterComposer
+    extends Composer<_$AppDatabase, $MediaAssetsTable> {
+  $$MediaAssetsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get relativePath => $composableBuilder(
+    column: $table.relativePath,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get mimeType => $composableBuilder(
+    column: $table.mimeType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get originalFilename => $composableBuilder(
+    column: $table.originalFilename,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get checksumSha256 => $composableBuilder(
+    column: $table.checksumSha256,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get fileSize => $composableBuilder(
+    column: $table.fileSize,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  Expression<bool> sourceMediaLinksRefs(
+    Expression<bool> Function($$SourceMediaLinksTableFilterComposer f) f,
+  ) {
+    final $$SourceMediaLinksTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.sourceMediaLinks,
+      getReferencedColumn: (t) => t.mediaId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SourceMediaLinksTableFilterComposer(
+            $db: $db,
+            $table: $db.sourceMediaLinks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$MediaAssetsTableOrderingComposer
+    extends Composer<_$AppDatabase, $MediaAssetsTable> {
+  $$MediaAssetsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get relativePath => $composableBuilder(
+    column: $table.relativePath,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get mimeType => $composableBuilder(
+    column: $table.mimeType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get originalFilename => $composableBuilder(
+    column: $table.originalFilename,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get checksumSha256 => $composableBuilder(
+    column: $table.checksumSha256,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get fileSize => $composableBuilder(
+    column: $table.fileSize,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$MediaAssetsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $MediaAssetsTable> {
+  $$MediaAssetsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get relativePath => $composableBuilder(
+    column: $table.relativePath,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get mimeType =>
+      $composableBuilder(column: $table.mimeType, builder: (column) => column);
+
+  GeneratedColumn<String> get originalFilename => $composableBuilder(
+    column: $table.originalFilename,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get checksumSha256 => $composableBuilder(
+    column: $table.checksumSha256,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get fileSize =>
+      $composableBuilder(column: $table.fileSize, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  Expression<T> sourceMediaLinksRefs<T extends Object>(
+    Expression<T> Function($$SourceMediaLinksTableAnnotationComposer a) f,
+  ) {
+    final $$SourceMediaLinksTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.sourceMediaLinks,
+      getReferencedColumn: (t) => t.mediaId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SourceMediaLinksTableAnnotationComposer(
+            $db: $db,
+            $table: $db.sourceMediaLinks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$MediaAssetsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $MediaAssetsTable,
+          MediaAsset,
+          $$MediaAssetsTableFilterComposer,
+          $$MediaAssetsTableOrderingComposer,
+          $$MediaAssetsTableAnnotationComposer,
+          $$MediaAssetsTableCreateCompanionBuilder,
+          $$MediaAssetsTableUpdateCompanionBuilder,
+          (MediaAsset, $$MediaAssetsTableReferences),
+          MediaAsset,
+          PrefetchHooks Function({bool sourceMediaLinksRefs})
+        > {
+  $$MediaAssetsTableTableManager(_$AppDatabase db, $MediaAssetsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$MediaAssetsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MediaAssetsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$MediaAssetsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> type = const Value.absent(),
+                Value<String> relativePath = const Value.absent(),
+                Value<String?> mimeType = const Value.absent(),
+                Value<String?> originalFilename = const Value.absent(),
+                Value<String> checksumSha256 = const Value.absent(),
+                Value<int> fileSize = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> modifiedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MediaAssetsCompanion(
+                id: id,
+                type: type,
+                relativePath: relativePath,
+                mimeType: mimeType,
+                originalFilename: originalFilename,
+                checksumSha256: checksumSha256,
+                fileSize: fileSize,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String type,
+                required String relativePath,
+                Value<String?> mimeType = const Value.absent(),
+                Value<String?> originalFilename = const Value.absent(),
+                required String checksumSha256,
+                required int fileSize,
+                required DateTime createdAt,
+                required DateTime modifiedAt,
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MediaAssetsCompanion.insert(
+                id: id,
+                type: type,
+                relativePath: relativePath,
+                mimeType: mimeType,
+                originalFilename: originalFilename,
+                checksumSha256: checksumSha256,
+                fileSize: fileSize,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$MediaAssetsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({sourceMediaLinksRefs = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [
+                if (sourceMediaLinksRefs) db.sourceMediaLinks,
+              ],
+              addJoins: null,
+              getPrefetchedDataCallback: (items) async {
+                return [
+                  if (sourceMediaLinksRefs)
+                    await $_getPrefetchedData<
+                      MediaAsset,
+                      $MediaAssetsTable,
+                      SourceMediaLink
+                    >(
+                      currentTable: table,
+                      referencedTable: $$MediaAssetsTableReferences
+                          ._sourceMediaLinksRefsTable(db),
+                      managerFromTypedResult: (p0) =>
+                          $$MediaAssetsTableReferences(
+                            db,
+                            table,
+                            p0,
+                          ).sourceMediaLinksRefs,
+                      referencedItemsForCurrentItem: (item, referencedItems) =>
+                          referencedItems.where((e) => e.mediaId == item.id),
+                      typedResults: items,
+                    ),
+                ];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$MediaAssetsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $MediaAssetsTable,
+      MediaAsset,
+      $$MediaAssetsTableFilterComposer,
+      $$MediaAssetsTableOrderingComposer,
+      $$MediaAssetsTableAnnotationComposer,
+      $$MediaAssetsTableCreateCompanionBuilder,
+      $$MediaAssetsTableUpdateCompanionBuilder,
+      (MediaAsset, $$MediaAssetsTableReferences),
+      MediaAsset,
+      PrefetchHooks Function({bool sourceMediaLinksRefs})
+    >;
+typedef $$SourceMediaLinksTableCreateCompanionBuilder =
+    SourceMediaLinksCompanion Function({
+      required String id,
+      required String sourceId,
+      required String mediaId,
+      required String role,
+      Value<String?> caption,
+      Value<int> sortOrder,
+      required DateTime createdAt,
+      required DateTime modifiedAt,
+      Value<DateTime?> deletedAt,
+      Value<int> rowid,
+    });
+typedef $$SourceMediaLinksTableUpdateCompanionBuilder =
+    SourceMediaLinksCompanion Function({
+      Value<String> id,
+      Value<String> sourceId,
+      Value<String> mediaId,
+      Value<String> role,
+      Value<String?> caption,
+      Value<int> sortOrder,
+      Value<DateTime> createdAt,
+      Value<DateTime> modifiedAt,
+      Value<DateTime?> deletedAt,
+      Value<int> rowid,
+    });
+
+final class $$SourceMediaLinksTableReferences
+    extends
+        BaseReferences<_$AppDatabase, $SourceMediaLinksTable, SourceMediaLink> {
+  $$SourceMediaLinksTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $SourcesTable _sourceIdTable(_$AppDatabase db) =>
+      db.sources.createAlias('source_media__source_id__sources__id');
+
+  $$SourcesTableProcessedTableManager get sourceId {
+    final $_column = $_itemColumn<String>('source_id')!;
+
+    final manager = $$SourcesTableTableManager(
+      $_db,
+      $_db.sources,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_sourceIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $MediaAssetsTable _mediaIdTable(_$AppDatabase db) =>
+      db.mediaAssets.createAlias('source_media__media_id__media__id');
+
+  $$MediaAssetsTableProcessedTableManager get mediaId {
+    final $_column = $_itemColumn<String>('media_id')!;
+
+    final manager = $$MediaAssetsTableTableManager(
+      $_db,
+      $_db.mediaAssets,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_mediaIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$SourceMediaLinksTableFilterComposer
+    extends Composer<_$AppDatabase, $SourceMediaLinksTable> {
+  $$SourceMediaLinksTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get role => $composableBuilder(
+    column: $table.role,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get caption => $composableBuilder(
+    column: $table.caption,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$SourcesTableFilterComposer get sourceId {
+    final $$SourcesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.sourceId,
+      referencedTable: $db.sources,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SourcesTableFilterComposer(
+            $db: $db,
+            $table: $db.sources,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$MediaAssetsTableFilterComposer get mediaId {
+    final $$MediaAssetsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.mediaId,
+      referencedTable: $db.mediaAssets,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MediaAssetsTableFilterComposer(
+            $db: $db,
+            $table: $db.mediaAssets,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$SourceMediaLinksTableOrderingComposer
+    extends Composer<_$AppDatabase, $SourceMediaLinksTable> {
+  $$SourceMediaLinksTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get role => $composableBuilder(
+    column: $table.role,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get caption => $composableBuilder(
+    column: $table.caption,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$SourcesTableOrderingComposer get sourceId {
+    final $$SourcesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.sourceId,
+      referencedTable: $db.sources,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SourcesTableOrderingComposer(
+            $db: $db,
+            $table: $db.sources,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$MediaAssetsTableOrderingComposer get mediaId {
+    final $$MediaAssetsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.mediaId,
+      referencedTable: $db.mediaAssets,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MediaAssetsTableOrderingComposer(
+            $db: $db,
+            $table: $db.mediaAssets,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$SourceMediaLinksTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SourceMediaLinksTable> {
+  $$SourceMediaLinksTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get role =>
+      $composableBuilder(column: $table.role, builder: (column) => column);
+
+  GeneratedColumn<String> get caption =>
+      $composableBuilder(column: $table.caption, builder: (column) => column);
+
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  $$SourcesTableAnnotationComposer get sourceId {
+    final $$SourcesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.sourceId,
+      referencedTable: $db.sources,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SourcesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.sources,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$MediaAssetsTableAnnotationComposer get mediaId {
+    final $$MediaAssetsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.mediaId,
+      referencedTable: $db.mediaAssets,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MediaAssetsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.mediaAssets,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$SourceMediaLinksTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SourceMediaLinksTable,
+          SourceMediaLink,
+          $$SourceMediaLinksTableFilterComposer,
+          $$SourceMediaLinksTableOrderingComposer,
+          $$SourceMediaLinksTableAnnotationComposer,
+          $$SourceMediaLinksTableCreateCompanionBuilder,
+          $$SourceMediaLinksTableUpdateCompanionBuilder,
+          (SourceMediaLink, $$SourceMediaLinksTableReferences),
+          SourceMediaLink,
+          PrefetchHooks Function({bool sourceId, bool mediaId})
+        > {
+  $$SourceMediaLinksTableTableManager(
+    _$AppDatabase db,
+    $SourceMediaLinksTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SourceMediaLinksTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SourceMediaLinksTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SourceMediaLinksTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> sourceId = const Value.absent(),
+                Value<String> mediaId = const Value.absent(),
+                Value<String> role = const Value.absent(),
+                Value<String?> caption = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> modifiedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SourceMediaLinksCompanion(
+                id: id,
+                sourceId: sourceId,
+                mediaId: mediaId,
+                role: role,
+                caption: caption,
+                sortOrder: sortOrder,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String sourceId,
+                required String mediaId,
+                required String role,
+                Value<String?> caption = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                required DateTime createdAt,
+                required DateTime modifiedAt,
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SourceMediaLinksCompanion.insert(
+                id: id,
+                sourceId: sourceId,
+                mediaId: mediaId,
+                role: role,
+                caption: caption,
+                sortOrder: sortOrder,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$SourceMediaLinksTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({sourceId = false, mediaId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (sourceId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.sourceId,
+                        referencedTable: $$SourceMediaLinksTableReferences
+                            ._sourceIdTable(db),
+                        referencedColumn: $$SourceMediaLinksTableReferences
+                            ._sourceIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+                    if (mediaId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.mediaId,
+                        referencedTable: $$SourceMediaLinksTableReferences
+                            ._mediaIdTable(db),
+                        referencedColumn: $$SourceMediaLinksTableReferences
+                            ._mediaIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$SourceMediaLinksTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SourceMediaLinksTable,
+      SourceMediaLink,
+      $$SourceMediaLinksTableFilterComposer,
+      $$SourceMediaLinksTableOrderingComposer,
+      $$SourceMediaLinksTableAnnotationComposer,
+      $$SourceMediaLinksTableCreateCompanionBuilder,
+      $$SourceMediaLinksTableUpdateCompanionBuilder,
+      (SourceMediaLink, $$SourceMediaLinksTableReferences),
+      SourceMediaLink,
+      PrefetchHooks Function({bool sourceId, bool mediaId})
+    >;
+typedef $$ClaimsTableCreateCompanionBuilder = ClaimsCompanion Function({
+  required String id,
+  required String subjectType,
+  required String subjectId,
+  required String property,
+  required String valueType,
+  required String valueJson,
+  Value<int> payloadVersion,
+  Value<String?> sourceId,
+  Value<String?> sourceLocator,
+  Value<double?> confidence,
+  required String status,
+  required DateTime createdAt,
+  required DateTime modifiedAt,
+  Value<DateTime?> deletedAt,
+  Value<int> rowid,
+});
+typedef $$ClaimsTableUpdateCompanionBuilder = ClaimsCompanion Function({
+  Value<String> id,
+  Value<String> subjectType,
+  Value<String> subjectId,
+  Value<String> property,
+  Value<String> valueType,
+  Value<String> valueJson,
+  Value<int> payloadVersion,
+  Value<String?> sourceId,
+  Value<String?> sourceLocator,
+  Value<double?> confidence,
+  Value<String> status,
+  Value<DateTime> createdAt,
+  Value<DateTime> modifiedAt,
+  Value<DateTime?> deletedAt,
+  Value<int> rowid,
+});
+
+final class $$ClaimsTableReferences
+    extends BaseReferences<_$AppDatabase, $ClaimsTable, Claim> {
+  $$ClaimsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $SourcesTable _sourceIdTable(_$AppDatabase db) =>
+      db.sources.createAlias('claims__source_id__sources__id');
+
+  $$SourcesTableProcessedTableManager? get sourceId {
+    final $_column = $_itemColumn<String>('source_id');
+    if ($_column == null) return null;
+    final manager = $$SourcesTableTableManager(
+      $_db,
+      $_db.sources,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_sourceIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static MultiTypedResultKey<$ClaimApplicationsTable, List<ClaimApplication>>
+  _claimApplicationsRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.claimApplications,
+        aliasName: 'claims__id__claim_applications__claim_id',
+      );
+
+  $$ClaimApplicationsTableProcessedTableManager get claimApplicationsRefs {
+    final manager = $$ClaimApplicationsTableTableManager(
+      $_db,
+      $_db.claimApplications,
+    ).filter((f) => f.claimId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _claimApplicationsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+}
+
+class $$ClaimsTableFilterComposer
+    extends Composer<_$AppDatabase, $ClaimsTable> {
+  $$ClaimsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get subjectType => $composableBuilder(
+    column: $table.subjectType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get subjectId => $composableBuilder(
+    column: $table.subjectId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get property => $composableBuilder(
+    column: $table.property,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get valueType => $composableBuilder(
+    column: $table.valueType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get valueJson => $composableBuilder(
+    column: $table.valueJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get payloadVersion => $composableBuilder(
+    column: $table.payloadVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sourceLocator => $composableBuilder(
+    column: $table.sourceLocator,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get confidence => $composableBuilder(
+    column: $table.confidence,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$SourcesTableFilterComposer get sourceId {
+    final $$SourcesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.sourceId,
+      referencedTable: $db.sources,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SourcesTableFilterComposer(
+            $db: $db,
+            $table: $db.sources,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  Expression<bool> claimApplicationsRefs(
+    Expression<bool> Function($$ClaimApplicationsTableFilterComposer f) f,
+  ) {
+    final $$ClaimApplicationsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.claimApplications,
+      getReferencedColumn: (t) => t.claimId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ClaimApplicationsTableFilterComposer(
+            $db: $db,
+            $table: $db.claimApplications,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$ClaimsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ClaimsTable> {
+  $$ClaimsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get subjectType => $composableBuilder(
+    column: $table.subjectType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get subjectId => $composableBuilder(
+    column: $table.subjectId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get property => $composableBuilder(
+    column: $table.property,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get valueType => $composableBuilder(
+    column: $table.valueType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get valueJson => $composableBuilder(
+    column: $table.valueJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get payloadVersion => $composableBuilder(
+    column: $table.payloadVersion,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sourceLocator => $composableBuilder(
+    column: $table.sourceLocator,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get confidence => $composableBuilder(
+    column: $table.confidence,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$SourcesTableOrderingComposer get sourceId {
+    final $$SourcesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.sourceId,
+      referencedTable: $db.sources,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SourcesTableOrderingComposer(
+            $db: $db,
+            $table: $db.sources,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ClaimsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ClaimsTable> {
+  $$ClaimsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get subjectType => $composableBuilder(
+    column: $table.subjectType,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get subjectId =>
+      $composableBuilder(column: $table.subjectId, builder: (column) => column);
+
+  GeneratedColumn<String> get property =>
+      $composableBuilder(column: $table.property, builder: (column) => column);
+
+  GeneratedColumn<String> get valueType =>
+      $composableBuilder(column: $table.valueType, builder: (column) => column);
+
+  GeneratedColumn<String> get valueJson =>
+      $composableBuilder(column: $table.valueJson, builder: (column) => column);
+
+  GeneratedColumn<int> get payloadVersion => $composableBuilder(
+    column: $table.payloadVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get sourceLocator => $composableBuilder(
+    column: $table.sourceLocator,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get confidence => $composableBuilder(
+    column: $table.confidence,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  $$SourcesTableAnnotationComposer get sourceId {
+    final $$SourcesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.sourceId,
+      referencedTable: $db.sources,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SourcesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.sources,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  Expression<T> claimApplicationsRefs<T extends Object>(
+    Expression<T> Function($$ClaimApplicationsTableAnnotationComposer a) f,
+  ) {
+    final $$ClaimApplicationsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.claimApplications,
+          getReferencedColumn: (t) => t.claimId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$ClaimApplicationsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.claimApplications,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+}
+
+class $$ClaimsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ClaimsTable,
+          Claim,
+          $$ClaimsTableFilterComposer,
+          $$ClaimsTableOrderingComposer,
+          $$ClaimsTableAnnotationComposer,
+          $$ClaimsTableCreateCompanionBuilder,
+          $$ClaimsTableUpdateCompanionBuilder,
+          (Claim, $$ClaimsTableReferences),
+          Claim,
+          PrefetchHooks Function({bool sourceId, bool claimApplicationsRefs})
+        > {
+  $$ClaimsTableTableManager(_$AppDatabase db, $ClaimsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ClaimsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ClaimsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ClaimsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> subjectType = const Value.absent(),
+                Value<String> subjectId = const Value.absent(),
+                Value<String> property = const Value.absent(),
+                Value<String> valueType = const Value.absent(),
+                Value<String> valueJson = const Value.absent(),
+                Value<int> payloadVersion = const Value.absent(),
+                Value<String?> sourceId = const Value.absent(),
+                Value<String?> sourceLocator = const Value.absent(),
+                Value<double?> confidence = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> modifiedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ClaimsCompanion(
+                id: id,
+                subjectType: subjectType,
+                subjectId: subjectId,
+                property: property,
+                valueType: valueType,
+                valueJson: valueJson,
+                payloadVersion: payloadVersion,
+                sourceId: sourceId,
+                sourceLocator: sourceLocator,
+                confidence: confidence,
+                status: status,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String subjectType,
+                required String subjectId,
+                required String property,
+                required String valueType,
+                required String valueJson,
+                Value<int> payloadVersion = const Value.absent(),
+                Value<String?> sourceId = const Value.absent(),
+                Value<String?> sourceLocator = const Value.absent(),
+                Value<double?> confidence = const Value.absent(),
+                required String status,
+                required DateTime createdAt,
+                required DateTime modifiedAt,
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ClaimsCompanion.insert(
+                id: id,
+                subjectType: subjectType,
+                subjectId: subjectId,
+                property: property,
+                valueType: valueType,
+                valueJson: valueJson,
+                payloadVersion: payloadVersion,
+                sourceId: sourceId,
+                sourceLocator: sourceLocator,
+                confidence: confidence,
+                status: status,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) =>
+                    (e.readTable(table), $$ClaimsTableReferences(db, table, e)),
+              )
+              .toList(),
+          prefetchHooksCallback:
+              ({sourceId = false, claimApplicationsRefs = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (claimApplicationsRefs) db.claimApplications,
+                  ],
+                  addJoins:
+                      <
+                        T extends TableManagerState<
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic
+                        >
+                      >(state) {
+                        if (sourceId) {
+                          state = state.withJoin(
+                            currentTable: table,
+                            currentColumn: table.sourceId,
+                            referencedTable: $$ClaimsTableReferences
+                                ._sourceIdTable(db),
+                            referencedColumn: $$ClaimsTableReferences
+                                ._sourceIdTable(db)
+                                .id,
+                          ) as T;
+                        }
+
+                        return state;
+                      },
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (claimApplicationsRefs)
+                        await $_getPrefetchedData<
+                          Claim,
+                          $ClaimsTable,
+                          ClaimApplication
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ClaimsTableReferences
+                              ._claimApplicationsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ClaimsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).claimApplicationsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.claimId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
+              },
+        ),
+      );
+}
+
+typedef $$ClaimsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ClaimsTable,
+      Claim,
+      $$ClaimsTableFilterComposer,
+      $$ClaimsTableOrderingComposer,
+      $$ClaimsTableAnnotationComposer,
+      $$ClaimsTableCreateCompanionBuilder,
+      $$ClaimsTableUpdateCompanionBuilder,
+      (Claim, $$ClaimsTableReferences),
+      Claim,
+      PrefetchHooks Function({bool sourceId, bool claimApplicationsRefs})
+    >;
+typedef $$ClaimApplicationsTableCreateCompanionBuilder =
+    ClaimApplicationsCompanion Function({
+      required String claimId,
+      required String operationType,
+      required String resultEntityType,
+      required String resultEntityId,
+      required DateTime appliedAt,
+      required String payloadJson,
+      Value<int> rowid,
+    });
+typedef $$ClaimApplicationsTableUpdateCompanionBuilder =
+    ClaimApplicationsCompanion Function({
+      Value<String> claimId,
+      Value<String> operationType,
+      Value<String> resultEntityType,
+      Value<String> resultEntityId,
+      Value<DateTime> appliedAt,
+      Value<String> payloadJson,
+      Value<int> rowid,
+    });
+
+final class $$ClaimApplicationsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $ClaimApplicationsTable,
+          ClaimApplication
+        > {
+  $$ClaimApplicationsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ClaimsTable _claimIdTable(_$AppDatabase db) =>
+      db.claims.createAlias('claim_applications__claim_id__claims__id');
+
+  $$ClaimsTableProcessedTableManager get claimId {
+    final $_column = $_itemColumn<String>('claim_id')!;
+
+    final manager = $$ClaimsTableTableManager(
+      $_db,
+      $_db.claims,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_claimIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$ClaimApplicationsTableFilterComposer
+    extends Composer<_$AppDatabase, $ClaimApplicationsTable> {
+  $$ClaimApplicationsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get operationType => $composableBuilder(
+    column: $table.operationType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get resultEntityType => $composableBuilder(
+    column: $table.resultEntityType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get resultEntityId => $composableBuilder(
+    column: $table.resultEntityId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get appliedAt => $composableBuilder(
+    column: $table.appliedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get payloadJson => $composableBuilder(
+    column: $table.payloadJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ClaimsTableFilterComposer get claimId {
+    final $$ClaimsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.claimId,
+      referencedTable: $db.claims,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ClaimsTableFilterComposer(
+            $db: $db,
+            $table: $db.claims,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ClaimApplicationsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ClaimApplicationsTable> {
+  $$ClaimApplicationsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get operationType => $composableBuilder(
+    column: $table.operationType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get resultEntityType => $composableBuilder(
+    column: $table.resultEntityType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get resultEntityId => $composableBuilder(
+    column: $table.resultEntityId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get appliedAt => $composableBuilder(
+    column: $table.appliedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get payloadJson => $composableBuilder(
+    column: $table.payloadJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ClaimsTableOrderingComposer get claimId {
+    final $$ClaimsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.claimId,
+      referencedTable: $db.claims,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ClaimsTableOrderingComposer(
+            $db: $db,
+            $table: $db.claims,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ClaimApplicationsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ClaimApplicationsTable> {
+  $$ClaimApplicationsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get operationType => $composableBuilder(
+    column: $table.operationType,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get resultEntityType => $composableBuilder(
+    column: $table.resultEntityType,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get resultEntityId => $composableBuilder(
+    column: $table.resultEntityId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get appliedAt =>
+      $composableBuilder(column: $table.appliedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get payloadJson => $composableBuilder(
+    column: $table.payloadJson,
+    builder: (column) => column,
+  );
+
+  $$ClaimsTableAnnotationComposer get claimId {
+    final $$ClaimsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.claimId,
+      referencedTable: $db.claims,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ClaimsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.claims,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ClaimApplicationsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ClaimApplicationsTable,
+          ClaimApplication,
+          $$ClaimApplicationsTableFilterComposer,
+          $$ClaimApplicationsTableOrderingComposer,
+          $$ClaimApplicationsTableAnnotationComposer,
+          $$ClaimApplicationsTableCreateCompanionBuilder,
+          $$ClaimApplicationsTableUpdateCompanionBuilder,
+          (ClaimApplication, $$ClaimApplicationsTableReferences),
+          ClaimApplication,
+          PrefetchHooks Function({bool claimId})
+        > {
+  $$ClaimApplicationsTableTableManager(
+    _$AppDatabase db,
+    $ClaimApplicationsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ClaimApplicationsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ClaimApplicationsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ClaimApplicationsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> claimId = const Value.absent(),
+                Value<String> operationType = const Value.absent(),
+                Value<String> resultEntityType = const Value.absent(),
+                Value<String> resultEntityId = const Value.absent(),
+                Value<DateTime> appliedAt = const Value.absent(),
+                Value<String> payloadJson = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ClaimApplicationsCompanion(
+                claimId: claimId,
+                operationType: operationType,
+                resultEntityType: resultEntityType,
+                resultEntityId: resultEntityId,
+                appliedAt: appliedAt,
+                payloadJson: payloadJson,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String claimId,
+                required String operationType,
+                required String resultEntityType,
+                required String resultEntityId,
+                required DateTime appliedAt,
+                required String payloadJson,
+                Value<int> rowid = const Value.absent(),
+              }) => ClaimApplicationsCompanion.insert(
+                claimId: claimId,
+                operationType: operationType,
+                resultEntityType: resultEntityType,
+                resultEntityId: resultEntityId,
+                appliedAt: appliedAt,
+                payloadJson: payloadJson,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$ClaimApplicationsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({claimId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (claimId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.claimId,
+                        referencedTable: $$ClaimApplicationsTableReferences
+                            ._claimIdTable(db),
+                        referencedColumn: $$ClaimApplicationsTableReferences
+                            ._claimIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$ClaimApplicationsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ClaimApplicationsTable,
+      ClaimApplication,
+      $$ClaimApplicationsTableFilterComposer,
+      $$ClaimApplicationsTableOrderingComposer,
+      $$ClaimApplicationsTableAnnotationComposer,
+      $$ClaimApplicationsTableCreateCompanionBuilder,
+      $$ClaimApplicationsTableUpdateCompanionBuilder,
+      (ClaimApplication, $$ClaimApplicationsTableReferences),
+      ClaimApplication,
+      PrefetchHooks Function({bool claimId})
+    >;
+typedef $$DuplicateCandidatesTableCreateCompanionBuilder =
+    DuplicateCandidatesCompanion Function({
+      required String id,
+      required String personAId,
+      required String personBId,
+      required int score,
+      required String reasonCodesJson,
+      required int detectorVersion,
+      required String status,
+      required DateTime lastEvaluatedAt,
+      Value<DateTime?> resolvedAt,
+      Value<String?> mergedIntoPersonId,
+      required DateTime createdAt,
+      required DateTime modifiedAt,
+      Value<int> rowid,
+    });
+typedef $$DuplicateCandidatesTableUpdateCompanionBuilder =
+    DuplicateCandidatesCompanion Function({
+      Value<String> id,
+      Value<String> personAId,
+      Value<String> personBId,
+      Value<int> score,
+      Value<String> reasonCodesJson,
+      Value<int> detectorVersion,
+      Value<String> status,
+      Value<DateTime> lastEvaluatedAt,
+      Value<DateTime?> resolvedAt,
+      Value<String?> mergedIntoPersonId,
+      Value<DateTime> createdAt,
+      Value<DateTime> modifiedAt,
+      Value<int> rowid,
+    });
+
+final class $$DuplicateCandidatesTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $DuplicateCandidatesTable,
+          DuplicateCandidate
+        > {
+  $$DuplicateCandidatesTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $PersonsTable _personAIdTable(_$AppDatabase db) =>
+      db.persons.createAlias('duplicate_candidates__person_a_id__persons__id');
+
+  $$PersonsTableProcessedTableManager get personAId {
+    final $_column = $_itemColumn<String>('person_a_id')!;
+
+    final manager = $$PersonsTableTableManager(
+      $_db,
+      $_db.persons,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_personAIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $PersonsTable _personBIdTable(_$AppDatabase db) =>
+      db.persons.createAlias('duplicate_candidates__person_b_id__persons__id');
+
+  $$PersonsTableProcessedTableManager get personBId {
+    final $_column = $_itemColumn<String>('person_b_id')!;
+
+    final manager = $$PersonsTableTableManager(
+      $_db,
+      $_db.persons,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_personBIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $PersonsTable _mergedIntoPersonIdTable(_$AppDatabase db) => db.persons
+      .createAlias('duplicate_candidates__merged_into_person_id__persons__id');
+
+  $$PersonsTableProcessedTableManager? get mergedIntoPersonId {
+    final $_column = $_itemColumn<String>('merged_into_person_id');
+    if ($_column == null) return null;
+    final manager = $$PersonsTableTableManager(
+      $_db,
+      $_db.persons,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_mergedIntoPersonIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$DuplicateCandidatesTableFilterComposer
+    extends Composer<_$AppDatabase, $DuplicateCandidatesTable> {
+  $$DuplicateCandidatesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get score => $composableBuilder(
+    column: $table.score,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get reasonCodesJson => $composableBuilder(
+    column: $table.reasonCodesJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get detectorVersion => $composableBuilder(
+    column: $table.detectorVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get lastEvaluatedAt => $composableBuilder(
+    column: $table.lastEvaluatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get resolvedAt => $composableBuilder(
+    column: $table.resolvedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$PersonsTableFilterComposer get personAId {
+    final $$PersonsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personAId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableFilterComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PersonsTableFilterComposer get personBId {
+    final $$PersonsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personBId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableFilterComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PersonsTableFilterComposer get mergedIntoPersonId {
+    final $$PersonsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.mergedIntoPersonId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableFilterComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$DuplicateCandidatesTableOrderingComposer
+    extends Composer<_$AppDatabase, $DuplicateCandidatesTable> {
+  $$DuplicateCandidatesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get score => $composableBuilder(
+    column: $table.score,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get reasonCodesJson => $composableBuilder(
+    column: $table.reasonCodesJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get detectorVersion => $composableBuilder(
+    column: $table.detectorVersion,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get lastEvaluatedAt => $composableBuilder(
+    column: $table.lastEvaluatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get resolvedAt => $composableBuilder(
+    column: $table.resolvedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$PersonsTableOrderingComposer get personAId {
+    final $$PersonsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personAId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableOrderingComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PersonsTableOrderingComposer get personBId {
+    final $$PersonsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personBId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableOrderingComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PersonsTableOrderingComposer get mergedIntoPersonId {
+    final $$PersonsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.mergedIntoPersonId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableOrderingComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$DuplicateCandidatesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $DuplicateCandidatesTable> {
+  $$DuplicateCandidatesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<int> get score =>
+      $composableBuilder(column: $table.score, builder: (column) => column);
+
+  GeneratedColumn<String> get reasonCodesJson => $composableBuilder(
+    column: $table.reasonCodesJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get detectorVersion => $composableBuilder(
+    column: $table.detectorVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get lastEvaluatedAt => $composableBuilder(
+    column: $table.lastEvaluatedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get resolvedAt => $composableBuilder(
+    column: $table.resolvedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get modifiedAt => $composableBuilder(
+    column: $table.modifiedAt,
+    builder: (column) => column,
+  );
+
+  $$PersonsTableAnnotationComposer get personAId {
+    final $$PersonsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personAId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PersonsTableAnnotationComposer get personBId {
+    final $$PersonsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.personBId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$PersonsTableAnnotationComposer get mergedIntoPersonId {
+    final $$PersonsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.mergedIntoPersonId,
+      referencedTable: $db.persons,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PersonsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.persons,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$DuplicateCandidatesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $DuplicateCandidatesTable,
+          DuplicateCandidate,
+          $$DuplicateCandidatesTableFilterComposer,
+          $$DuplicateCandidatesTableOrderingComposer,
+          $$DuplicateCandidatesTableAnnotationComposer,
+          $$DuplicateCandidatesTableCreateCompanionBuilder,
+          $$DuplicateCandidatesTableUpdateCompanionBuilder,
+          (DuplicateCandidate, $$DuplicateCandidatesTableReferences),
+          DuplicateCandidate,
+          PrefetchHooks Function({
+            bool personAId,
+            bool personBId,
+            bool mergedIntoPersonId,
+          })
+        > {
+  $$DuplicateCandidatesTableTableManager(
+    _$AppDatabase db,
+    $DuplicateCandidatesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$DuplicateCandidatesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$DuplicateCandidatesTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$DuplicateCandidatesTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> personAId = const Value.absent(),
+                Value<String> personBId = const Value.absent(),
+                Value<int> score = const Value.absent(),
+                Value<String> reasonCodesJson = const Value.absent(),
+                Value<int> detectorVersion = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<DateTime> lastEvaluatedAt = const Value.absent(),
+                Value<DateTime?> resolvedAt = const Value.absent(),
+                Value<String?> mergedIntoPersonId = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> modifiedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => DuplicateCandidatesCompanion(
+                id: id,
+                personAId: personAId,
+                personBId: personBId,
+                score: score,
+                reasonCodesJson: reasonCodesJson,
+                detectorVersion: detectorVersion,
+                status: status,
+                lastEvaluatedAt: lastEvaluatedAt,
+                resolvedAt: resolvedAt,
+                mergedIntoPersonId: mergedIntoPersonId,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String personAId,
+                required String personBId,
+                required int score,
+                required String reasonCodesJson,
+                required int detectorVersion,
+                required String status,
+                required DateTime lastEvaluatedAt,
+                Value<DateTime?> resolvedAt = const Value.absent(),
+                Value<String?> mergedIntoPersonId = const Value.absent(),
+                required DateTime createdAt,
+                required DateTime modifiedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => DuplicateCandidatesCompanion.insert(
+                id: id,
+                personAId: personAId,
+                personBId: personBId,
+                score: score,
+                reasonCodesJson: reasonCodesJson,
+                detectorVersion: detectorVersion,
+                status: status,
+                lastEvaluatedAt: lastEvaluatedAt,
+                resolvedAt: resolvedAt,
+                mergedIntoPersonId: mergedIntoPersonId,
+                createdAt: createdAt,
+                modifiedAt: modifiedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$DuplicateCandidatesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback:
+              ({
+                personAId = false,
+                personBId = false,
+                mergedIntoPersonId = false,
+              }) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [],
+                  addJoins:
+                      <
+                        T extends TableManagerState<
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic
+                        >
+                      >(state) {
+                        if (personAId) {
+                          state = state.withJoin(
+                            currentTable: table,
+                            currentColumn: table.personAId,
+                            referencedTable:
+                                $$DuplicateCandidatesTableReferences
+                                    ._personAIdTable(db),
+                            referencedColumn:
+                                $$DuplicateCandidatesTableReferences
+                                    ._personAIdTable(db)
+                                    .id,
+                          ) as T;
+                        }
+                        if (personBId) {
+                          state = state.withJoin(
+                            currentTable: table,
+                            currentColumn: table.personBId,
+                            referencedTable:
+                                $$DuplicateCandidatesTableReferences
+                                    ._personBIdTable(db),
+                            referencedColumn:
+                                $$DuplicateCandidatesTableReferences
+                                    ._personBIdTable(db)
+                                    .id,
+                          ) as T;
+                        }
+                        if (mergedIntoPersonId) {
+                          state = state.withJoin(
+                            currentTable: table,
+                            currentColumn: table.mergedIntoPersonId,
+                            referencedTable:
+                                $$DuplicateCandidatesTableReferences
+                                    ._mergedIntoPersonIdTable(db),
+                            referencedColumn:
+                                $$DuplicateCandidatesTableReferences
+                                    ._mergedIntoPersonIdTable(db)
+                                    .id,
+                          ) as T;
+                        }
+
+                        return state;
+                      },
+                  getPrefetchedDataCallback: (items) async {
+                    return [];
+                  },
+                );
+              },
+        ),
+      );
+}
+
+typedef $$DuplicateCandidatesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $DuplicateCandidatesTable,
+      DuplicateCandidate,
+      $$DuplicateCandidatesTableFilterComposer,
+      $$DuplicateCandidatesTableOrderingComposer,
+      $$DuplicateCandidatesTableAnnotationComposer,
+      $$DuplicateCandidatesTableCreateCompanionBuilder,
+      $$DuplicateCandidatesTableUpdateCompanionBuilder,
+      (DuplicateCandidate, $$DuplicateCandidatesTableReferences),
+      DuplicateCandidate,
+      PrefetchHooks Function({
+        bool personAId,
+        bool personBId,
+        bool mergedIntoPersonId,
+      })
+    >;
+typedef $$AuditEntriesTableCreateCompanionBuilder =
+    AuditEntriesCompanion Function({
+      required String id,
+      required String type,
+      required String origin,
+      required DateTime occurredAt,
+      Value<int> payloadVersion,
+      required String payloadJson,
+      Value<int> rowid,
+    });
+typedef $$AuditEntriesTableUpdateCompanionBuilder =
+    AuditEntriesCompanion Function({
+      Value<String> id,
+      Value<String> type,
+      Value<String> origin,
+      Value<DateTime> occurredAt,
+      Value<int> payloadVersion,
+      Value<String> payloadJson,
+      Value<int> rowid,
+    });
+
+final class $$AuditEntriesTableReferences
+    extends BaseReferences<_$AppDatabase, $AuditEntriesTable, AuditEntry> {
+  $$AuditEntriesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static MultiTypedResultKey<$AuditTargetsTable, List<AuditTarget>>
+  _auditTargetsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.auditTargets,
+    aliasName: 'audit_entries__id__audit_targets__audit_entry_id',
+  );
+
+  $$AuditTargetsTableProcessedTableManager get auditTargetsRefs {
+    final manager = $$AuditTargetsTableTableManager(
+      $_db,
+      $_db.auditTargets,
+    ).filter((f) => f.auditEntryId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_auditTargetsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+}
+
+class $$AuditEntriesTableFilterComposer
+    extends Composer<_$AppDatabase, $AuditEntriesTable> {
+  $$AuditEntriesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get origin => $composableBuilder(
+    column: $table.origin,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get occurredAt => $composableBuilder(
+    column: $table.occurredAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get payloadVersion => $composableBuilder(
+    column: $table.payloadVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get payloadJson => $composableBuilder(
+    column: $table.payloadJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  Expression<bool> auditTargetsRefs(
+    Expression<bool> Function($$AuditTargetsTableFilterComposer f) f,
+  ) {
+    final $$AuditTargetsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.auditTargets,
+      getReferencedColumn: (t) => t.auditEntryId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AuditTargetsTableFilterComposer(
+            $db: $db,
+            $table: $db.auditTargets,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$AuditEntriesTableOrderingComposer
+    extends Composer<_$AppDatabase, $AuditEntriesTable> {
+  $$AuditEntriesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get origin => $composableBuilder(
+    column: $table.origin,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get occurredAt => $composableBuilder(
+    column: $table.occurredAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get payloadVersion => $composableBuilder(
+    column: $table.payloadVersion,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get payloadJson => $composableBuilder(
+    column: $table.payloadJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$AuditEntriesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $AuditEntriesTable> {
+  $$AuditEntriesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get origin =>
+      $composableBuilder(column: $table.origin, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get occurredAt => $composableBuilder(
+    column: $table.occurredAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get payloadVersion => $composableBuilder(
+    column: $table.payloadVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get payloadJson => $composableBuilder(
+    column: $table.payloadJson,
+    builder: (column) => column,
+  );
+
+  Expression<T> auditTargetsRefs<T extends Object>(
+    Expression<T> Function($$AuditTargetsTableAnnotationComposer a) f,
+  ) {
+    final $$AuditTargetsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.auditTargets,
+      getReferencedColumn: (t) => t.auditEntryId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AuditTargetsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.auditTargets,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$AuditEntriesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $AuditEntriesTable,
+          AuditEntry,
+          $$AuditEntriesTableFilterComposer,
+          $$AuditEntriesTableOrderingComposer,
+          $$AuditEntriesTableAnnotationComposer,
+          $$AuditEntriesTableCreateCompanionBuilder,
+          $$AuditEntriesTableUpdateCompanionBuilder,
+          (AuditEntry, $$AuditEntriesTableReferences),
+          AuditEntry,
+          PrefetchHooks Function({bool auditTargetsRefs})
+        > {
+  $$AuditEntriesTableTableManager(_$AppDatabase db, $AuditEntriesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$AuditEntriesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$AuditEntriesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$AuditEntriesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> type = const Value.absent(),
+                Value<String> origin = const Value.absent(),
+                Value<DateTime> occurredAt = const Value.absent(),
+                Value<int> payloadVersion = const Value.absent(),
+                Value<String> payloadJson = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => AuditEntriesCompanion(
+                id: id,
+                type: type,
+                origin: origin,
+                occurredAt: occurredAt,
+                payloadVersion: payloadVersion,
+                payloadJson: payloadJson,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String type,
+                required String origin,
+                required DateTime occurredAt,
+                Value<int> payloadVersion = const Value.absent(),
+                required String payloadJson,
+                Value<int> rowid = const Value.absent(),
+              }) => AuditEntriesCompanion.insert(
+                id: id,
+                type: type,
+                origin: origin,
+                occurredAt: occurredAt,
+                payloadVersion: payloadVersion,
+                payloadJson: payloadJson,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$AuditEntriesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({auditTargetsRefs = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [if (auditTargetsRefs) db.auditTargets],
+              addJoins: null,
+              getPrefetchedDataCallback: (items) async {
+                return [
+                  if (auditTargetsRefs)
+                    await $_getPrefetchedData<
+                      AuditEntry,
+                      $AuditEntriesTable,
+                      AuditTarget
+                    >(
+                      currentTable: table,
+                      referencedTable: $$AuditEntriesTableReferences
+                          ._auditTargetsRefsTable(db),
+                      managerFromTypedResult: (p0) =>
+                          $$AuditEntriesTableReferences(
+                            db,
+                            table,
+                            p0,
+                          ).auditTargetsRefs,
+                      referencedItemsForCurrentItem: (item, referencedItems) =>
+                          referencedItems.where(
+                            (e) => e.auditEntryId == item.id,
+                          ),
+                      typedResults: items,
+                    ),
+                ];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$AuditEntriesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $AuditEntriesTable,
+      AuditEntry,
+      $$AuditEntriesTableFilterComposer,
+      $$AuditEntriesTableOrderingComposer,
+      $$AuditEntriesTableAnnotationComposer,
+      $$AuditEntriesTableCreateCompanionBuilder,
+      $$AuditEntriesTableUpdateCompanionBuilder,
+      (AuditEntry, $$AuditEntriesTableReferences),
+      AuditEntry,
+      PrefetchHooks Function({bool auditTargetsRefs})
+    >;
+typedef $$AuditTargetsTableCreateCompanionBuilder =
+    AuditTargetsCompanion Function({
+      Value<int> id,
+      required String auditEntryId,
+      required String entityType,
+      required String entityId,
+      required String role,
+    });
+typedef $$AuditTargetsTableUpdateCompanionBuilder =
+    AuditTargetsCompanion Function({
+      Value<int> id,
+      Value<String> auditEntryId,
+      Value<String> entityType,
+      Value<String> entityId,
+      Value<String> role,
+    });
+
+final class $$AuditTargetsTableReferences
+    extends BaseReferences<_$AppDatabase, $AuditTargetsTable, AuditTarget> {
+  $$AuditTargetsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $AuditEntriesTable _auditEntryIdTable(_$AppDatabase db) => db
+      .auditEntries
+      .createAlias('audit_targets__audit_entry_id__audit_entries__id');
+
+  $$AuditEntriesTableProcessedTableManager get auditEntryId {
+    final $_column = $_itemColumn<String>('audit_entry_id')!;
+
+    final manager = $$AuditEntriesTableTableManager(
+      $_db,
+      $_db.auditEntries,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_auditEntryIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$AuditTargetsTableFilterComposer
+    extends Composer<_$AppDatabase, $AuditTargetsTable> {
+  $$AuditTargetsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get entityType => $composableBuilder(
+    column: $table.entityType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get entityId => $composableBuilder(
+    column: $table.entityId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get role => $composableBuilder(
+    column: $table.role,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$AuditEntriesTableFilterComposer get auditEntryId {
+    final $$AuditEntriesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.auditEntryId,
+      referencedTable: $db.auditEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AuditEntriesTableFilterComposer(
+            $db: $db,
+            $table: $db.auditEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$AuditTargetsTableOrderingComposer
+    extends Composer<_$AppDatabase, $AuditTargetsTable> {
+  $$AuditTargetsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get entityType => $composableBuilder(
+    column: $table.entityType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get entityId => $composableBuilder(
+    column: $table.entityId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get role => $composableBuilder(
+    column: $table.role,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$AuditEntriesTableOrderingComposer get auditEntryId {
+    final $$AuditEntriesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.auditEntryId,
+      referencedTable: $db.auditEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AuditEntriesTableOrderingComposer(
+            $db: $db,
+            $table: $db.auditEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$AuditTargetsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $AuditTargetsTable> {
+  $$AuditTargetsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get entityType => $composableBuilder(
+    column: $table.entityType,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get entityId =>
+      $composableBuilder(column: $table.entityId, builder: (column) => column);
+
+  GeneratedColumn<String> get role =>
+      $composableBuilder(column: $table.role, builder: (column) => column);
+
+  $$AuditEntriesTableAnnotationComposer get auditEntryId {
+    final $$AuditEntriesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.auditEntryId,
+      referencedTable: $db.auditEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AuditEntriesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.auditEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$AuditTargetsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $AuditTargetsTable,
+          AuditTarget,
+          $$AuditTargetsTableFilterComposer,
+          $$AuditTargetsTableOrderingComposer,
+          $$AuditTargetsTableAnnotationComposer,
+          $$AuditTargetsTableCreateCompanionBuilder,
+          $$AuditTargetsTableUpdateCompanionBuilder,
+          (AuditTarget, $$AuditTargetsTableReferences),
+          AuditTarget,
+          PrefetchHooks Function({bool auditEntryId})
+        > {
+  $$AuditTargetsTableTableManager(_$AppDatabase db, $AuditTargetsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$AuditTargetsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$AuditTargetsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$AuditTargetsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> auditEntryId = const Value.absent(),
+                Value<String> entityType = const Value.absent(),
+                Value<String> entityId = const Value.absent(),
+                Value<String> role = const Value.absent(),
+              }) => AuditTargetsCompanion(
+                id: id,
+                auditEntryId: auditEntryId,
+                entityType: entityType,
+                entityId: entityId,
+                role: role,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String auditEntryId,
+                required String entityType,
+                required String entityId,
+                required String role,
+              }) => AuditTargetsCompanion.insert(
+                id: id,
+                auditEntryId: auditEntryId,
+                entityType: entityType,
+                entityId: entityId,
+                role: role,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$AuditTargetsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({auditEntryId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (auditEntryId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.auditEntryId,
+                        referencedTable: $$AuditTargetsTableReferences
+                            ._auditEntryIdTable(db),
+                        referencedColumn: $$AuditTargetsTableReferences
+                            ._auditEntryIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$AuditTargetsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $AuditTargetsTable,
+      AuditTarget,
+      $$AuditTargetsTableFilterComposer,
+      $$AuditTargetsTableOrderingComposer,
+      $$AuditTargetsTableAnnotationComposer,
+      $$AuditTargetsTableCreateCompanionBuilder,
+      $$AuditTargetsTableUpdateCompanionBuilder,
+      (AuditTarget, $$AuditTargetsTableReferences),
+      AuditTarget,
+      PrefetchHooks Function({bool auditEntryId})
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -13274,4 +22523,20 @@ class $AppDatabaseManager {
       $$EventsTableTableManager(_db, _db.events);
   $$EventParticipantsTableTableManager get eventParticipants =>
       $$EventParticipantsTableTableManager(_db, _db.eventParticipants);
+  $$SourcesTableTableManager get sources =>
+      $$SourcesTableTableManager(_db, _db.sources);
+  $$MediaAssetsTableTableManager get mediaAssets =>
+      $$MediaAssetsTableTableManager(_db, _db.mediaAssets);
+  $$SourceMediaLinksTableTableManager get sourceMediaLinks =>
+      $$SourceMediaLinksTableTableManager(_db, _db.sourceMediaLinks);
+  $$ClaimsTableTableManager get claims =>
+      $$ClaimsTableTableManager(_db, _db.claims);
+  $$ClaimApplicationsTableTableManager get claimApplications =>
+      $$ClaimApplicationsTableTableManager(_db, _db.claimApplications);
+  $$DuplicateCandidatesTableTableManager get duplicateCandidates =>
+      $$DuplicateCandidatesTableTableManager(_db, _db.duplicateCandidates);
+  $$AuditEntriesTableTableManager get auditEntries =>
+      $$AuditEntriesTableTableManager(_db, _db.auditEntries);
+  $$AuditTargetsTableTableManager get auditTargets =>
+      $$AuditTargetsTableTableManager(_db, _db.auditTargets);
 }

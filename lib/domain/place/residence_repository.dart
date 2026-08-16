@@ -3,6 +3,8 @@ import 'package:family_history/core/ids/domain_id.dart';
 import 'package:family_history/domain/place/residence.dart';
 
 abstract interface class ResidenceRepository {
+  Future<List<Residence>> listResidentsAtPlace(PlaceId placeId);
+
   Stream<List<Residence>> watchForPerson(PersonId personId);
 
   Stream<List<Residence>> watchResidentsAtPlace(

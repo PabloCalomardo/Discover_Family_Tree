@@ -1,6 +1,8 @@
 import 'package:family_history/app/app_strings.dart';
 import 'package:family_history/app/providers.dart';
 import 'package:family_history/core/ids/domain_id.dart';
+import 'package:family_history/domain/person/person.dart';
+import 'package:family_history/domain/person/person_name.dart';
 import 'package:family_history/domain/place/place.dart';
 import 'package:family_history/features/places/places_screen.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +49,10 @@ class _PlaceFormState extends ConsumerState<_PlaceForm> {
   late final TextEditingController _description;
   late final TextEditingController _notes;
   late PlaceType _type;
+  List<Person> _people = const [];
+  List<PersonName> _personNames = const [];
+  Set<PersonId> _residentIds = {};
+  bool _loadingResidents = false;
   bool _saving = false;
 
   @override
@@ -61,6 +67,39 @@ class _PlaceFormState extends ConsumerState<_PlaceForm> {
     _description = TextEditingController(text: place?.description ?? '');
     _notes = TextEditingController(text: place?.notes ?? '');
     _type = place?.type ?? PlaceType.house;
+    if (place != null) {
+      _loadingResidents = true;
+      Future<void>.microtask(_loadResidents);
+    }
+  }
+
+  Future<void> _loadResidents() async {
+    final place = widget.initialPlace;
+    if (place == null) return;
+    try {
+      final values = await Future.wait([
+        ref.read(personRepositoryProvider).listAll(),
+        ref.read(personNameRepositoryProvider).listAll(),
+        ref.read(residenceRepositoryProvider).listResidentsAtPlace(place.id),
+      ]);
+      if (!mounted) return;
+      setState(() {
+        _people = values[0] as List<Person>;
+        _personNames = values[1] as List<PersonName>;
+        _residentIds = (values[2] as List)
+            .map((item) => item.personId as PersonId)
+            .toSet();
+        _loadingResidents = false;
+      });
+    } catch (error) {
+      if (!mounted) return;
+      setState(() => _loadingResidents = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('No s’han pogut carregar els residents: $error'),
+        ),
+      );
+    }
   }
 
   @override
@@ -100,8 +139,9 @@ class _PlaceFormState extends ConsumerState<_PlaceForm> {
       if (existing == null) {
         await controller.create(place);
       } else {
-        await controller.update(place);
+        await controller.updateWithResidents(place, _residentIds);
         ref.invalidate(placeProvider(id));
+        ref.invalidate(placeResidencesProvider(id));
       }
       if (mounted) context.go('/places/${id.value}');
     } catch (error) {
@@ -182,6 +222,44 @@ class _PlaceFormState extends ConsumerState<_PlaceForm> {
               minLines: 2,
               maxLines: 5,
             ),
+            if (isEditing) ...[
+              const SizedBox(height: 24),
+              Text(
+                'Residents del lloc',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                'Marca les persones que resideixen en aquest lloc. '
+                'Desmarcar-ne una elimina les residències que hi té registrades.',
+              ),
+              const SizedBox(height: 12),
+              if (_loadingResidents)
+                const LinearProgressIndicator()
+              else if (_people.isEmpty)
+                const Text('No hi ha persones disponibles.')
+              else
+                Card(
+                  child: Column(
+                    children: _people
+                        .map(
+                          (person) => CheckboxListTile(
+                            value: _residentIds.contains(person.id),
+                            title: Text(_residentLabel(person.id)),
+                            secondary: const Icon(Icons.person_outline),
+                            onChanged: (selected) => setState(() {
+                              if (selected ?? false) {
+                                _residentIds.add(person.id);
+                              } else {
+                                _residentIds.remove(person.id);
+                              }
+                            }),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+            ],
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -192,7 +270,7 @@ class _PlaceFormState extends ConsumerState<_PlaceForm> {
                 ),
                 const SizedBox(width: 12),
                 FilledButton.icon(
-                  onPressed: _saving ? null : _save,
+                  onPressed: _saving || _loadingResidents ? null : _save,
                   icon: const Icon(Icons.save),
                   label: const Text(AppStrings.save),
                 ),
@@ -208,4 +286,15 @@ class _PlaceFormState extends ConsumerState<_PlaceForm> {
     if (value == null || value.trim().isEmpty) return null;
     return double.tryParse(value) == null ? 'Valor numèric no vàlid.' : null;
   }
+
+  String _residentLabel(PersonId id) =>
+      _personNames
+          .where((name) => name.personId == id && name.isPreferred)
+          .map((name) => name.displayName)
+          .firstOrNull ??
+      _personNames
+          .where((name) => name.personId == id)
+          .map((name) => name.displayName)
+          .firstOrNull ??
+      id.value;
 }
